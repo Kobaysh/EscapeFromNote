@@ -8,7 +8,7 @@ public class Kanji_Gun : Kanji_Abstract
 {
     private GameObject firingPoint;
 
-    [SerializeField]
+    [SerializeField, Header("èe")]
     [Tooltip("íe")]
     private GameObject bullet;
 
