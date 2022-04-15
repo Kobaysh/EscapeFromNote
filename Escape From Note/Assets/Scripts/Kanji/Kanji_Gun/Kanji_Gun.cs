@@ -51,4 +51,7 @@ public class Kanji_Gun : Kanji_Abstract
         LauncherShot();
        
     }
+
+    //•ª—£
+
 }

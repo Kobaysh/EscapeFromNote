@@ -20,4 +20,6 @@ public abstract class Kanji_Abstract : ScriptableObject
         //ŒÄ‚ñ‚¾Žž
     }
     
+    //•ª—£
+
 }
