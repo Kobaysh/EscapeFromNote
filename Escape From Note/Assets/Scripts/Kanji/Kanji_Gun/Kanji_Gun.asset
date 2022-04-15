@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u9283"
   KanjiModel: {fileID: 2307660138819118564, guid: b1e8b1067345a2b4da408b8bab3b4de9, type: 3}
+  bullet: {fileID: 7626601717075316187, guid: 85783aecda0b2bf4c96a56a14efeec4e, type: 3}
+  speed: 40
