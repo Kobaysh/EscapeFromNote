@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
     public float gameOverLimit = 30.0f;
     public Text timeText;
 
+    private float LimitTimeMax = 30.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        LimitTimeMax = gameOverLimit;
     }
 
     // Update is called once per frame
@@ -27,5 +29,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("time over");
             SceneManager.LoadScene(0);
         }
+    }
+
+    public float GetLimitTime()
+    {
+        return LimitTimeMax;
     }
 }
