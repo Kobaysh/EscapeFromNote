@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
             //ï‡çs
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
             moveDirection *= speed;
-
+            transform.right = moveDirection;
             //ÉWÉÉÉìÉv
             if (Input.GetButton("Jump"))
             {
