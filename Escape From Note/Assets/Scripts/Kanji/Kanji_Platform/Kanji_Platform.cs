@@ -28,4 +28,10 @@ public class Kanji_Platform : Kanji_Abstract
     {
 
     }
+
+    //•ª—£
+    public override void KanjiSeparation()
+    {
+
+    }
 }

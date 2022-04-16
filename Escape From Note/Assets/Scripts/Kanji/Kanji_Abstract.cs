@@ -24,5 +24,6 @@ public abstract class Kanji_Abstract : ScriptableObject
     public abstract void KanjiUnion();
 
     //•ª—£
+    public abstract void KanjiSeparation();
 
 }

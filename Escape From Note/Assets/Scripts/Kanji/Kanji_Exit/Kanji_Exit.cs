@@ -29,4 +29,10 @@ public class Kanji_Exit : Kanji_Abstract
     {
 
     }
+
+    //•ª—£
+    public override void KanjiSeparation()
+    {
+
+    }
 }

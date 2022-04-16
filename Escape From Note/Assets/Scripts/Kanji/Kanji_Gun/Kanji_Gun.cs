@@ -16,8 +16,11 @@ public class Kanji_Gun : Kanji_Abstract
     [Tooltip("’e‚Ì‘¬‚³")]
     private float speed = 20f;
 
+    //‡‘ÌŒ³‚ÌŠ¿š
+    public Kanji_Abstract KanjiSub1; //‹à
+    public Kanji_Abstract KanjiSub2; //[
 
-	// ’e‚Ì”­Ë
+    // ’e‚Ì”­Ë
     private void LauncherShot()
     {
         
@@ -59,5 +62,16 @@ public class Kanji_Gun : Kanji_Abstract
     }
 
     //•ª—£
+    public override void KanjiSeparation()
+    {
+        //ƒvƒŒƒCƒ„[‚ğæ“¾
+        GameObject player;
+        player = GameObject.Find("Player");
 
+        //‹à‚ğƒZƒbƒg
+        player.GetComponent<Player>().KanjiSet(KanjiSub1,false);
+
+        //[‚ğİ’u
+        KanjiSub2.KanjiSummon();
+    }
 }

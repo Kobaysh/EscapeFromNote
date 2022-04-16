@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
 
         kanji = null;
 
-        //kanji = ScriptableObject.CreateInstance<Kanji_Gun>();
+        Debug.Log("Eキー：分離");
+        Debug.Log("漢字を所持してから設置された漢字の近くでFキー：合体");
     }
 
     //更新
@@ -61,17 +62,32 @@ public class Player : MonoBehaviour
                 kanji.KanjiAction();
             }
         }
+
+        //分離命令
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(kanji!=null)
+            {
+                Debug.Log("分離します");
+                kanji.KanjiSeparation();
+            }
+        }
+
     }
 
-    //漢字をゲット
-    public void KanjiSet(Kanji_Abstract recvKanji)
+    //漢字をセット
+    public void KanjiSet(Kanji_Abstract recvKanji,bool Exchange)
     {
-        //すでに漢字を持っていた場合
-        if (kanji != null)
+        //交換を行う時
+        if (Exchange)
         {
-            //kanjiの関数を呼んで生成させる
-            kanji.KanjiSummon();
+            //すでに漢字を持っていた場合
+            if (kanji != null)
+            {
+                //kanjiの関数を呼んで生成させる
+                kanji.KanjiSummon();
 
+            }
         }
 
         //所持漢字をセット

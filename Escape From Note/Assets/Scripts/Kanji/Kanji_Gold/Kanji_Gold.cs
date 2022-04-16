@@ -45,10 +45,15 @@ public class Kanji_Gold : Kanji_Abstract
             Debug.Log("金 + 充 = 銃");
 
             //オブジェクト消去
-            //Destroy(gameObject);
+            KanjiModel.GetComponent<KanjiObject>().DestroyKanji();
 
             //銃を所持する
-            player.GetComponent<Player>().KanjiSet(Union_Gun);
+            player.GetComponent<Player>().KanjiSet(Union_Gun,false);
         }
+    }
+
+    //分離
+    public override void KanjiSeparation()
+    {
     }
 }

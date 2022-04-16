@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u5145"
   KanjiModel: {fileID: 7513504357329225523, guid: 1b31df5c4e422c3469c037872176aa66, type: 3}
+  Union_Gun: {fileID: 11400000, guid: f1a9f02b0234ef847927f5ee7d03fd0b, type: 2}
