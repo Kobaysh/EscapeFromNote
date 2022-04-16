@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Platform")]
-public class Kanji_Platform : Kanji_Abstract
+//継承クラス
+[CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Fill")]
+public class Kanji_Fill : Kanji_Abstract
 {
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,10 @@ public class Kanji_Platform : Kanji_Abstract
 
     }
 
-    //アクション
+    //アクション（派生関数）
     public override void KanjiAction()
     {
-        Debug.Log("台");
+
     }
 
     //合体
