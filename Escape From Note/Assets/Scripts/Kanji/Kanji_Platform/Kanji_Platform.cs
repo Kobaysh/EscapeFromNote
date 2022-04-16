@@ -22,4 +22,10 @@ public class Kanji_Platform : Kanji_Abstract
     {
         Debug.Log("ë‰");
     }
+
+    //çáëÃ
+    public override void KanjiUnion()
+    {
+
+    }
 }

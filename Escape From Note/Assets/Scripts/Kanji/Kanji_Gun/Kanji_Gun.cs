@@ -17,7 +17,7 @@ public class Kanji_Gun : Kanji_Abstract
     private float speed = 20f;
 
 
-	/// ’e‚Ì”­Ë
+	// ’e‚Ì”­Ë
     private void LauncherShot()
     {
         
@@ -50,6 +50,12 @@ public class Kanji_Gun : Kanji_Abstract
         // ’e‚ğ”­Ë‚·‚é
         LauncherShot();
        
+    }
+
+    //‡‘Ì
+    public override void KanjiUnion()
+    {
+
     }
 
     //•ª—£
