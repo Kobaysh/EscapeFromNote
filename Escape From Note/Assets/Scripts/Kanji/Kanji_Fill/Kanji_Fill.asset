@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cfa35a9f50d36489101c39988ca06d, type: 3}
+  m_Name: Kanji_Fill
+  m_EditorClassIdentifier: 
+  slotText: "\u5145"
+  KanjiModel: {fileID: 7513504357329225523, guid: 1b31df5c4e422c3469c037872176aa66, type: 3}
+  Union_Gun: {fileID: 11400000, guid: f1a9f02b0234ef847927f5ee7d03fd0b, type: 2}

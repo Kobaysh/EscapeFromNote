@@ -24,17 +24,34 @@ public class KanjiObject : MonoBehaviour
     //当たり判定
     public void KanjiGet()
     {
-        Destroy(gameObject);
-
-        //UIを更新
-
+        DestroyKanji();
 
         //アイテムスロットに格納
         //Possessionkanjiを引数にプレイヤーの関数を呼ぶ
         player = GameObject.Find("Player");
-        player.GetComponent<Player>().KanjiSet(PossessionKanji);
+        player.GetComponent<Player>().KanjiSet(PossessionKanji,true);
+    }
 
+    //合体命令
+    public void KanjiUnionOrder()
+    {
+        Debug.Log("合体します。");
 
+        //PossessionKanji.KanjiUnion();
 
+        //PossesionKanjiからではなく、ここから消去命令を出さなければならない
+        //所持漢字のbool関数を呼び、真が出れば消去する
+
+        if(PossessionKanji.KanjiUnionCheck())
+        {
+            DestroyKanji();
+        }
+
+    }
+
+    //消去
+    public void DestroyKanji()
+    {
+        Destroy(gameObject);
     }
 }

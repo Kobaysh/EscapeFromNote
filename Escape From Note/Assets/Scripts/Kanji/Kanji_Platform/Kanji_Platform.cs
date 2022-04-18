@@ -22,4 +22,16 @@ public class Kanji_Platform : Kanji_Abstract
     {
         Debug.Log("‘ä");
     }
+
+    //‡‘Ì
+    public override bool KanjiUnionCheck()
+    {
+        return false;
+    }
+
+    //•ª—£
+    public override void KanjiSeparation()
+    {
+
+    }
 }

@@ -19,7 +19,11 @@ public abstract class Kanji_Abstract : ScriptableObject
         Instantiate(KanjiModel);
         //ŒÄ‚ñ‚¾
     }
-    
+
+    //‡‘Ì‰Â”\‚©
+    public abstract bool KanjiUnionCheck();
+
     //•ª—£
+    public abstract void KanjiSeparation();
 
 }
