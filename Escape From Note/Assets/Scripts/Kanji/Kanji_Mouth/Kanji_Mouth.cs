@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //継承クラス
-[CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_MU")]
-public class Kanji_MU : Kanji_Abstract
+[CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Mouth")]
+public class Kanji_Mouth : Kanji_Abstract
 {
     public Kanji_Abstract Union_Platform;
+    public Kanji_Abstract Union_Exit;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class Kanji_MU : Kanji_Abstract
         Kanji_Abstract getKanji = player_script.kanji;
 
         //取得していた漢字の比較
-        if (getKanji.GetType() == typeof(Kanji_Mouth))
+        if (getKanji.GetType() == typeof(Kanji_MU))
         {
             Debug.Log("ム + 口 = 台");
             //台を所持する
@@ -48,6 +49,16 @@ public class Kanji_MU : Kanji_Abstract
 
             return true;
         }
+
+        else if (getKanji.GetType() == typeof(Kanji_Leave))
+        {
+            Debug.Log("出 + 口 = 出口");
+            //出口を所持する
+            player.GetComponent<Player>().KanjiSet(Union_Exit, false);
+
+            return true;
+        }
+
 
         return false;
     }

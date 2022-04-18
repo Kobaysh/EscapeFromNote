@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925fe53c702063649aac7e24b61b2cd5, type: 3}
-  m_Name: Kanji_Leave
+  m_Script: {fileID: 11500000, guid: 66e1e971bd7867141ba78d67cffb050e, type: 3}
+  m_Name: Kanji_Mouth
   m_EditorClassIdentifier: 
-  slotText: "\u51FA"
-  KanjiModel: {fileID: 1269042736594282524, guid: 82cb6a22638db55478e35147590798a5, type: 3}
+  slotText: "\u53E3"
+  KanjiModel: {fileID: 6378928871676918361, guid: 48b8062c3800dba45a5112c4c3ec4afb, type: 3}
+  Union_Platform: {fileID: 11400000, guid: 4002029ce7cc5e84b89a79abe4a56bae, type: 2}
   Union_Exit: {fileID: 11400000, guid: 176c12b66916f1b4b9dc2133acf74c17, type: 2}

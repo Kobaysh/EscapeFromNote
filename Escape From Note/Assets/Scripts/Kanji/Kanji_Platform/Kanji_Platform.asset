@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u53F0"
   KanjiModel: {fileID: 8647899263071928395, guid: 2a08bc1ddc817d34b887cb76d6d30da5, type: 3}
+  KanjiSub1: {fileID: 11400000, guid: f2fa07bc3dd27714f82c28ef39d56e7b, type: 2}
+  KanjiSub2: {fileID: 11400000, guid: 9cbcc11cce2a4f24ca33da6dfedc588f, type: 2}
