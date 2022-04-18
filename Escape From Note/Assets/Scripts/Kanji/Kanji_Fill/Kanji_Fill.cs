@@ -20,13 +20,13 @@ public class Kanji_Fill : Kanji_Abstract
 
     }
 
-    //アクション（派生関数）
+    //アクション
     public override void KanjiAction()
     {
 
     }
 
-    //合体
+    //合体可否判定
     public override bool KanjiUnionCheck()
     {
         //プレイヤーを取得

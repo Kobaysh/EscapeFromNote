@@ -20,14 +20,14 @@ public class Kanji_Exit : Kanji_Abstract
 
     }
 
-    //アクション（派生関数）
+    //アクション
     public override void KanjiAction()
     {
         if (!gameManager) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.GameClear();
     }
 
-    //合体
+    //合体可否判定
     public override bool KanjiUnionCheck()
     {
         return false;

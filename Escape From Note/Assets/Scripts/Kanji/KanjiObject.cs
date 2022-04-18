@@ -41,7 +41,6 @@ public class KanjiObject : MonoBehaviour
 
         //PossesionKanjiからではなく、ここから消去命令を出さなければならない
         //所持漢字のbool関数を呼び、真が出れば消去する
-
         if(PossessionKanji.KanjiUnionCheck())
         {
             DestroyKanji();

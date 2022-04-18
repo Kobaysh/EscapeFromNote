@@ -23,7 +23,7 @@ public class Kanji_Platform : Kanji_Abstract
         Debug.Log("‘ä");
     }
 
-    //‡‘Ì
+    //‡‘Ì‰Â”Û”»’è
     public override bool KanjiUnionCheck()
     {
         return false;

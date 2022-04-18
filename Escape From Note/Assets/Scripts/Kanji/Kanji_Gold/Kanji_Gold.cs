@@ -20,13 +20,13 @@ public class Kanji_Gold : Kanji_Abstract
 
     }
 
-    //アクション（派生関数）
+    //アクション
     public override void KanjiAction()
     {
 
     }
 
-    //合体可能か
+    //合体可否判定
     public override bool KanjiUnionCheck()
     {
         //プレイヤーを取得

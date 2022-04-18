@@ -55,7 +55,7 @@ public class Kanji_Gun : Kanji_Abstract
        
     }
 
-    //‡‘Ì
+    //‡‘Ì‰Â”Û”»’è
     public override bool KanjiUnionCheck()
     {
         return false;

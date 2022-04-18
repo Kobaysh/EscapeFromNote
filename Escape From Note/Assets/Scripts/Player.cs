@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
 
         kanji = null;
 
-        Debug.Log("Eキー：分離");
-        Debug.Log("漢字を所持してから設置された漢字の近くでFキー：合体");
+        Debug.Log("操作：Eキー → 分離");
+        Debug.Log("操作：漢字を所持してから設置された漢字の近くでFキー → 合体");
     }
 
     //更新

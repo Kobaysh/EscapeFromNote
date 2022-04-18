@@ -8,22 +8,20 @@ public abstract class Kanji_Abstract : ScriptableObject
     public string slotText;
     public GameObject KanjiModel;
 
-    //純粋仮想関数-----------------------------------------------
-
-    //アクション
-    public abstract void KanjiAction(); //アクション
-
-    //設置する
+    //設置
     public void KanjiSummon()
     {
         Instantiate(KanjiModel);
-        //呼んだ時
     }
 
-    //合体可能か
+    //純粋仮想関数-----------------------------------------------
+
+    //アクション
+    public abstract void KanjiAction();
+
+    //合体可否判定
     public abstract bool KanjiUnionCheck();
 
     //分離
     public abstract void KanjiSeparation();
-
 }
