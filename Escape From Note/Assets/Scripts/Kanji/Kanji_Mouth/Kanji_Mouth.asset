@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e1e971bd7867141ba78d67cffb050e, type: 3}
+  m_Name: Kanji_Mouth
+  m_EditorClassIdentifier: 
+  slotText: "\u53E3"
+  KanjiModel: {fileID: 6378928871676918361, guid: 48b8062c3800dba45a5112c4c3ec4afb, type: 3}
+  Union_Platform: {fileID: 11400000, guid: 4002029ce7cc5e84b89a79abe4a56bae, type: 2}
+  Union_Exit: {fileID: 11400000, guid: 176c12b66916f1b4b9dc2133acf74c17, type: 2}
