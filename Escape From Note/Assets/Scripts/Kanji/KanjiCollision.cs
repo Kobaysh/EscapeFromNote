@@ -16,18 +16,23 @@ public class KanjiCollision : MonoBehaviour
         
     }
 
+    //コリジョンに接触
     private void OnTriggerStay(Collider other)
     {
-        //取得
-        if (Input.GetMouseButtonDown(0)) //左クリック時
+        //プレイヤーが接触
+        if (other.gameObject.CompareTag("Player"))
         {
-            transform.root.gameObject.GetComponent<KanjiObject>().KanjiGet(); //親のオブジェクトのKanjiObjectスクリプトの関数を呼ぶ
-        }
+            //取得
+            if (Input.GetMouseButtonDown(0)) //左クリック時
+            {
+                transform.root.gameObject.GetComponent<KanjiObject>().KanjiGet(); //親のオブジェクトのKanjiObjectスクリプトの関数を呼ぶ
+            }
 
-        //合体命令
-        if(Input.GetKeyDown(KeyCode.F))//Fキー
-        {
-            transform.root.gameObject.GetComponent<KanjiObject>().KanjiUnionOrder();
+            //合体命令
+            if (Input.GetKeyDown(KeyCode.F))//Fキー
+            {
+                transform.root.gameObject.GetComponent<KanjiObject>().KanjiUnionOrder();
+            }
         }
     }
 }

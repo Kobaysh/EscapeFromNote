@@ -20,8 +20,8 @@ public abstract class Kanji_Abstract : ScriptableObject
         //ŒÄ‚ñ‚¾
     }
 
-    //‡‘Ì
-    public abstract void KanjiUnion();
+    //‡‘Ì‰Â”\‚©
+    public abstract bool KanjiUnionCheck();
 
     //•ª—£
     public abstract void KanjiSeparation();

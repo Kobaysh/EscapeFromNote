@@ -28,9 +28,9 @@ public class Kanji_Exit : Kanji_Abstract
     }
 
     //‡‘Ì
-    public override void KanjiUnion()
+    public override bool KanjiUnionCheck()
     {
-
+        return false;
     }
 
     //•ª—£

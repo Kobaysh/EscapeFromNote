@@ -24,7 +24,6 @@ public class KanjiObject : MonoBehaviour
     //当たり判定
     public void KanjiGet()
     {
-
         DestroyKanji();
 
         //アイテムスロットに格納
@@ -38,7 +37,16 @@ public class KanjiObject : MonoBehaviour
     {
         Debug.Log("合体します。");
 
-        PossessionKanji.KanjiUnion();
+        //PossessionKanji.KanjiUnion();
+
+        //PossesionKanjiからではなく、ここから消去命令を出さなければならない
+        //所持漢字のbool関数を呼び、真が出れば消去する
+
+        if(PossessionKanji.KanjiUnionCheck())
+        {
+            DestroyKanji();
+        }
+
     }
 
     //消去

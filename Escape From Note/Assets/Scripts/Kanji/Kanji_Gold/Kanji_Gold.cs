@@ -26,8 +26,8 @@ public class Kanji_Gold : Kanji_Abstract
 
     }
 
-    //合体
-    public override void KanjiUnion()
+    //合体可能か
+    public override bool KanjiUnionCheck()
     {
         //プレイヤーを取得
         GameObject player;
@@ -43,16 +43,16 @@ public class Kanji_Gold : Kanji_Abstract
         if(getKanji.GetType()==typeof(Kanji_Fill))
         {
             Debug.Log("金 + 充 = 銃");
-
-            //オブジェクト消去
-            KanjiModel.GetComponent<KanjiObject>().DestroyKanji();
-
             //銃を所持する
             player.GetComponent<Player>().KanjiSet(Union_Gun,false);
+
+            return true;
         }
+
+        return false;
     }
 
-    //分離
+    //分離（派生関数）
     public override void KanjiSeparation()
     {
     }
