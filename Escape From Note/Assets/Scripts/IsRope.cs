@@ -31,15 +31,22 @@ public class IsRope : MonoBehaviour
             // target‚ªƒQ[ƒ€ƒV[ƒ“ã‚É‚ ‚éê‡
             if(target)
             { 
+                var component = target.GetComponent<CapsuleCollider>();
 
-                var component = target.GetComponent<Rigidbody>();
+                var rigid = target.GetComponent<Rigidbody>();
 
                 // Rigidbody‚ª•t—^‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç
                 if (component == null)
                 {
                     // ytargetz‚ÉRigidBody‚ğ•t—^
-                    Rigidbody rigidbody = target.AddComponent<Rigidbody>();
+                    CapsuleCollider rigidbody = target.AddComponent<CapsuleCollider>();
+
+                    Rigidbody a= target.AddComponent<Rigidbody>();
                 }
+                //else
+                //{
+                //    component.isKinematic = false;
+                //}
             }
         }
     }

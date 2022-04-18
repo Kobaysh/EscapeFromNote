@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         if (Exchange)
         {
             //‚·‚Å‚ÉŠ¿š‚ğ‚Á‚Ä‚¢‚½ê‡
-            if (kanji != null)
+            if (kanji != null&&recvKanji!=kanji)
             {
                 //kanji‚ÌŠÖ”‚ğŒÄ‚ñ‚Å¶¬‚³‚¹‚é
                 kanji.KanjiSummon();

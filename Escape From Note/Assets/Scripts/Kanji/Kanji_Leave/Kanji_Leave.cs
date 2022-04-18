@@ -17,4 +17,16 @@ public class Kanji_Leave : Kanji_Abstract
         Debug.Log("o");
     }
 
+    //‡‘Ì‰Â”Û”»’è
+    public override bool KanjiUnionCheck()
+    {
+        return false;
+    }
+
+
+    //•ª—£
+    public override void KanjiSeparation()
+    {
+
+    }
 }
