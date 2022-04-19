@@ -42,19 +42,26 @@ public class Enemy_Object : MonoBehaviour
         {
             if (!isCollided)
             {
+                Debug.Log("damage");
                 isCollided = true;
                 timer = 0.0f;
+                Player player = other.GetComponent<Player>();
+                player.hp = player.hp - 1;
+                if(player.hp <= 0)
+                {
+                    player.hp = 0;
+                }
 
-                if (decreaseTime <= 0.0f)
-                {
-                    // 10%Œ¸­
-                    gameManager.gameOverLimit -= gameManager.GetLimitTime() * 0.1f;
-                }
-                else
-                {
-                    // Œ¸­ŽžŠÔ•ªŒ¸­
-                    gameManager.gameOverLimit -= decreaseTime;
-                }
+                //if (decreaseTime <= 0.0f)
+                //{
+                //    // 10%Œ¸­
+                //    gameManager.gameOverLimit -= gameManager.GetLimitTime() * 0.1f;
+                //}
+                //else
+                //{
+                //    // Œ¸­ŽžŠÔ•ªŒ¸­
+                //    gameManager.gameOverLimit -= decreaseTime;
+                //}
             }
         }
     }

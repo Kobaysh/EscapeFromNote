@@ -10,28 +10,38 @@ public class GameManager : MonoBehaviour
     public Text timeText;
     public GameObject GameClearText;
 
+    [SerializeField]
+    Text HPText;
+
+    private Player player;
+
+
     private float LimitTimeMax = 30.0f;
     private bool isGameClear = false;
     // Start is called before the first frame update
     void Start()
     {
         LimitTimeMax = gameOverLimit;
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isGameClear)
-        {
-            gameOverLimit -= Time.deltaTime;
-        }
-        timeText.text = gameOverLimit.ToString("f1") + "秒";
+        //if (!isGameClear)
+        //{
+        //    gameOverLimit -= Time.deltaTime;
+        //}
+        //timeText.text = gameOverLimit.ToString("f1") + "秒";
 
-        if(gameOverLimit <= 0)
-        {
-            Debug.Log("time over");
-            SceneManager.LoadScene(0);
-        }
+        //if(gameOverLimit <= 0)
+        //{
+        //    Debug.Log("time over");
+        //    SceneManager.LoadScene(0);
+        //}
+
+        // プレイヤーのHPのテキストを変更
+        HPText.text = "HP:" + player.hp.ToString();
     }
 
     public float GetLimitTime()
@@ -41,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
-        GameClearText.SetActive(true);
-        isGameClear = true;
+//        GameClearText.SetActive(true);
+ //       isGameClear = true;
     }
 }

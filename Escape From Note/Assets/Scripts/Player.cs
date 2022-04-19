@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     public Kanji_Abstract kanji;
 
     public GameObject ItemSlot;
+    public int hp {get;set;}
+
+    [SerializeField]
+    int startHp;
 
     //初期化
     private void Start()
@@ -24,6 +28,8 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         kanji = null;
+
+        hp = startHp;
 
         Debug.Log("操作：Eキー → 分離");
         Debug.Log("操作：漢字を所持してから設置された漢字の近くでFキー → 合体");
@@ -96,5 +102,10 @@ public class Player : MonoBehaviour
         //アイテムスロットのテキスト変更
         Text changeText = ItemSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
+    }
+
+    public bool IsHPLessZero()
+    {
+        return (hp <= 0);
     }
 }
