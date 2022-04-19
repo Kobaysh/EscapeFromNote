@@ -6,6 +6,8 @@ public class Enemy_Object : MonoBehaviour
 {
     public float decreaseTime;  // å∏è≠éûä‘
     public float interval;  // ä‘äu
+    [SerializeField]
+    int damageAmount = 1;
 
     [SerializeField]
     GameManager gameManager;
@@ -42,19 +44,26 @@ public class Enemy_Object : MonoBehaviour
         {
             if (!isCollided)
             {
+                Debug.Log("damage");
                 isCollided = true;
                 timer = 0.0f;
+                Player player = other.GetComponent<Player>();
+                player.hp -= damageAmount;
+                if(player.hp <= 0)
+                {
+                    player.hp = 0;
+                }
 
-                if (decreaseTime <= 0.0f)
-                {
-                    // 10%å∏è≠
-                    gameManager.gameOverLimit -= gameManager.GetLimitTime() * 0.1f;
-                }
-                else
-                {
-                    // å∏è≠éûä‘ï™å∏è≠
-                    gameManager.gameOverLimit -= decreaseTime;
-                }
+                //if (decreaseTime <= 0.0f)
+                //{
+                //    // 10%å∏è≠
+                //    gameManager.gameOverLimit -= gameManager.GetLimitTime() * 0.1f;
+                //}
+                //else
+                //{
+                //    // å∏è≠éûä‘ï™å∏è≠
+                //    gameManager.gameOverLimit -= decreaseTime;
+                //}
             }
         }
     }
