@@ -6,6 +6,8 @@ public class Enemy_Object : MonoBehaviour
 {
     public float decreaseTime;  // å∏è≠éûä‘
     public float interval;  // ä‘äu
+    [SerializeField]
+    int damageAmount = 1;
 
     [SerializeField]
     GameManager gameManager;
@@ -46,7 +48,7 @@ public class Enemy_Object : MonoBehaviour
                 isCollided = true;
                 timer = 0.0f;
                 Player player = other.GetComponent<Player>();
-                player.hp = player.hp - 1;
+                player.hp -= damageAmount;
                 if(player.hp <= 0)
                 {
                     player.hp = 0;
