@@ -14,6 +14,11 @@ public abstract class Kanji_Abstract : ScriptableObject
         Instantiate(KanjiModel);
     }
 
+    public void KanjiSummon(Vector3 pos)
+    {
+        Instantiate(KanjiModel, pos, new Quaternion());
+    }
+
     //純粋仮想関数-----------------------------------------------
 
     //アクション
