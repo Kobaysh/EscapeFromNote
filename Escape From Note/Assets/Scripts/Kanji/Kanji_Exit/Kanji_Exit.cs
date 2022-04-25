@@ -23,8 +23,7 @@ public class Kanji_Exit : Kanji_Abstract
     //ƒAƒNƒVƒ‡ƒ“
     public override void KanjiAction()
     {
-        if (!gameManager) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.GameClear();
+
     }
 
     //‡‘Ì‰Â”Û”»’è
