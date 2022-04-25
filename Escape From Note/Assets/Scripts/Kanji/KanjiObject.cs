@@ -30,6 +30,10 @@ public class KanjiObject : MonoBehaviour
         //Possessionkanjiを引数にプレイヤーの関数を呼ぶ
         player = GameObject.Find("Player");
         player.GetComponent<Player>().KanjiSet(PossessionKanji,true);
+
+        //スコア加算(試験的)
+        GameObject gamemanager = GameObject.Find("GameManager");
+        gamemanager.GetComponent<GameManager>().GameScore += 10;
     }
 
     //合体命令

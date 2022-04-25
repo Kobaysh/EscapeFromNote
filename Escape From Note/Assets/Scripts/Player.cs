@@ -38,6 +38,16 @@ public class Player : MonoBehaviour
     //更新
     void Update()
     {
+        //体力チェック
+        if(hp<=0)
+        {
+            Destroy(gameObject);
+
+            //ゲームマネージャーでリザルトを呼び出す
+            GameObject gamemanager = GameObject.Find("GameManager");
+            gamemanager.GetComponent<GameManager>().GameSet();
+        }
+
         //移動処理
 
         //地面にいるとき
@@ -78,7 +88,6 @@ public class Player : MonoBehaviour
                 kanji.KanjiSeparation();
             }
         }
-
     }
 
     //漢字をセット
