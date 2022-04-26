@@ -10,19 +10,31 @@ public class GameManager : MonoBehaviour
     public Text timeText;
     public GameObject GameClearText;
 
+    public int GameScore { get; set; }
+
+    [SerializeField]
+    Text ScoreUI;
+
     [SerializeField]
     Text HPText;
+
+    [SerializeField]
+    GameObject ResultUI;
+
+    [SerializeField]
+    Text ResultScoreText;
 
     private Player player;
 
 
     private float LimitTimeMax = 30.0f;
-    private bool isGameClear = false;
     // Start is called before the first frame update
     void Start()
     {
         LimitTimeMax = gameOverLimit;
         player = GameObject.Find("Player").GetComponent<Player>();
+
+        GameScore = 0;
     }
 
     // Update is called once per frame
@@ -42,6 +54,10 @@ public class GameManager : MonoBehaviour
 
         // プレイヤーのHPのテキストを変更
         HPText.text = "HP:" + player.hp.ToString();
+
+        //スコアのテキスト更新
+        ScoreUI.text = "SCORE：" + GameScore;
+
     }
 
     public float GetLimitTime()
@@ -49,9 +65,13 @@ public class GameManager : MonoBehaviour
         return LimitTimeMax;
     }
 
-    public void GameClear()
+    //ゲーム終了
+    public void GameSet()
     {
-//        GameClearText.SetActive(true);
- //       isGameClear = true;
+        Debug.Log("ゲームオーバー");
+
+        ResultUI.SetActive(true);
+
+        ResultScoreText.text = "SCORE：" + GameScore;
     }
 }
