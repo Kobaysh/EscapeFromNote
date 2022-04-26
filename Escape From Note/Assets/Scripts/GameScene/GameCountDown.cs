@@ -7,7 +7,7 @@ public class GameCountDown : MonoBehaviour
 {
     public float countdown = 180;
     public Text timeText;
-    private bool timeOver;
+    private bool timerStop;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class GameCountDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeOver) return;
+        if (timerStop) return;
 
         //カウントダウン
         if (countdown > 0)
@@ -28,11 +28,18 @@ public class GameCountDown : MonoBehaviour
         }
         else
         {
-            timeOver = true;
+            timerStop = true;
             Debug.Log("タイムオーバー");
+            GameObject gameManager = GameObject.Find("GameManager");
+            gameManager.GetComponent<GameManager>().GameSet(3);
         }
 
         //時間表示
         timeText.text = countdown.ToString("f1") + "秒";
+    }
+
+    public void TimerTrigger()
+    {
+        timerStop = true;
     }
 }
