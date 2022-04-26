@@ -11,6 +11,7 @@ public class Kanji_Exit : Kanji_Abstract
     // Start is called before the first frame update
     void Start()
     {
+        //ƒS[ƒ‹ˆ—
         if (!gameManager) gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
