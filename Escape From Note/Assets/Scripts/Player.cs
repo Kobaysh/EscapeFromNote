@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
 
         Debug.Log("操作：Eキー → 分離");
         Debug.Log("操作：漢字を所持してから設置された漢字の近くでFキー → 合体");
+        Debug.Log("操作：漢字を所持してからGキー → 漢字を捨てる");
     }
 
     //更新
@@ -62,6 +63,9 @@ public class Player : MonoBehaviour
             {
                 moveDirection.y = jumpSpeed;
             }
+
+            // 漢字を捨てる
+            ThrowAwayKanji();
         }
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
@@ -116,5 +120,23 @@ public class Player : MonoBehaviour
     public bool IsHPLessZero()
     {
         return (hp <= 0);
+    }
+
+    private void ThrowAwayKanji()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (kanji != null)
+            {
+                //kanjiの関数を呼んで生成させる
+                kanji.KanjiSummon(transform.position);
+                Debug.Log("漢字を捨てる");
+                kanji = null;
+
+                // アイテムスロットのテキスト変更
+                Text changeText = ItemSlot.GetComponent<Text>();
+                changeText.text = "  ";
+            }
+        }
     }
 }
