@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chalk : MonoBehaviour
+public class Chalk_Yellow : Chalk
 {
-    [SerializeField]
-    int healAmount = 1;
-    private Player player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        player = GameObject.Find("Player").GetComponent<Player>();
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -23,7 +16,8 @@ public class Chalk : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.hp += healAmount;
+            //    player.hp += healAmount;
+            player.GetComponent<MeshRenderer>().material = this.GetComponent<MeshRenderer>().material;
             Destroy(this.gameObject);
         }
     }
