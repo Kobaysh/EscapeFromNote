@@ -9,9 +9,11 @@ public class Enemy_Base : MonoBehaviour
     protected float  speed;             // 移動速度
     protected int    damage;            // 攻撃力
     protected Player player;            //プレイヤー情報
+    protected Rigidbody rb;           // Rigidbody
+
 
     // 敵との判定用
-    protected float interval;           // 間隔
+    protected float interval = 3.0f;    // プレイヤー無敵時間
     protected float timer = 0.0f;       // タイマー用
     protected bool isCollided = false;  // 当たり判定用
 
@@ -24,6 +26,11 @@ public class Enemy_Base : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        if(hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         if (isCollided)
         {
             timer += Time.deltaTime;
@@ -43,23 +50,33 @@ public class Enemy_Base : MonoBehaviour
     {
     }
 
-    //// 敵と衝突時
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        if (!isCollided)
-    //        {
-    //            Debug.Log("damage");
-    //            isCollided = true;
-    //            timer = 0.0f;
-    //            Player player = other.GetComponent<Player>();
-    //            player.hp -= damage;
-    //            if (player.hp <= 0)
-    //            {
-    //                player.hp = 0;
-    //            }
-    //        }
-    //    }
-    //}
+    // Playerと衝突時
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (!isCollided)
+            {
+                Debug.Log("damage");
+                isCollided = true;
+                timer = 0.0f;
+                Player player = other.GetComponent<Player>();
+                player.hp -= damage;
+                if (player.hp <= 0)
+                {
+                    player.hp = 0;
+                }
+            }
+        }
+        speed = speed * -1;
+    }
+
+    public void Damage(int amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            hp = 0;
+        }
+    }
 }

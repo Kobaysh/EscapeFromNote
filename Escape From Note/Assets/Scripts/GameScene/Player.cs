@@ -139,4 +139,15 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void Damage(int amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            hp = 0;
+        }
+           
+    }
+
 }

@@ -12,12 +12,14 @@ public class Enemy_Type1 : Enemy_Base
         hp = 2;                         // ‘Ì—Í       y2z
         speed = player.speed * 0.5f;    // ˆÚ“®‘¬“x    yƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x * 0.5z
         damage = 2;                     // ƒ_ƒ[ƒW    y–¢’èz
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
+        Move();
     }
 
     public override void Attack()
@@ -27,26 +29,10 @@ public class Enemy_Type1 : Enemy_Base
 
     public override void Move()
     {
-        Debug.Log("Enemy_Type1 Move");
+       // Debug.Log("Enemy_Type1 Move");
+
+        // ‰¡ˆÚ“®‚Ì‚İ
+        rb.velocity = new Vector3(speed, rb.velocity.y , rb.velocity.z);
     }
 
-    // “G‚ÆÕ“Ë
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (!isCollided)
-            {
-                Debug.Log("damage");
-                isCollided = true;
-                timer = 0.0f;
-                Player player = other.GetComponent<Player>();
-                player.hp -= damage;
-                if (player.hp <= 0)
-                {
-                    player.hp = 0;
-                }
-            }
-        }
-    }
 }
