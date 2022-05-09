@@ -26,6 +26,8 @@ public class Enemy_Spawner : MonoBehaviour
         }
         if (enemies.Count <= 0)
             Debug.LogAssertionFormat("Ememy_Spawner.cs:“GƒŠƒXƒg‚ð“o˜^‚µ‚Ä‚­‚¾‚³‚¢:{0}", this.gameObject.name);
+
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     // Update is called once per frame
