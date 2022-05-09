@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5566606931961229599}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decreaseTime: 0
   interval: 5
+  damageAmount: 1
   gameManager: {fileID: 0}
 --- !u!54 &5566606931961229596
 Rigidbody:

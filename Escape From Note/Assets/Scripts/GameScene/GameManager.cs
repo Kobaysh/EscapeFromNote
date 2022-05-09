@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public float gameOverLimit = 30.0f;
-    public Text timeText;
-    public GameObject GameClearText;
 
     public int GameScore { get; set; }
 
@@ -22,7 +20,16 @@ public class GameManager : MonoBehaviour
     GameObject ResultUI;
 
     [SerializeField]
+    Text ResultUIText;
+
+    [SerializeField]
     Text ResultScoreText;
+
+    [SerializeField]
+    private int maxEnemies = 0;
+
+    [SerializeField]
+    Text TimerText;
 
     private Player player;
 
@@ -40,24 +47,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!isGameClear)
-        //{
-        //    gameOverLimit -= Time.deltaTime;
-        //}
-        //timeText.text = gameOverLimit.ToString("f1") + "秒";
-
-        //if(gameOverLimit <= 0)
-        //{
-        //    Debug.Log("time over");
-        //    SceneManager.LoadScene(0);
-        //}
-
         // プレイヤーのHPのテキストを変更
         HPText.text = "HP:" + player.hp.ToString();
 
         //スコアのテキスト更新
         ScoreUI.text = "SCORE：" + GameScore;
-
     }
 
     public float GetLimitTime()
@@ -66,12 +60,39 @@ public class GameManager : MonoBehaviour
     }
 
     //ゲーム終了
-    public void GameSet()
+    public void GameSet(int caseNumber)
     {
-        Debug.Log("ゲームオーバー");
+        switch (caseNumber)
+        {
+            case 1:
+                Debug.Log("ゲームクリア");
+                //タイマーストップ
+                TimerText.GetComponent<GameCountDown>().TimerTrigger();
+
+                ResultUIText.text = "GAME CLEAR";
+                break;
+
+            case 2:
+                Debug.Log("ゲームオーバー");
+                //タイマーストップ
+                TimerText.GetComponent<GameCountDown>().TimerTrigger();
+
+                ResultUIText.text = "GAME OVER";
+                break;
+
+            case 3:
+                Debug.Log("タイムオーバー");
+                ResultUIText.text = "TIME OVER";
+                break;
+        }
 
         ResultUI.SetActive(true);
 
         ResultScoreText.text = "SCORE：" + GameScore;
+    }
+
+    public int GetMaxEnemy()
+    {
+        return maxEnemies;
     }
 }

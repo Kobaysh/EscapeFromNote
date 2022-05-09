@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
             //ゲームマネージャーでリザルトを呼び出す
             GameObject gamemanager = GameObject.Find("GameManager");
-            gamemanager.GetComponent<GameManager>().GameSet();
+            gamemanager.GetComponent<GameManager>().GameSet(2);
         }
 
         //移動処理
@@ -105,7 +105,6 @@ public class Player : MonoBehaviour
             {
                 //kanjiの関数を呼んで生成させる
                 kanji.KanjiSummon();
-
             }
         }
 
