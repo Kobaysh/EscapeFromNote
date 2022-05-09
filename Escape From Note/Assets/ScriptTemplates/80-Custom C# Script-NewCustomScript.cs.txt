@@ -1,0 +1,30 @@
+using UnityEngine;
+using System.Collections;
+ 
+public class #SCRIPTNAME# : MonoBehaviour {
+ 
+    // static field
+
+    // public member
+
+    // serialized field
+
+    // private member
+
+    void Awake() {
+        
+    }
+
+    void Start () {
+	
+	}
+	
+
+    void Update () {
+	
+	}
+
+    void FixedUpdate() {
+        
+    }
+}
