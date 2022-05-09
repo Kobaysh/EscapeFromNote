@@ -9,18 +9,12 @@ public class Enemy_Object : MonoBehaviour
     [SerializeField]
     int damageAmount = 1;
 
-    [SerializeField]
-    GameManager gameManager;
-
     private float timer = 0.0f;
     private bool isCollided = false;
     // Start is called before the first frame update
     void Start()
     {
-        if (!gameManager)
-        {
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        }
+
     }
 
     // Update is called once per frame
