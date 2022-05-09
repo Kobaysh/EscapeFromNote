@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     Text ResultScoreText;
 
     [SerializeField]
+    private int maxEnemies = 0;
+
+    [SerializeField]
     Text TimerText;
 
     private Player player;
@@ -86,5 +89,10 @@ public class GameManager : MonoBehaviour
         ResultUI.SetActive(true);
 
         ResultScoreText.text = "SCOREÅF" + GameScore;
+    }
+
+    public int GetMaxEnemy()
+    {
+        return maxEnemies;
     }
 }
