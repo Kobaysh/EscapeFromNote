@@ -5,8 +5,9 @@ using UnityEngine;
 public class Chalk : MonoBehaviour
 {
     [SerializeField]
-    int healAmount = 1;
-    private Player player;
+    protected int healAmount = 1;
+    [SerializeField]
+    protected Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class Chalk : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.hp += healAmount;
+            player.GetComponent<MeshRenderer>().material = this.GetComponent<MeshRenderer>().material;
             Destroy(this.gameObject);
         }
     }
