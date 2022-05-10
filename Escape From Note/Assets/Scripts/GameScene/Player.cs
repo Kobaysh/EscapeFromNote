@@ -51,13 +51,15 @@ public class Player : MonoBehaviour
 
         //移動処理
 
+        //歩行
+        moveDirection.x =Input.GetAxis("Horizontal");
+        moveDirection.x *= speed;
+        transform.right = moveDirection;
+
         //地面にいるとき
         if (characterController.isGrounded)
         {
-            //歩行
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
-            moveDirection *= speed;
-            transform.right = moveDirection;
+
             //ジャンプ
             if (Input.GetButton("Jump"))
             {
