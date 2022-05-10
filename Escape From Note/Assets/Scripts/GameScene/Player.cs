@@ -44,8 +44,13 @@ public class Player : MonoBehaviour
     //更新
     void Update()
     {
-        //体力チェック
-        if(hp<=0)
+        //ポーズ中だったら無効
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+            //体力チェック
+            if (hp<=0)
         {
             Destroy(gameObject);
 
