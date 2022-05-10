@@ -15,6 +15,11 @@ public class IsRope : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //É|Å[ÉYíÜÇæÇ¡ÇΩÇÁñ≥å¯
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
         CheckRopeExists();
     }
 
