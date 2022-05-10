@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float gravity = 20.0f;
 
     private Vector3 moveDirection = Vector3.zero;
+    private bool isLanding = true;
 
     //所持している漢字
     public Kanji_Abstract kanji;
@@ -22,10 +23,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     int startHp;
 
+    private Player_Audio player_Audio;
+
     //初期化
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+
+        player_Audio = GetComponent<Player_Audio>();
 
         kanji = null;
 
@@ -56,21 +61,41 @@ public class Player : MonoBehaviour
         moveDirection.x *= speed;
         transform.right = moveDirection;
 
+        // 着地処理
+        if (!isLanding)
+        {
+            if (characterController.isGrounded)
+            {
+                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_LANDING);
+                isLanding = true;
+            }
+        }
+
         //地面にいるとき
         if (characterController.isGrounded)
         {
+            // 歩行音
+            if(Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
+            {
+                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, true);
+            }
 
             //ジャンプ
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;
+                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
+                isLanding = false;
             }
 
             // 漢字を捨てる
             ThrowAwayKanji();
         }
+
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
+
+
 
         //アクション
         if (Input.GetMouseButtonDown(1))
@@ -144,6 +169,7 @@ public class Player : MonoBehaviour
     public void Damage(int amount)
     {
         hp -= amount;
+        player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_DAMAGED);
         if (hp <= 0)
         {
             hp = 0;
