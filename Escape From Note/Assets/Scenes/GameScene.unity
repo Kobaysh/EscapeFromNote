@@ -1979,11 +1979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f679ddda69f2a884abaab8b639c9acbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PLAYER_SE_MOVE: "\u79FB\u52D5"
-  PLAYER_SE_MOVERAISED: "\u30D0\u30D5\u6642\u79FB\u52D5"
-  PLAYER_SE_JUMP: "\u30B8\u30E3\u30F3\u30D7"
-  PLAYER_SE_LANDING: "\u30B8\u30E3\u30F3\u30D7\u7740\u5730"
-  PLAYER_SE_DAMAGED: "\u88AB\u30C0\u30E1"
   audioClips:
   - {fileID: 8300000, guid: d389cfa761ef3bd45b730ce9e701a1d3, type: 3}
   - {fileID: 8300000, guid: c46ac611652d6144284996e65190c5a0, type: 3}
