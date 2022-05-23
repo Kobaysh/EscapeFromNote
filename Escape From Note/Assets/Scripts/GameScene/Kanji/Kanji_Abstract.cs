@@ -20,6 +20,14 @@ public abstract class Kanji_Abstract : ScriptableObject
         Instantiate(KanjiModel, pos, new Quaternion());
     }
 
+    public GameObject KanjiInstanriate(Vector3 pos)
+    {
+        return Instantiate(KanjiModel, pos, new Quaternion());
+    }
+    public GameObject KanjiInstanriate(Transform transform)
+    {
+        return Instantiate(KanjiModel, transform);
+    }
     //純粋仮想関数-----------------------------------------------
 
     //アクション
