@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u69CD"
   KanjiModel: {fileID: 722951029851563614, guid: bb8b92333bdc4514185da5969f70d0b6, type: 3}
+  ActionAnimNum: 1
   Collision: {fileID: 4654694418303021942, guid: 77f24da403d77fc4ebfabbd8bf6af4c4, type: 3}
   Interval: 35

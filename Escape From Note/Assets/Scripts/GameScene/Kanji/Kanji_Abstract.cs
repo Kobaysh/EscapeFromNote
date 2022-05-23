@@ -7,6 +7,7 @@ public abstract class Kanji_Abstract : ScriptableObject
 {
     public string slotText;
     public GameObject KanjiModel;
+    public int ActionAnimNum;
 
     //ê›íu
     public void KanjiSummon()

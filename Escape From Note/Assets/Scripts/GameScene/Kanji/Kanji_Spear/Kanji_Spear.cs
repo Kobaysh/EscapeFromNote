@@ -11,6 +11,7 @@ public class Kanji_Spear : Kanji_Abstract
     private bool isActive;
     private int ActiveTime;
     public int Interval;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,11 @@ public class Kanji_Spear : Kanji_Abstract
     //アクション
     public override void KanjiAction()
     {
+        GameObject player = GameObject.Find("Player");
+        Vector3 trans = player.transform.position;
+        Quaternion rotate = player.transform.rotation;
         //エリアを生成
-        isActive = true;
+        Instantiate(Collision,new Vector3(trans.x,trans.y,trans.z),rotate);
     }
 
     //合体可否判定

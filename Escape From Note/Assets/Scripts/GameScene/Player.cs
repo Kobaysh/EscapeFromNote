@@ -6,24 +6,31 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     CharacterController characterController;
+    Animator animator;
 
     public float speed = 6.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
     private Vector3 moveDirection = Vector3.zero;
+    [SerializeField]
     private bool isLanding = true;
 
     //所持している漢字
     public Kanji_Abstract kanji;
 
     public GameObject ItemSlot;
-    public int hp {get;set;}
+    public int hp { get; set; }
 
     [SerializeField]
     int startHp;
 
     private Player_Audio player_Audio;
+
+    [SerializeField]
+    private int AnimNum;
+    [SerializeField]
+    private bool isOtherActionAnim;
 
     //初期化
     private void Start()
@@ -39,18 +46,24 @@ public class Player : MonoBehaviour
         Debug.Log("操作：Eキー → 分離");
         Debug.Log("操作：漢字を所持してから設置された漢字の近くでFキー → 合体");
         Debug.Log("操作：漢字を所持してからGキー → 漢字を捨てる");
+
+        AnimNum = 0;
+        isOtherActionAnim = false;
     }
 
     //更新
     void Update()
     {
+        animator = GetComponent<Animator>();
+        animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
+
         //ポーズ中だったら無効
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
         }
-            //体力チェック
-            if (hp<=0)
+        //体力チェック
+        if (hp <= 0)
         {
             Destroy(gameObject);
 
@@ -59,12 +72,9 @@ public class Player : MonoBehaviour
             gamemanager.GetComponent<GameManager>().GameSet(2);
         }
 
-        //移動処理
 
-        //歩行
-        moveDirection.x =Input.GetAxis("Horizontal");
-        moveDirection.x *= speed;
-        transform.right = moveDirection;
+
+
 
         // 着地処理
         if (!isLanding)
@@ -79,8 +89,15 @@ public class Player : MonoBehaviour
         //地面にいるとき
         if (characterController.isGrounded)
         {
+            //移動処理
+
+            //歩行
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
+            moveDirection *= speed;  //スピード設定
+            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
+
             // 歩行音
-            if(Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
+            if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, true);
             }
@@ -96,29 +113,38 @@ public class Player : MonoBehaviour
             // 漢字を捨てる
             ThrowAwayKanji();
         }
+        else
+        {
+            moveDirection.x = Input.GetAxis("Horizontal") * speed;
+            transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //向きを設定
+        }
+
 
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
-
+        animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
 
 
         //アクション
         if (Input.GetMouseButtonDown(1))
         {
-            if(kanji==null)
+            if (kanji == null)
             {
+                //animator.SetTrigger("UnityChan_Shot_Trigger");
                 Debug.Log("何も持ってないぞ！！！！！！！！");
             }
             else
             {
-                kanji.KanjiAction();
+                //持っている漢字のActionAnimNumを取得
+                ActionAnim(kanji.ActionAnimNum);
+                
             }
         }
 
         //分離命令
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(kanji!=null)
+            if (kanji != null)
             {
                 Debug.Log("分離します");
                 kanji.KanjiSeparation();
@@ -127,13 +153,13 @@ public class Player : MonoBehaviour
     }
 
     //漢字をセット
-    public void KanjiSet(Kanji_Abstract recvKanji,bool Exchange)
+    public void KanjiSet(Kanji_Abstract recvKanji, bool Exchange)
     {
         //交換を行う時
         if (Exchange)
         {
             //すでに漢字を持っていた場合
-            if (kanji != null&&recvKanji!=kanji)
+            if (kanji != null && recvKanji != kanji)
             {
                 //kanjiの関数を呼んで生成させる
                 kanji.KanjiSummon();
@@ -179,7 +205,35 @@ public class Player : MonoBehaviour
         {
             hp = 0;
         }
-           
+
+    }
+
+    //アタックアニメーション再生
+    public void ActionAnim(int num)
+    {
+        if (!isOtherActionAnim)
+        {
+
+            AnimNum = num;
+            animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
+            AnimNum = 0;
+
+            isOtherActionAnim = true;  //攻撃中に重ねて攻撃入力ができないようにする
+        }
+    }
+
+    //アニメーションロック解除
+    public void OtherActionAnimLift()
+    {
+        Debug.Log("アニメーションロック解除");
+        isOtherActionAnim = false;
+    }
+
+    public void KanjiEffect()
+    {
+        Debug.Log("効果発動");
+        //アニメーションに合わせ漢字の当たり判定や効果を発動させる
+        kanji.KanjiAction();
     }
 
 }
