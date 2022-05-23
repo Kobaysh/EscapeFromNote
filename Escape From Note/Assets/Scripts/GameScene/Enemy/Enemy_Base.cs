@@ -67,8 +67,23 @@ public class Enemy_Base : MonoBehaviour
                     player.hp = 0;
                 }
             }
+
+            //レイヤーを変更する
+            Debug.Log("エネミーとプレイヤー貫通状態");
+            gameObject.layer = LayerMask.NameToLayer("enemyPenetration");
+            //レイヤー「Player」のオブジェクトと「enemy」のオブジェクトは衝突判定を取らない
         }
         speed = speed * -1;
+    }
+
+    //コリジョンが離れた時
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("エネミーとプレイヤー貫通状態解除");
+            gameObject.layer = LayerMask.NameToLayer("enemy");
+        }
     }
 
     public void Damage(int amount)

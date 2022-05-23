@@ -46,10 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 5566606931961229597, guid: 882086bde6e165841a32e0bdec35858a, type: 3}
-  - {fileID: 5566606931961229597, guid: 882086bde6e165841a32e0bdec35858a, type: 3}
-  - {fileID: 5566606931961229597, guid: 882086bde6e165841a32e0bdec35858a, type: 3}
-  - {fileID: 5566606931961229597, guid: 882086bde6e165841a32e0bdec35858a, type: 3}
+  - {fileID: 0}
   spawnInterval: 3
   gameManager: {fileID: 0}
 --- !u!23 &243457815527412413

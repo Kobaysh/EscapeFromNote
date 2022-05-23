@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_Spawner : MonoBehaviour
 {
     [SerializeField, Header("敵リスト")]
-    private List<Enemy_Object> enemies = null;
+    private List<Enemy_Base> enemies = null;
     [SerializeField, Header("スポーン間隔")]
     private float spawnInterval = 3.0f;
 
