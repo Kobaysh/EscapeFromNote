@@ -10,6 +10,7 @@ public class Chalk : MonoBehaviour
         CHALK_YELLOW,
         CHALK_RED,
         CHALK_BLUE,
+        CHALK_PINK,
     }
     [SerializeField]
     private Chalk_Color chalkColor = Chalk_Color.CHALK_WHITE;
@@ -31,10 +32,13 @@ public class Chalk : MonoBehaviour
                 this.GetComponent<MeshRenderer>().material.color = Color.yellow;
                 break;
             case Chalk_Color.CHALK_RED:
-                this.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.6f, 0.9f, 1.0f);
+                this.GetComponent<MeshRenderer>().material.color = Color.red;
                 break;
             case Chalk_Color.CHALK_BLUE:
                 this.GetComponent<MeshRenderer>().material.color = Color.blue;
+                break;
+            case Chalk_Color.CHALK_PINK:
+                this.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.6f, 0.9f, 1.0f);
                 break;
             default: break;
         }
