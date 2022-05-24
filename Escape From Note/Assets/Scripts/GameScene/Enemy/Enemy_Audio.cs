@@ -62,6 +62,7 @@ public class Enemy_Audio : MonoBehaviour {
     {
         audioSource.clip = audioClips[(int)audioName];
         audioSource.loop = isLoop;
+        audioSource.volume = General_Audio.GetSEVolume();
         if (!audioSource.isPlaying) audioSource.Play();
     }
 }

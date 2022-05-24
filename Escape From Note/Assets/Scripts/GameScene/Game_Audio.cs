@@ -46,6 +46,7 @@ public class Game_Audio : MonoBehaviour {
     {
         audioSource.clip = audioClips[(int)audioName];
         audioSource.loop = isLoop;
+        audioSource.volume = General_Audio.GetBGMVolume();
         if (!audioSource.isPlaying) audioSource.Play();
     }
 }
