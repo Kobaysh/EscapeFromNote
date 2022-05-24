@@ -903,7 +903,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.99666667, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -0.9966667, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -1299,6 +1299,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129348565, guid: b10853686c667924ab62c09899ec2589, type: 3}
+      propertyPath: chalkColor
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2694750534405032466, guid: b10853686c667924ab62c09899ec2589, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2480,6 +2484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129348565, guid: b10853686c667924ab62c09899ec2589, type: 3}
+      propertyPath: chalkColor
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2694750534405032466, guid: b10853686c667924ab62c09899ec2589, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5321,7 +5329,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.99666667, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -0.9966667, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -5805,7 +5813,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.99666667, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -0.9966667, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -5981,6 +5989,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129348565, guid: b10853686c667924ab62c09899ec2589, type: 3}
+      propertyPath: chalkColor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2694750534405032466, guid: b10853686c667924ab62c09899ec2589, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7783,7 +7795,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.99666667, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -0.9966667, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -9341,7 +9353,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.99666667, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -0.9966667, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
