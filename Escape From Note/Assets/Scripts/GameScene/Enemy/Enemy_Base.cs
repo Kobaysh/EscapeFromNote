@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_Base : MonoBehaviour
 {
     // エネミーが持つステータス
+    [SerializeField]
     protected int    hp;                // 体力  
     protected float  speed;             // 移動速度
     protected int    damage;            // 攻撃力
@@ -68,7 +69,7 @@ public class Enemy_Base : MonoBehaviour
                 }
             }
         }
-        speed = speed * -1;
+        //speed = speed * -1;
     }
 
     public void Damage(int amount)

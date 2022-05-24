@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class SpearCollision : MonoBehaviour
 {
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("enemy"))
+        {
+            Debug.Log("槍：敵にヒット");
+            other.GetComponent<Enemy_Type1>().Damage(1);
+            //エフェクト再生
+
+        }
+    }
+
     public void EffectFinish()
     {
         Destroy(this.gameObject);

@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28aed1e3697314144aab9105f8ab89fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  TurnPoint: []
 --- !u!54 &5734751202452662904
 Rigidbody:
   m_ObjectHideFlags: 0
