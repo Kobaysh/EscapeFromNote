@@ -43,6 +43,7 @@ public class Player_Audio : MonoBehaviour {
     {
         audioSource.clip = audioClips[(int)audioName];
         audioSource.loop = isLoop;
-        if(!audioSource.isPlaying) audioSource.Play();
+        audioSource.volume = General_Audio.GetSEVolume();
+        if (!audioSource.isPlaying) audioSource.Play();
     }
 }
