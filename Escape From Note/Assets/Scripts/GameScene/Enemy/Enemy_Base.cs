@@ -5,12 +5,22 @@ using UnityEngine;
 public class Enemy_Base : MonoBehaviour
 {
     // ƒGƒlƒ~[‚ªŽ‚ÂƒXƒe[ƒ^ƒX
+    [SerializeField]
     protected int    hp;                // ‘Ì—Í  
+
+    [SerializeField]
     protected float  speed;             // ˆÚ“®‘¬“x
+
     protected int    damage;            // UŒ‚—Í
     protected Player player;            //ƒvƒŒƒCƒ„[î•ñ
     protected Rigidbody rb;           // Rigidbody
 
+    private int DamageInvincibleTime;
+
+    [SerializeField,Header("”í’eŽž–³“GŽžŠÔ")]
+    protected int DamageInvincibleTimeMax;
+
+    private bool isDamageInvincible;
 
     // “G‚Æ‚Ì”»’è—p
     protected float interval = 3.0f;    // ƒvƒŒƒCƒ„[–³“GŽžŠÔ
@@ -20,7 +30,8 @@ public class Enemy_Base : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //–³“Gó‘Ô
+        isDamageInvincible = false;
     }
 
     // Update is called once per frame
@@ -38,6 +49,16 @@ public class Enemy_Base : MonoBehaviour
             {
                 timer = 0.0f;
                 isCollided = false;
+            }
+        }
+
+        //–³“GŽžŠÔŠÇ—
+        if(isDamageInvincible)
+        {
+            DamageInvincibleTime++;
+            if(DamageInvincibleTime >= DamageInvincibleTimeMax)
+            {
+                isDamageInvincible = false;
             }
         }
     }
@@ -68,15 +89,21 @@ public class Enemy_Base : MonoBehaviour
                 }
             }
         }
-        speed = speed * -1;
+        //speed = speed * -1;
     }
 
     public void Damage(int amount)
     {
-        hp -= amount;
-        if (hp <= 0)
+        if (!isDamageInvincible)
         {
-            hp = 0;
+            Debug.Log("”í’e");
+            hp -= amount;
+            if (hp <= 0)
+            {
+                hp = 0;
+            }
+            DamageInvincibleTime = 0;
+            isDamageInvincible = true;
         }
     }
 }

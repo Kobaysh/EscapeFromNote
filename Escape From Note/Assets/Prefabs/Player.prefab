@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e052ac017f41a49ae4bf0820225324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  jumpSpeed: 10
+  speed: 12
+  jumpSpeed: 13
   gravity: 20
   isLanding: 1
   kanji: {fileID: 0}
