@@ -1,0 +1,46 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+ [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : Kanji_Abstract {
+ 
+    // static field
+
+    // public member
+
+    // serialized field
+
+    // private member
+
+    void Awake() {
+        
+    }
+
+    void Start () {
+	
+	}
+	
+
+    void Update () {
+	
+	}
+
+	// Action
+	public override void KanjiAction()
+	{
+
+	}
+
+	// unioncheck
+    public override bool KanjiUnionCheck()
+    {
+        return false;
+    }
+
+    // seoaration
+    public override void KanjiSeparation()
+    {
+
+    }
+}
