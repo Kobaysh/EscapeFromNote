@@ -11,7 +11,9 @@ public class Kanji_Spear : Kanji_Abstract
     private bool isActive;
     private int ActiveTime;
     public int Interval;
-    
+
+    private GameObject Area1;
+    private GameObject Area2;
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +44,16 @@ public class Kanji_Spear : Kanji_Abstract
     {
         GameObject player = GameObject.Find("Player");
         Vector3 trans = player.transform.position;
+        trans.x += 1.0f;
         Quaternion rotate = player.transform.rotation;
-        //エリアを生成
-        Instantiate(Collision,new Vector3(trans.x,trans.y,trans.z),rotate);
+        //エリア1を生成
+        Area1 = (GameObject)Instantiate(Collision,new Vector3(trans.x,trans.y,trans.z),rotate);
+        Area1.transform.parent = player.transform;
+        //エリア2を生成
+        trans = player.transform.position;
+        trans.x -= 1.0f;
+        Area2 = (GameObject)Instantiate(Collision, new Vector3(trans.x, trans.y, trans.z), rotate);
+        Area2.transform.parent = player.transform;
     }
 
     //合体可否判定
