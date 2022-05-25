@@ -18,7 +18,9 @@ public class Player : MonoBehaviour
 
     //所持している漢字
     public Kanji_Abstract kanji;
+    public Kanji_Abstract kanjiItem;
 
+    public GameObject KanjiSlot;
     public GameObject ItemSlot;
     public int hp { get; set; }
 
@@ -170,6 +172,28 @@ public class Player : MonoBehaviour
         kanji = recvKanji;
 
         //アイテムスロットのテキスト変更
+        Text changeText = KanjiSlot.GetComponent<Text>();
+        changeText.text = recvKanji.slotText;
+    }
+
+    //アイテム漢字をセット
+    public void KanjiItemSet(Kanji_Abstract recvKanji, bool Exchange)
+    {
+        //交換を行う時
+        if (Exchange)
+        {
+            //すでに漢字を持っていた場合
+            if (kanji != null && recvKanji != kanji)
+            {
+                //kanjiの関数を呼んで生成させる
+                kanji.KanjiSummon();
+            }
+        }
+
+        //所持漢字をセット
+        kanjiItem = recvKanji;
+
+        //アイテムスロットのテキスト変更
         Text changeText = ItemSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
     }
@@ -191,7 +215,7 @@ public class Player : MonoBehaviour
                 kanji = null;
 
                 // アイテムスロットのテキスト変更
-                Text changeText = ItemSlot.GetComponent<Text>();
+                Text changeText = KanjiSlot.GetComponent<Text>();
                 changeText.text = "  ";
             }
         }
