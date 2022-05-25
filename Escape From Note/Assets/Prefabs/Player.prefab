@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6723964518885633463}
   - component: {fileID: 4377311592864455543}
   - component: {fileID: 4214810971789352265}
-  - component: {fileID: 7785906061255112552}
-  - component: {fileID: 1825734594987037468}
-  m_Layer: 0
+  - component: {fileID: 92960411571904857}
+  - component: {fileID: 92960411571904858}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 0
-  m_Radius: 0.25
+  m_Radius: 0.18
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -73,7 +73,7 @@ MonoBehaviour:
   isLanding: 1
   kanji: {fileID: 0}
   ItemSlot: {fileID: 0}
-  startHp: 0
+  startHp: 10
   AnimNum: 0
   isOtherActionAnim: 0
 --- !u!212 &6723964518885633463
@@ -159,7 +159,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &7785906061255112552
+--- !u!82 &92960411571904857
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,7 +255,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1825734594987037468
+--- !u!114 &92960411571904858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

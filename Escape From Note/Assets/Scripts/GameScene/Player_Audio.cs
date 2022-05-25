@@ -13,12 +13,13 @@ public class Player_Audio : MonoBehaviour {
         PLAYER_SE_JUMP,
         PLAYER_SE_LANDING,
         PLAYER_SE_DAMAGED,
+        PLAYER_SE_MAX,
     };
     
     // serialized field
 
     [SerializeField, Header("SE")]
-    AudioClip[] audioClips;
+    AudioClip[] audioClips = new AudioClip[(int)Player_SE.PLAYER_SE_MAX];
     // private member
 
     private AudioSource audioSource = null;
@@ -42,6 +43,7 @@ public class Player_Audio : MonoBehaviour {
     {
         audioSource.clip = audioClips[(int)audioName];
         audioSource.loop = isLoop;
-        if(!audioSource.isPlaying) audioSource.Play();
+        audioSource.volume = General_Audio.GetSEVolume();
+        if (!audioSource.isPlaying) audioSource.Play();
     }
 }
