@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 02a9fa1ebba730a4282c41a2e4b6ceb7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - KanjiModel: {instanceID: 0}
+  - Collision: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
