@@ -876,6 +876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+--- !u!1 &789524714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 890936459, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+  m_PrefabInstance: {fileID: 789524713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &847466504 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4943872934288722526, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
@@ -1229,6 +1234,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5244182277289807646, guid: 6527d41403e678a4b9e17134c94325b2, type: 3}
       propertyPath: ItemSlot
+      value: 
+      objectReference: {fileID: 789524714}
+    - target: {fileID: 5244182277289807646, guid: 6527d41403e678a4b9e17134c94325b2, type: 3}
+      propertyPath: KanjiSlot
       value: 
       objectReference: {fileID: 847466504}
     m_RemovedComponents: []

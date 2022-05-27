@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: 85e052ac017f41a49ae4bf0820225324
+guid: 47be4ba6204137a4e9ed69b35d7a0037
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - kanji: {instanceID: 0}
-  - kanjiItem: {instanceID: 0}
-  - KanjiSlot: {instanceID: 0}
-  - ItemSlot: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

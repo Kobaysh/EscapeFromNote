@@ -2,27 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KanjiObject : MonoBehaviour
+public class KanjiObject : KanjiObjectItem
 {
-    private GameObject player;
-
-    //‚Á‚Ä‚¢‚éŠ¿š
-    public Kanji_Abstract PossessionKanji;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+ 
     //“–‚½‚è”»’è
-    public void KanjiGet()
+    public override void KanjiGet()
     {
         DestroyKanji();
 
@@ -50,11 +34,5 @@ public class KanjiObject : MonoBehaviour
             DestroyKanji();
         }
 
-    }
-
-    //Á‹
-    public void DestroyKanji()
-    {
-        Destroy(gameObject);
     }
 }
