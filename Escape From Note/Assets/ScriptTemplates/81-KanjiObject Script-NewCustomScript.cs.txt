@@ -38,7 +38,7 @@ public class #SCRIPTNAME# : Kanji_Abstract {
         return false;
     }
 
-    // seoaration
+    // separation
     public override void KanjiSeparation()
     {
 

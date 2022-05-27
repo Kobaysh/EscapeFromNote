@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool isOtherActionAnim;
 
+    private bool isJumpEnhanced;
+    [SerializeField]
+    private int JumpForceTimer = 0;
+
     //初期化
     private void Start()
     {
@@ -108,6 +112,7 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;
+                if (isJumpEnhanced) moveDirection.y *= 1.5f;
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
                 isLanding = false;
             }
@@ -126,6 +131,16 @@ public class Player : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
         animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
 
+        // ジャンプ強化中
+        if (isJumpEnhanced)
+        {
+            JumpForceTimer++;
+            if(JumpForceTimer >= 720)
+            {
+                isJumpEnhanced = false;
+                JumpForceTimer = 0;
+            }
+        }
 
         //アクション
         if (Input.GetMouseButtonDown(1))
@@ -140,6 +155,18 @@ public class Player : MonoBehaviour
                 //持っている漢字のActionAnimNumを取得
                 ActionAnim(kanji.ActionAnimNum);
                 
+            }
+        }
+        // バフ用アイテム
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if(kanjiItem == null)
+            {
+                Debug.Log("何も持ってないぞ！！！！！！！！");
+            }
+            else
+            {
+                kanjiItem.KanjiAction();
             }
         }
 
@@ -196,6 +223,13 @@ public class Player : MonoBehaviour
         //アイテムスロットのテキスト変更
         Text changeText = ItemSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
+    }
+
+    public void KanjiItemUsed()
+    {
+        kanjiItem = null;
+        Text changeText = ItemSlot.GetComponent<Text>();
+        changeText.text = "  ";
     }
 
     public bool IsHPLessZero()
@@ -258,6 +292,11 @@ public class Player : MonoBehaviour
         Debug.Log("効果発動");
         //アニメーションに合わせ漢字の当たり判定や効果を発動させる
         kanji.KanjiAction();
+    }
+
+    public void JumpEnhance()
+    {
+        if(!isJumpEnhanced) isJumpEnhanced = true;
     }
 
 }
