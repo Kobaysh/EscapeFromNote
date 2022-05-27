@@ -70,12 +70,14 @@ MonoBehaviour:
   speed: 12
   jumpSpeed: 13
   gravity: 20
-  isLanding: 1
   kanji: {fileID: 0}
   ItemSlot: {fileID: 0}
+  isLanding: 1
   startHp: 10
   AnimNum: 0
   isOtherActionAnim: 0
+  isInvincible: 0
+  InvincibleTimeMax: 600
 --- !u!212 &6723964518885633463
 SpriteRenderer:
   m_ObjectHideFlags: 0

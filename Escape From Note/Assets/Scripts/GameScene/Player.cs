@@ -5,32 +5,49 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    CharacterController characterController;
-    Animator animator;
+    // static field
 
-    public float speed = 6.0f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
+    // public member
+    public int hp { get; set; }    //現在体力
+    public float speed = 6.0f;     //移動速度
+    public float jumpSpeed = 8.0f; //ジャンプ力
+    public float gravity = 20.0f;  //重力
+    public Kanji_Abstract kanji;   //所持漢字
+    public GameObject ItemSlot;    //漢字スロット
 
-    private Vector3 moveDirection = Vector3.zero;
+    // serialized field
     [SerializeField]
-    private bool isLanding = true;
-
-    //所持している漢字
-    public Kanji_Abstract kanji;
-
-    public GameObject ItemSlot;
-    public int hp { get; set; }
+    private bool isLanding = true;  //着地判定
 
     [SerializeField]
-    int startHp;
-
-    private Player_Audio player_Audio;
+    int startHp;                    //初期HP
 
     [SerializeField]
-    private int AnimNum;
+    private int AnimNum;            //指定アニメーション番号
+
     [SerializeField]
-    private bool isOtherActionAnim;
+    private bool isOtherActionAnim; //アニメーション重複防止
+
+    [SerializeField]
+    private bool isInvincible; //無敵状態
+
+    [SerializeField,Header("無敵時間")]
+    private int InvincibleTimeMax; //無敵時間
+
+
+    // private member
+    private Vector3 moveDirection = Vector3.zero;  //移動方向
+
+    private int InvincibleTime;
+
+    private bool isBlinking;
+
+    private Vector3 KnockbackVelocity;
+
+    //component
+    CharacterController characterController;  //キャラクターコントローラー
+    Animator animator;                        //アニメーター
+    private Player_Audio player_Audio;        //オーディオ
 
     //初期化
     private void Start()
@@ -49,6 +66,10 @@ public class Player : MonoBehaviour
 
         AnimNum = 0;
         isOtherActionAnim = false;
+        isInvincible = false;
+        isBlinking = false;
+        InvincibleTime = 0;
+        KnockbackVelocity = Vector3.zero;
     }
 
     //更新
@@ -71,9 +92,6 @@ public class Player : MonoBehaviour
             GameObject gamemanager = GameObject.Find("GameManager");
             gamemanager.GetComponent<GameManager>().GameSet(2);
         }
-
-
-
 
 
         // 着地処理
@@ -121,9 +139,18 @@ public class Player : MonoBehaviour
 
 
         moveDirection.y -= gravity * Time.deltaTime;
-        characterController.Move(moveDirection * Time.deltaTime);
-        animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
 
+        //ノックバック中以外は歩く
+        if (KnockbackVelocity != Vector3.zero)
+        {
+            characterController.Move(KnockbackVelocity * Time.deltaTime);
+        }
+        else
+        {
+            characterController.Move(moveDirection * Time.deltaTime);
+
+            animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
+        }
 
         //アクション
         if (Input.GetMouseButtonDown(1))
@@ -149,6 +176,12 @@ public class Player : MonoBehaviour
                 Debug.Log("分離します");
                 kanji.KanjiSeparation();
             }
+        }
+
+        //無敵状態処理
+        if(isInvincible)
+        {
+            InbincibleProcess();
         }
     }
 
@@ -199,13 +232,27 @@ public class Player : MonoBehaviour
 
     public void Damage(int amount)
     {
+
+        if (isInvincible)
+        {
+            return;
+        }
+
         hp -= amount;
         player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_DAMAGED);
+        animator.SetTrigger("UnityChan_Damage_Trigger");
+
         if (hp <= 0)
         {
             hp = 0;
+            
         }
 
+        //無敵時間開始
+        isInvincible = true;
+        InvincibleTime = 0;
+        KnockbackVelocity = (-transform.right * 5f);
+        
     }
 
     //アタックアニメーション再生
@@ -234,6 +281,43 @@ public class Player : MonoBehaviour
         Debug.Log("効果発動");
         //アニメーションに合わせ漢字の当たり判定や効果を発動させる
         kanji.KanjiAction();
+    }
+
+    //無敵状態処理
+    void InbincibleProcess()
+    {
+        InvincibleTime++;
+
+        //点滅処理
+        if(isBlinking)
+        {
+            if (InvincibleTime % 20 == 0 && InvincibleTime % 40 == 0)
+            {
+                this.GetComponent<Renderer>().enabled = false;
+            }
+            else if (InvincibleTime % 20 == 0)
+            {
+                this.GetComponent<Renderer>().enabled = true;
+            }
+        }
+
+        //無敵時間終了
+        if (InvincibleTime >= InvincibleTimeMax)
+        {
+            this.GetComponent<Renderer>().enabled = true;
+            isBlinking = false;
+            isInvincible = false;
+
+            
+        }
+    }
+
+    //点滅処理トリガー
+    public void Blinking()
+    {
+        isBlinking = true;
+
+        KnockbackVelocity = Vector3.zero;  //ノックバック終了
     }
 
 }
