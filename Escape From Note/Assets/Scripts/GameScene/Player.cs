@@ -55,6 +55,9 @@ public class Player : MonoBehaviour
 
         AnimNum = 0;
         isOtherActionAnim = false;
+
+        //位置初期化
+        transform.position = new Vector3(-6.0f, 0.5f, 0.0f);
     }
 
     //更新
@@ -71,16 +74,30 @@ public class Player : MonoBehaviour
         //体力チェック
         if (hp <= 0)
         {
-            Destroy(gameObject);
+            //ゲームマネージャーでリスポーン手続き
+            kanji = null;
+            kanjiItem = null;
 
-            //ゲームマネージャーでリザルトを呼び出す
+            Text changeKanjiText = KanjiSlot.GetComponent<Text>();
+            changeKanjiText.text = "  ";
+
+            Text changeItemText = ItemSlot.GetComponent<Text>();
+            changeItemText.text = "  ";
+
             GameObject gamemanager = GameObject.Find("GameManager");
-            gamemanager.GetComponent<GameManager>().GameSet(2);
+            gamemanager.GetComponent<GameManager>().PlayerRespornOrder();
+            int score = gamemanager.GetComponent<GameManager>().GameScore;
+            score -= 1000;
+            if(score<0)
+            {
+                score = 0;
+            }
+
+            gamemanager.GetComponent<GameManager>().GameScore = score;
+
+            Destroy(gameObject);
+            
         }
-
-
-
-
 
         // 着地処理
         if (!isLanding)
@@ -125,7 +142,6 @@ public class Player : MonoBehaviour
             moveDirection.x = Input.GetAxis("Horizontal") * speed;
             transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //向きを設定
         }
-
 
         moveDirection.y -= gravity * Time.deltaTime;
         characterController.Move(moveDirection * Time.deltaTime);
@@ -191,7 +207,7 @@ public class Player : MonoBehaviour
             if (kanji != null && recvKanji != kanji)
             {
                 //kanjiの関数を呼んで生成させる
-                kanji.KanjiSummon();
+                kanji.KanjiSummon(transform.position);
             }
         }
 
