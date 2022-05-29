@@ -5,18 +5,23 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    CharacterController characterController;
-    Animator animator;
+    // static field
 
-    public float speed = 6.0f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
+    // public member
+    public int hp { get; set; }    //ç¾åœ¨ä½“åŠ›
+    public float speed = 6.0f;     //ç§»å‹•é€Ÿåº¦
+    public float jumpSpeed = 8.0f; //ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
+    public float gravity = 20.0f;  //é‡åŠ›
+    public Kanji_Abstract kanji;   //æ‰€æŒæ¼¢å­—
+    public GameObject ItemSlot;    //æ¼¢å­—ã‚¹ãƒ­ãƒƒãƒˆ
 
-    private Vector3 moveDirection = Vector3.zero;
+    // serialized field
     [SerializeField]
+    private bool isLanding = true;  //ç€åœ°åˆ¤å®š
+
     private bool isLanding = true;
 
-    //Š‚µ‚Ä‚¢‚éŠ¿š
+    //æ‰€æŒã—ã¦ã„ã‚‹æ¼¢å­—
     public Kanji_Abstract kanji;
     public Kanji_Abstract kanjiItem;
 
@@ -24,21 +29,42 @@ public class Player : MonoBehaviour
     public GameObject ItemSlot;
     public int hp { get; set; }
 
-    [SerializeField]
-    int startHp;
-
-    private Player_Audio player_Audio;
 
     [SerializeField]
-    private int AnimNum;
+    int startHp;                    //åˆæœŸHP
+
     [SerializeField]
-    private bool isOtherActionAnim;
+    private int AnimNum;            //æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç•ªå·
+
+    [SerializeField]
+    private bool isOtherActionAnim; //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é‡è¤‡é˜²æ­¢
+
+    [SerializeField]
+    private bool isInvincible; //ç„¡æ•µçŠ¶æ…‹
+
+    [SerializeField,Header("ç„¡æ•µæ™‚é–“")]
+    private int InvincibleTimeMax; //ç„¡æ•µæ™‚é–“
+
+
+    // private member
+    private Vector3 moveDirection = Vector3.zero;  //ç§»å‹•æ–¹å‘
+
+    private int InvincibleTime;
+
+    private bool isBlinking;
+
+    private Vector3 KnockbackVelocity;
+
+    //component
+    CharacterController characterController;  //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+    Animator animator;                        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼
+    private Player_Audio player_Audio;        //ã‚ªãƒ¼ãƒ‡ã‚£ã‚ª
 
     private bool isJumpEnhanced;
     [SerializeField]
     private int JumpForceTimer = 0;
 
-    //‰Šú‰»
+    //åˆæœŸåŒ–
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -49,32 +75,33 @@ public class Player : MonoBehaviour
 
         hp = startHp;
 
-        Debug.Log("‘€ìFEƒL[ ¨ •ª—£");
-        Debug.Log("‘€ìFŠ¿š‚ğŠ‚µ‚Ä‚©‚çİ’u‚³‚ê‚½Š¿š‚Ì‹ß‚­‚ÅFƒL[ ¨ ‡‘Ì");
-        Debug.Log("‘€ìFŠ¿š‚ğŠ‚µ‚Ä‚©‚çGƒL[ ¨ Š¿š‚ğÌ‚Ä‚é");
+        Debug.Log("æ“ä½œï¼šEã‚­ãƒ¼ â†’ åˆ†é›¢");
+        Debug.Log("æ“ä½œï¼šæ¼¢å­—ã‚’æ‰€æŒã—ã¦ã‹ã‚‰è¨­ç½®ã•ã‚ŒãŸæ¼¢å­—ã®è¿‘ãã§Fã‚­ãƒ¼ â†’ åˆä½“");
+        Debug.Log("æ“ä½œï¼šæ¼¢å­—ã‚’æ‰€æŒã—ã¦ã‹ã‚‰Gã‚­ãƒ¼ â†’ æ¼¢å­—ã‚’æ¨ã¦ã‚‹");
 
         AnimNum = 0;
         isOtherActionAnim = false;
-
-        //ˆÊ’u‰Šú‰»
-        transform.position = new Vector3(-6.0f, 0.5f, 0.0f);
+        isInvincible = false;
+        isBlinking = false;
+        InvincibleTime = 0;
+        KnockbackVelocity = Vector3.zero;
     }
 
-    //XV
+    //æ›´æ–°
     void Update()
     {
         animator = GetComponent<Animator>();
         animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
 
-        //ƒ|[ƒY’†‚¾‚Á‚½‚ç–³Œø
+        //ãƒãƒ¼ã‚ºä¸­ã ã£ãŸã‚‰ç„¡åŠ¹
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
         }
-        //‘Ì—Íƒ`ƒFƒbƒN
+        //ä½“åŠ›ãƒã‚§ãƒƒã‚¯
         if (hp <= 0)
         {
-            //ƒQ[ƒ€ƒ}ƒl[ƒWƒƒ[‚ÅƒŠƒXƒ|[ƒ“è‘±‚«
+            //ã‚²ãƒ¼ãƒ ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã§ãƒªã‚¹ãƒãƒ¼ãƒ³æ‰‹ç¶šã
             kanji = null;
             kanjiItem = null;
 
@@ -83,23 +110,7 @@ public class Player : MonoBehaviour
 
             Text changeItemText = ItemSlot.GetComponent<Text>();
             changeItemText.text = "  ";
-
-            GameObject gamemanager = GameObject.Find("GameManager");
-            gamemanager.GetComponent<GameManager>().PlayerRespornOrder();
-            int score = gamemanager.GetComponent<GameManager>().GameScore;
-            score -= 1000;
-            if(score<0)
-            {
-                score = 0;
-            }
-
-            gamemanager.GetComponent<GameManager>().GameScore = score;
-
-            Destroy(gameObject);
-            
-        }
-
-        // ’…’nˆ—
+        // ç€åœ°å‡¦ç†
         if (!isLanding)
         {
             if (characterController.isGrounded)
@@ -109,23 +120,23 @@ public class Player : MonoBehaviour
             }
         }
 
-        //’n–Ê‚É‚¢‚é‚Æ‚«
+        //åœ°é¢ã«ã„ã‚‹ã¨ã
         if (characterController.isGrounded)
         {
-            //ˆÚ“®ˆ—
+            //ç§»å‹•å‡¦ç†
 
-            //•às
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //–ˆƒtƒŒ[ƒ€ƒxƒNƒgƒ‹‚ğİ’è
-            moveDirection *= speed;  //ƒXƒs[ƒhİ’è
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //Œü‚«‚ğİ’è
+            //æ­©è¡Œ
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨­å®š
+            moveDirection *= speed;  //ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
+            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //å‘ãã‚’è¨­å®š
 
-            // •às‰¹
+            // æ­©è¡ŒéŸ³
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, true);
             }
 
-            //ƒWƒƒƒ“ƒv
+            //ã‚¸ãƒ£ãƒ³ãƒ—
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;
@@ -134,20 +145,28 @@ public class Player : MonoBehaviour
                 isLanding = false;
             }
 
-            // Š¿š‚ğÌ‚Ä‚é
+            // æ¼¢å­—ã‚’æ¨ã¦ã‚‹
             ThrowAwayKanji();
         }
         else
         {
             moveDirection.x = Input.GetAxis("Horizontal") * speed;
-            transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //Œü‚«‚ğİ’è
+            transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //å‘ãã‚’è¨­å®š
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
-        characterController.Move(moveDirection * Time.deltaTime);
-        animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
 
-        // ƒWƒƒƒ“ƒv‹­‰»’†
+        //ãƒãƒƒã‚¯ãƒãƒƒã‚¯ä¸­ä»¥å¤–ã¯æ­©ã
+        if (KnockbackVelocity != Vector3.zero)
+        {
+            characterController.Move(KnockbackVelocity * Time.deltaTime);
+        }
+        else
+        {
+            characterController.Move(moveDirection * Time.deltaTime);
+
+            animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
+        // ã‚¸ãƒ£ãƒ³ãƒ—å¼·åŒ–ä¸­
         if (isJumpEnhanced)
         {
             JumpForceTimer++;
@@ -158,27 +177,27 @@ public class Player : MonoBehaviour
             }
         }
 
-        //ƒAƒNƒVƒ‡ƒ“
+        //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
         if (Input.GetMouseButtonDown(1))
         {
             if (kanji == null)
             {
                 //animator.SetTrigger("UnityChan_Shot_Trigger");
-                Debug.Log("‰½‚à‚Á‚Ä‚È‚¢‚¼IIIIIIII");
+                Debug.Log("ä½•ã‚‚æŒã£ã¦ãªã„ãï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼");
             }
             else
             {
-                //‚Á‚Ä‚¢‚éŠ¿š‚ÌActionAnimNum‚ğæ“¾
+                //æŒã£ã¦ã„ã‚‹æ¼¢å­—ã®ActionAnimNumã‚’å–å¾—
                 ActionAnim(kanji.ActionAnimNum);
                 
             }
         }
-        // ƒoƒt—pƒAƒCƒeƒ€
+        // ãƒãƒ•ç”¨ã‚¢ã‚¤ãƒ†ãƒ 
         if (Input.GetKeyDown(KeyCode.R))
         {
             if(kanjiItem == null)
             {
-                Debug.Log("‰½‚à‚Á‚Ä‚È‚¢‚¼IIIIIIII");
+                Debug.Log("ä½•ã‚‚æŒã£ã¦ãªã„ãï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼");
             }
             else
             {
@@ -186,57 +205,63 @@ public class Player : MonoBehaviour
             }
         }
 
-        //•ª—£–½—ß
+        //åˆ†é›¢å‘½ä»¤
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (kanji != null)
             {
-                Debug.Log("•ª—£‚µ‚Ü‚·");
+                Debug.Log("åˆ†é›¢ã—ã¾ã™");
                 kanji.KanjiSeparation();
             }
         }
+
+        //ç„¡æ•µçŠ¶æ…‹å‡¦ç†
+        if(isInvincible)
+        {
+            InbincibleProcess();
+        }
     }
 
-    //Š¿š‚ğƒZƒbƒg
+    //æ¼¢å­—ã‚’ã‚»ãƒƒãƒˆ
     public void KanjiSet(Kanji_Abstract recvKanji, bool Exchange)
     {
-        //ŒğŠ·‚ğs‚¤
+        //äº¤æ›ã‚’è¡Œã†æ™‚
         if (Exchange)
         {
-            //‚·‚Å‚ÉŠ¿š‚ğ‚Á‚Ä‚¢‚½ê‡
+            //ã™ã§ã«æ¼¢å­—ã‚’æŒã£ã¦ã„ãŸå ´åˆ
             if (kanji != null && recvKanji != kanji)
             {
-                //kanji‚ÌŠÖ”‚ğŒÄ‚ñ‚Å¶¬‚³‚¹‚é
+                //kanjiã®é–¢æ•°ã‚’å‘¼ã‚“ã§ç”Ÿæˆã•ã›ã‚‹
                 kanji.KanjiSummon(transform.position);
             }
         }
 
-        //ŠŠ¿š‚ğƒZƒbƒg
+        //æ‰€æŒæ¼¢å­—ã‚’ã‚»ãƒƒãƒˆ
         kanji = recvKanji;
 
-        //ƒAƒCƒeƒ€ƒXƒƒbƒg‚ÌƒeƒLƒXƒg•ÏX
+        //ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆã®ãƒ†ã‚­ã‚¹ãƒˆå¤‰æ›´
         Text changeText = KanjiSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
     }
 
-    //ƒAƒCƒeƒ€Š¿š‚ğƒZƒbƒg
+    //ã‚¢ã‚¤ãƒ†ãƒ æ¼¢å­—ã‚’ã‚»ãƒƒãƒˆ
     public void KanjiItemSet(Kanji_Abstract recvKanji, bool Exchange)
     {
-        //ŒğŠ·‚ğs‚¤
+        //äº¤æ›ã‚’è¡Œã†æ™‚
         if (Exchange)
         {
-            //‚·‚Å‚ÉŠ¿š‚ğ‚Á‚Ä‚¢‚½ê‡
+            //ã™ã§ã«æ¼¢å­—ã‚’æŒã£ã¦ã„ãŸå ´åˆ
             if (kanji != null && recvKanji != kanji)
             {
-                //kanji‚ÌŠÖ”‚ğŒÄ‚ñ‚Å¶¬‚³‚¹‚é
+                //kanjiã®é–¢æ•°ã‚’å‘¼ã‚“ã§ç”Ÿæˆã•ã›ã‚‹
                 kanji.KanjiSummon();
             }
         }
 
-        //ŠŠ¿š‚ğƒZƒbƒg
+        //æ‰€æŒæ¼¢å­—ã‚’ã‚»ãƒƒãƒˆ
         kanjiItem = recvKanji;
 
-        //ƒAƒCƒeƒ€ƒXƒƒbƒg‚ÌƒeƒLƒXƒg•ÏX
+        //ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆã®ãƒ†ã‚­ã‚¹ãƒˆå¤‰æ›´
         Text changeText = ItemSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
     }
@@ -259,12 +284,12 @@ public class Player : MonoBehaviour
         {
             if (kanji != null)
             {
-                //kanji‚ÌŠÖ”‚ğŒÄ‚ñ‚Å¶¬‚³‚¹‚é
+                //kanjiã®é–¢æ•°ã‚’å‘¼ã‚“ã§ç”Ÿæˆã•ã›ã‚‹
                 kanji.KanjiSummon(transform.position);
-                Debug.Log("Š¿š‚ğÌ‚Ä‚é");
+                Debug.Log("æ¼¢å­—ã‚’æ¨ã¦ã‚‹");
                 kanji = null;
 
-                // ƒAƒCƒeƒ€ƒXƒƒbƒg‚ÌƒeƒLƒXƒg•ÏX
+                // ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆã®ãƒ†ã‚­ã‚¹ãƒˆå¤‰æ›´
                 Text changeText = KanjiSlot.GetComponent<Text>();
                 changeText.text = "  ";
             }
@@ -273,16 +298,30 @@ public class Player : MonoBehaviour
 
     public void Damage(int amount)
     {
+
+        if (isInvincible)
+        {
+            return;
+        }
+
         hp -= amount;
         player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_DAMAGED);
+        animator.SetTrigger("UnityChan_Damage_Trigger");
+
         if (hp <= 0)
         {
             hp = 0;
+            
         }
 
+        //ç„¡æ•µæ™‚é–“é–‹å§‹
+        isInvincible = true;
+        InvincibleTime = 0;
+        KnockbackVelocity = (-transform.right * 5f);
+        
     }
 
-    //ƒAƒ^ƒbƒNƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
+    //ã‚¢ã‚¿ãƒƒã‚¯ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
     public void ActionAnim(int num)
     {
         if (!isOtherActionAnim)
@@ -292,24 +331,59 @@ public class Player : MonoBehaviour
             animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
             AnimNum = 0;
 
-            isOtherActionAnim = true;  //UŒ‚’†‚Éd‚Ë‚ÄUŒ‚“ü—Í‚ª‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
+            isOtherActionAnim = true;  //æ”»æ’ƒä¸­ã«é‡ã­ã¦æ”»æ’ƒå…¥åŠ›ãŒã§ããªã„ã‚ˆã†ã«ã™ã‚‹
         }
     }
 
-    //ƒAƒjƒ[ƒVƒ‡ƒ“ƒƒbƒN‰ğœ
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ­ãƒƒã‚¯è§£é™¤
     public void OtherActionAnimLift()
     {
-        Debug.Log("ƒAƒjƒ[ƒVƒ‡ƒ“ƒƒbƒN‰ğœ");
+        Debug.Log("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ­ãƒƒã‚¯è§£é™¤");
         isOtherActionAnim = false;
     }
 
     public void KanjiEffect()
     {
-        Debug.Log("Œø‰Ê”­“®");
-        //ƒAƒjƒ[ƒVƒ‡ƒ“‚É‡‚í‚¹Š¿š‚Ì“–‚½‚è”»’è‚âŒø‰Ê‚ğ”­“®‚³‚¹‚é
+        Debug.Log("åŠ¹æœç™ºå‹•");
+        //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«åˆã‚ã›æ¼¢å­—ã®å½“ãŸã‚Šåˆ¤å®šã‚„åŠ¹æœã‚’ç™ºå‹•ã•ã›ã‚‹
         kanji.KanjiAction();
     }
 
+    //ç„¡æ•µçŠ¶æ…‹å‡¦ç†
+    void InbincibleProcess()
+    {
+        InvincibleTime++;
+
+        //ç‚¹æ»…å‡¦ç†
+        if(isBlinking)
+        {
+            if (InvincibleTime % 20 == 0 && InvincibleTime % 40 == 0)
+            {
+                this.GetComponent<Renderer>().enabled = false;
+            }
+            else if (InvincibleTime % 20 == 0)
+            {
+                this.GetComponent<Renderer>().enabled = true;
+            }
+        }
+
+        //ç„¡æ•µæ™‚é–“çµ‚äº†
+        if (InvincibleTime >= InvincibleTimeMax)
+        {
+            this.GetComponent<Renderer>().enabled = true;
+            isBlinking = false;
+            isInvincible = false;
+
+            
+        }
+    }
+
+    //ç‚¹æ»…å‡¦ç†ãƒˆãƒªã‚¬ãƒ¼
+    public void Blinking()
+    {
+        isBlinking = true;
+
+        KnockbackVelocity = Vector3.zero;  //ãƒãƒƒã‚¯ãƒãƒƒã‚¯çµ‚äº†
     public void JumpEnhance()
     {
         if(!isJumpEnhanced) isJumpEnhanced = true;

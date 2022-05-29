@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2246455375045130184}
-  - component: {fileID: 2246455375045130231}
-  - component: {fileID: 2246455375045130230}
-  - component: {fileID: 2246455375045130228}
-  - component: {fileID: 2246455375045130227}
-  - component: {fileID: 2246455375045130226}
+  - component: {fileID: 5734751202452662907}
+  - component: {fileID: 5734751202452662906}
+  - component: {fileID: 5734751202452662909}
+  - component: {fileID: 5734751202452662911}
+  - component: {fileID: 5734751202452662904}
+  - component: {fileID: 5734751202452662905}
   m_Layer: 0
   m_Name: Enemy_Type1
   m_TagString: enemy
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2246455375045130228
+--- !u!114 &5734751202452662911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,13 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28aed1e3697314144aab9105f8ab89fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  speed: 6
-  score: 200
+  hp: 0
+  speed: 0
   DamageInvincibleTimeMax: 0
-  TurnPointMin: 0.5
-  TurnPointMax: 6.5
---- !u!54 &2246455375045130227
+  TurnPointMin: 0
+  TurnPointMax: 0
+--- !u!54 &5734751202452662904
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

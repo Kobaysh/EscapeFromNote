@@ -89,11 +89,8 @@ public class Enemy_Base : MonoBehaviour
                 isCollided = true;
                 timer = 0.0f;
                 Player player = other.GetComponent<Player>();
-                player.hp -= damage;
-                if (player.hp <= 0)
-                {
-                    player.hp = 0;
-                }
+                player.Damage(damage);
+
             }
         }
         //speed = speed * -1;

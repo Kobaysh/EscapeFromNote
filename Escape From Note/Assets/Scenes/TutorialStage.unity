@@ -756,7 +756,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 722951029851563614, guid: bb8b92333bdc4514185da5969f70d0b6, type: 3}
+    - target: {fileID: 5734751202452662908, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662910, guid: cc7831aab8333e94599689cb43e36978, type: 3}
       propertyPath: m_Name
       value: Kanji_Spear_Object
       objectReference: {fileID: 0}
@@ -769,7 +773,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2246455375045130184, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+    - target: {fileID: 5734751202452662905, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662907, guid: cc7831aab8333e94599689cb43e36978, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
@@ -813,7 +821,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2246455375045130225, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+    - target: {fileID: 5734751202452662908, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662910, guid: cc7831aab8333e94599689cb43e36978, type: 3}
       propertyPath: m_Name
       value: Enemy_Type1 (2)
       objectReference: {fileID: 0}
@@ -1079,9 +1091,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5244182277289807646, guid: 6527d41403e678a4b9e17134c94325b2, type: 3}
-      propertyPath: startHp
-      value: 10
+    - target: {fileID: 5734751202452662908, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662910, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Type1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662911, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: TurnPointMax
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662911, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: TurnPointMin
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5244182277289807646, guid: 6527d41403e678a4b9e17134c94325b2, type: 3}
       propertyPath: ItemSlot
