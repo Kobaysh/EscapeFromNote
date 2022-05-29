@@ -12,14 +12,10 @@ public class Player : MonoBehaviour
     public float speed = 6.0f;     //移動速度
     public float jumpSpeed = 8.0f; //ジャンプ力
     public float gravity = 20.0f;  //重力
-    public Kanji_Abstract kanji;   //所持漢字
-    public GameObject ItemSlot;    //漢字スロット
 
     // serialized field
     [SerializeField]
     private bool isLanding = true;  //着地判定
-
-    private bool isLanding = true;
 
     //所持している漢字
     public Kanji_Abstract kanji;
@@ -27,7 +23,6 @@ public class Player : MonoBehaviour
 
     public GameObject KanjiSlot;
     public GameObject ItemSlot;
-    public int hp { get; set; }
 
 
     [SerializeField]
@@ -42,7 +37,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool isInvincible; //無敵状態
 
-    [SerializeField,Header("無敵時間")]
+    [SerializeField, Header("無敵時間")]
     private int InvincibleTimeMax; //無敵時間
 
 
@@ -110,118 +105,119 @@ public class Player : MonoBehaviour
 
             Text changeItemText = ItemSlot.GetComponent<Text>();
             changeItemText.text = "  ";
-        // 着地処理
-        if (!isLanding)
-        {
+            // 着地処理
+            if (!isLanding)
+            {
+                if (characterController.isGrounded)
+                {
+                    player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_LANDING);
+                    isLanding = true;
+                }
+            }
+
+            //地面にいるとき
             if (characterController.isGrounded)
             {
-                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_LANDING);
-                isLanding = true;
-            }
-        }
+                //移動処理
 
-        //地面にいるとき
-        if (characterController.isGrounded)
-        {
-            //移動処理
+                //歩行
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
+                moveDirection *= speed;  //スピード設定
+                transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
 
-            //歩行
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
-            moveDirection *= speed;  //スピード設定
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
+                // 歩行音
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
+                {
+                    player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, true);
+                }
 
-            // 歩行音
-            if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
-            {
-                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, true);
-            }
+                //ジャンプ
+                if (Input.GetButton("Jump"))
+                {
+                    moveDirection.y = jumpSpeed;
+                    if (isJumpEnhanced) moveDirection.y *= 1.5f;
+                    player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
+                    isLanding = false;
+                }
 
-            //ジャンプ
-            if (Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-                if (isJumpEnhanced) moveDirection.y *= 1.5f;
-                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
-                isLanding = false;
-            }
-
-            // 漢字を捨てる
-            ThrowAwayKanji();
-        }
-        else
-        {
-            moveDirection.x = Input.GetAxis("Horizontal") * speed;
-            transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //向きを設定
-        }
-
-        moveDirection.y -= gravity * Time.deltaTime;
-
-        //ノックバック中以外は歩く
-        if (KnockbackVelocity != Vector3.zero)
-        {
-            characterController.Move(KnockbackVelocity * Time.deltaTime);
-        }
-        else
-        {
-            characterController.Move(moveDirection * Time.deltaTime);
-
-            animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
-        // ジャンプ強化中
-        if (isJumpEnhanced)
-        {
-            JumpForceTimer++;
-            if(JumpForceTimer >= 720)
-            {
-                isJumpEnhanced = false;
-                JumpForceTimer = 0;
-            }
-        }
-
-        //アクション
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (kanji == null)
-            {
-                //animator.SetTrigger("UnityChan_Shot_Trigger");
-                Debug.Log("何も持ってないぞ！！！！！！！！");
+                // 漢字を捨てる
+                ThrowAwayKanji();
             }
             else
             {
-                //持っている漢字のActionAnimNumを取得
-                ActionAnim(kanji.ActionAnimNum);
-                
+                moveDirection.x = Input.GetAxis("Horizontal") * speed;
+                transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //向きを設定
             }
-        }
-        // バフ用アイテム
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if(kanjiItem == null)
+
+            moveDirection.y -= gravity * Time.deltaTime;
+
+            //ノックバック中以外は歩く
+            if (KnockbackVelocity != Vector3.zero)
             {
-                Debug.Log("何も持ってないぞ！！！！！！！！");
+                characterController.Move(KnockbackVelocity * Time.deltaTime);
             }
             else
             {
-                kanjiItem.KanjiAction();
-            }
-        }
+                characterController.Move(moveDirection * Time.deltaTime);
 
-        //分離命令
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (kanji != null)
-            {
-                Debug.Log("分離します");
-                kanji.KanjiSeparation();
-            }
-        }
+                animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
+                // ジャンプ強化中
+                if (isJumpEnhanced)
+                {
+                    JumpForceTimer++;
+                    if (JumpForceTimer >= 720)
+                    {
+                        isJumpEnhanced = false;
+                        JumpForceTimer = 0;
+                    }
+                }
 
-        //無敵状態処理
-        if(isInvincible)
-        {
-            InbincibleProcess();
+                //アクション
+                if (Input.GetMouseButtonDown(1))
+                {
+                    if (kanji == null)
+                    {
+                        //animator.SetTrigger("UnityChan_Shot_Trigger");
+                        Debug.Log("何も持ってないぞ！！！！！！！！");
+                    }
+                    else
+                    {
+                        //持っている漢字のActionAnimNumを取得
+                        ActionAnim(kanji.ActionAnimNum);
+
+                    }
+                }
+                // バフ用アイテム
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    if (kanjiItem == null)
+                    {
+                        Debug.Log("何も持ってないぞ！！！！！！！！");
+                    }
+                    else
+                    {
+                        kanjiItem.KanjiAction();
+                    }
+                }
+
+                //分離命令
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (kanji != null)
+                    {
+                        Debug.Log("分離します");
+                        kanji.KanjiSeparation();
+                    }
+                }
+
+                //無敵状態処理
+                if (isInvincible)
+                {
+                    InbincibleProcess();
+                }
+            }
         }
     }
-
     //漢字をセット
     public void KanjiSet(Kanji_Abstract recvKanji, bool Exchange)
     {
@@ -311,14 +307,14 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
-            
+
         }
 
         //無敵時間開始
         isInvincible = true;
         InvincibleTime = 0;
         KnockbackVelocity = (-transform.right * 5f);
-        
+
     }
 
     //アタックアニメーション再生
@@ -355,7 +351,7 @@ public class Player : MonoBehaviour
         InvincibleTime++;
 
         //点滅処理
-        if(isBlinking)
+        if (isBlinking)
         {
             if (InvincibleTime % 20 == 0 && InvincibleTime % 40 == 0)
             {
@@ -374,7 +370,7 @@ public class Player : MonoBehaviour
             isBlinking = false;
             isInvincible = false;
 
-            
+
         }
     }
 
@@ -384,9 +380,13 @@ public class Player : MonoBehaviour
         isBlinking = true;
 
         KnockbackVelocity = Vector3.zero;  //ノックバック終了
-    public void JumpEnhance()
-    {
-        if(!isJumpEnhanced) isJumpEnhanced = true;
     }
 
+    public void JumpEnhance()
+    {
+        if (!isJumpEnhanced)
+        {
+            isJumpEnhanced = true;
+        }
+    }
 }
