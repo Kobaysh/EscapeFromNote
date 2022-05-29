@@ -72,6 +72,6 @@ public class Kanji_Gun : Kanji_Abstract
         player.GetComponent<Player>().KanjiSet(KanjiSub1,false);
 
         //è[Çê›íu
-        KanjiSub2.KanjiSummon();
+        KanjiSub2.KanjiSummon(player.transform.position);
     }
 }

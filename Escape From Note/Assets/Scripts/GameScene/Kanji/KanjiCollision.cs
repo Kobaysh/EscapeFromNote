@@ -25,7 +25,7 @@ public class KanjiCollision : MonoBehaviour
             //取得
             if (Input.GetMouseButtonDown(0)) //左クリック時
             {
-                transform.root.gameObject.GetComponent<KanjiObject>().KanjiGet(); //親のオブジェクトのKanjiObjectスクリプトの関数を呼ぶ
+                transform.root.gameObject.GetComponent<KanjiObjectItem>().KanjiGet(); //親のオブジェクトのKanjiObjectスクリプトの関数を呼ぶ
             }
 
             //合体命令

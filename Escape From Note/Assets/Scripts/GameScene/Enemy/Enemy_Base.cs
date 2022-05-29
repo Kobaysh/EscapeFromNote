@@ -11,6 +11,9 @@ public class Enemy_Base : MonoBehaviour
     [SerializeField]
     protected float  speed;             // 移動速度
 
+    [SerializeField]
+    protected int score;             // スコア
+
     protected int    damage;            // 攻撃力
     protected Player player;            //プレイヤー情報
     protected Rigidbody rb;           // Rigidbody
@@ -39,6 +42,10 @@ public class Enemy_Base : MonoBehaviour
     {
         if(hp <= 0)
         {
+            //スコア処理
+            GameObject gamemanager = GameObject.Find("GameManager");
+            gamemanager.GetComponent<GameManager>().GameScore = score;
+
             Destroy(this.gameObject);
         }
 
