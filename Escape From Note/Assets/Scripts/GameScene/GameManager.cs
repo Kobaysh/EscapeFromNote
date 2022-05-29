@@ -11,37 +11,46 @@ public class GameManager : MonoBehaviour
     public int GameScore { get; set; }
 
     [SerializeField]
-    Text ScoreUI;
+    private Text ScoreUI;
 
     [SerializeField]
-    Text HPText;
+    private Text HPText;
 
     [SerializeField]
-    GameObject ResultUI;
+    private GameObject ResultUI;  //リザルト画面UI
 
     [SerializeField]
-    Text ResultUIText;
+    private Text ResultScoreText;  //リザルト画面スコアテキスト
 
     [SerializeField]
-    Text ResultScoreText;
+    private GameObject GameUI;  //ゲーム画面UI
 
     [SerializeField]
     private int maxEnemies = 0;
 
     [SerializeField]
-    Text TimerText;
+    private Text TimerText;
 
     private Player player;
 
+    [SerializeField]
+    private GameObject playerPrefab;
 
     private float LimitTimeMax = 30.0f;
+
+    private bool isGameOver;
+
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         LimitTimeMax = gameOverLimit;
         player = GameObject.Find("Player").GetComponent<Player>();
 
         GameScore = 0;
+        GameUI.SetActive(true);
+
+        isGameOver = false;
     }
 
     // Update is called once per frame
@@ -52,6 +61,14 @@ public class GameManager : MonoBehaviour
 
         //スコアのテキスト更新
         ScoreUI.text = "SCORE：" + GameScore;
+
+
+        //ゲーム―オーバーシーンのみモードセレクトシーンに戻る
+        if(isGameOver&&Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("ModeSelectScene");
+        }
+
     }
 
     public float GetLimitTime()
@@ -60,39 +77,39 @@ public class GameManager : MonoBehaviour
     }
 
     //ゲーム終了
-    public void GameSet(int caseNumber)
+    public void GameOver()
     {
-        switch (caseNumber)
-        {
-            case 1:
-                Debug.Log("ゲームクリア");
-                //タイマーストップ
-                TimerText.GetComponent<GameCountDown>().TimerTrigger();
-
-                ResultUIText.text = "GAME CLEAR";
-                break;
-
-            case 2:
-                Debug.Log("ゲームオーバー");
-                //タイマーストップ
-                TimerText.GetComponent<GameCountDown>().TimerTrigger();
-
-                ResultUIText.text = "GAME OVER";
-                break;
-
-            case 3:
-                Debug.Log("タイムオーバー");
-                ResultUIText.text = "TIME OVER";
-                break;
-        }
+        Debug.Log("ゲームオーバー");
+        //タイマーストップ
+        Time.timeScale = 0f;
+        TimerText.GetComponent<GameCountDown>().TimerTrigger();
 
         ResultUI.SetActive(true);
+        GameUI.SetActive(false);
 
         ResultScoreText.text = "SCORE：" + GameScore;
+
+        isGameOver = true;
     }
 
     public int GetMaxEnemy()
     {
         return maxEnemies;
+    }
+
+    //プレイヤーリスポーン
+    public void PlayerRespornOrder()
+    {
+        Debug.Log("リスポーンします");
+        StartCoroutine(PlayerResporn());
+    }
+
+    private IEnumerator PlayerResporn()
+    {
+        yield return new WaitForSeconds(2);
+        Debug.Log("リスポーンしました");
+
+        Instantiate(playerPrefab,new Vector3(-6.0f,0.5f,0.0f),Quaternion.identity);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //タグで検索する
     }
 }

@@ -46,9 +46,11 @@ public class ModeSelectScene : MonoBehaviour
             switch (SelectState)
             {
                 case 0:
-                    SceneManager.LoadScene("GameScene");
+                    SceneManager.LoadScene("TutorialStage");
                     break;
-
+                case 3:
+                    SceneManager.LoadScene("TitleScene");
+                    break;
                 default:
                     break;
             }

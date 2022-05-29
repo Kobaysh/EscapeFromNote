@@ -139,4 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcb9ecfbc997114aabe8517fd87b199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  speed: 0
+  score: 320
+  DamageInvincibleTimeMax: 0
   bullet: {fileID: 3827993431350556946, guid: 8e9c520951a24ef4ea569d981b122d47, type: 3}
