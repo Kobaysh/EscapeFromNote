@@ -50,10 +50,11 @@ MonoBehaviour:
   ScoreUI: {fileID: 0}
   HPText: {fileID: 0}
   ResultUI: {fileID: 0}
-  ResultUIText: {fileID: 0}
   ResultScoreText: {fileID: 0}
+  GameUI: {fileID: 0}
   maxEnemies: 5
   TimerText: {fileID: 0}
+  playerPrefab: {fileID: 0}
 --- !u!114 &2016632925672600636
 MonoBehaviour:
   m_ObjectHideFlags: 0

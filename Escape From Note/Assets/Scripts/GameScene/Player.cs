@@ -12,14 +12,11 @@ public class Player : MonoBehaviour
     public float speed = 6.0f;     //移動速度
     public float jumpSpeed = 8.0f; //ジャンプ力
     public float gravity = 20.0f;  //重力
-    public Kanji_Abstract kanji;   //所持漢字
-    public GameObject ItemSlot;    //漢字スロット
 
     // serialized field
     [SerializeField]
     private bool isLanding = true;  //着地判定
 
-    private bool isLanding = true;
 
     //所持している漢字
     public Kanji_Abstract kanji;
@@ -27,7 +24,6 @@ public class Player : MonoBehaviour
 
     public GameObject KanjiSlot;
     public GameObject ItemSlot;
-    public int hp { get; set; }
 
 
     [SerializeField]
@@ -42,7 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool isInvincible; //無敵状態
 
-    [SerializeField,Header("無敵時間")]
+    [SerializeField, Header("無敵時間")]
     private int InvincibleTimeMax; //無敵時間
 
 
@@ -115,6 +111,7 @@ public class Player : MonoBehaviour
 
             Text changeItemText = ItemSlot.GetComponent<Text>();
             changeItemText.text = "  ";
+        }
         // 着地処理
         if (!isLanding)
         {
@@ -135,7 +132,7 @@ public class Player : MonoBehaviour
             moveDirection *= speed;  //�X�s�[�h�ݒ�
             if (isDashEnhanced) moveDirection *= 1.5f;
             transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���ݒ�
-            // 歩行音
+                                                                                     // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
                 if (this.isDashEnhanced) player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVERAISED, true);
@@ -176,70 +173,72 @@ public class Player : MonoBehaviour
             characterController.Move(moveDirection * Time.deltaTime);
 
             animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
-        // ジャンプ強化中
-        if (isJumpEnhanced)
-        {
-            if (JumpForceTimer++ >= 720)
+            // ジャンプ強化中
+            if (isJumpEnhanced)
             {
-                isJumpEnhanced = false;
-                JumpForceTimer = 0;
+                if (JumpForceTimer++ >= 720)
+                {
+                    isJumpEnhanced = false;
+                    JumpForceTimer = 0;
+                }
             }
-        }
 
-        // �_�b�V��������
-        if (isDashEnhanced)
-        {
-            if(DashForceTimer++ >= 720)
+            // �_�b�V��������
+            if (isDashEnhanced)
             {
-                isDashEnhanced = false;
-                DashForceTimer = 0;
+                if (DashForceTimer++ >= 720)
+                {
+                    isDashEnhanced = false;
+                    DashForceTimer = 0;
+                }
             }
-        }
 
-        //アクション
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (kanji == null)
+            //アクション
+            if (Input.GetMouseButtonDown(1))
             {
-                //animator.SetTrigger("UnityChan_Shot_Trigger");
-                Debug.Log("何も持ってないぞ！！！！！！！！");
-            }
-            else
-            {
-                //持っている漢字のActionAnimNumを取得
-                ActionAnim(kanji.ActionAnimNum);
-                
-            }
-        }
-        // バフ用アイテム
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if(kanjiItem == null)
-            {
-                Debug.Log("何も持ってないぞ！！！！！！！！");
-            }
-            else
-            {
-                kanjiItem.KanjiAction();
-            }
-        }
+                if (kanji == null)
+                {
+                    //animator.SetTrigger("UnityChan_Shot_Trigger");
+                    Debug.Log("何も持ってないぞ！！！！！！！！");
+                }
+                else
+                {
+                    //持っている漢字のActionAnimNumを取得
+                    ActionAnim(kanji.ActionAnimNum);
 
-        //分離命令
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (kanji != null)
-            {
-                Debug.Log("分離します");
-                kanji.KanjiSeparation();
+                }
             }
-        }
+            // バフ用アイテム
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                if (kanjiItem == null)
+                {
+                    Debug.Log("何も持ってないぞ！！！！！！！！");
+                }
+                else
+                {
+                    kanjiItem.KanjiAction();
+                }
+            }
 
-        //無敵状態処理
-        if(isInvincible)
-        {
-            InbincibleProcess();
+            //分離命令
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (kanji != null)
+                {
+                    Debug.Log("分離します");
+                    kanji.KanjiSeparation();
+                }
+            }
+
+            //無敵状態処理
+            if (isInvincible)
+            {
+                InvincibleProcess();
+            }
         }
     }
+
 
     //漢字をセット
     public void KanjiSet(Kanji_Abstract recvKanji, bool Exchange)
@@ -330,14 +329,14 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
-            
+
         }
 
         //無敵時間開始
         isInvincible = true;
         InvincibleTime = 0;
         KnockbackVelocity = (-transform.right * 5f);
-        
+
     }
 
     //アタックアニメーション再生
@@ -369,12 +368,12 @@ public class Player : MonoBehaviour
     }
 
     //無敵状態処理
-    void InbincibleProcess()
+    void InvincibleProcess()
     {
         InvincibleTime++;
 
         //点滅処理
-        if(isBlinking)
+        if (isBlinking)
         {
             if (InvincibleTime % 20 == 0 && InvincibleTime % 40 == 0)
             {
@@ -393,7 +392,7 @@ public class Player : MonoBehaviour
             isBlinking = false;
             isInvincible = false;
 
-            
+
         }
     }
 
@@ -403,9 +402,10 @@ public class Player : MonoBehaviour
         isBlinking = true;
 
         KnockbackVelocity = Vector3.zero;  //ノックバック終了
+    }
     public void JumpEnhance()
     {
-        if(!isJumpEnhanced) isJumpEnhanced = true;
+        if (!isJumpEnhanced) isJumpEnhanced = true;
     }
 
     public void DashEnhance()
