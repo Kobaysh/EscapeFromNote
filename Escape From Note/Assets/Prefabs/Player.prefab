@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 92960410874373696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,8 +48,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0
-  m_Radius: 0.18
+  m_Height: 5
+  m_Radius: 1.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -70,16 +70,17 @@ MonoBehaviour:
   speed: 8
   jumpSpeed: 13
   gravity: 20
+  isLanding: 1
   kanji: {fileID: 0}
   kanjiItem: {fileID: 0}
   KanjiSlot: {fileID: 0}
   ItemSlot: {fileID: 0}
-  isLanding: 1
   startHp: 10
   AnimNum: 0
   isOtherActionAnim: 0
   isInvincible: 0
   InvincibleTimeMax: 600
+  JumpForceTimer: 0
 --- !u!212 &6723964518885633463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3716576566137233716, guid: ce573fef79094914eb865a73a3d024fe, type: 3}
+  m_Sprite: {fileID: -840510647857416848, guid: 851700ece712a6d4abaf5cd4ba1d925c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,7 +162,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 2.5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &92960411571904857
 AudioSource:

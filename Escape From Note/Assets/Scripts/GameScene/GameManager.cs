@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour
         //ゲーム―オーバーシーンのみモードセレクトシーンに戻る
         if(isGameOver&&Input.GetKeyDown(KeyCode.Return))
         {
+            //チュートリアル終了
+            if (!TurorialTrigger.getTutorialTrigger())
+            {
+                TurorialTrigger.TutorialStage = true;
+            }
+
             SceneManager.LoadScene("ModeSelectScene");
         }
 

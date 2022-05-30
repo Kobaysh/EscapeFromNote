@@ -9,8 +9,7 @@ public class ModeSelectScene : MonoBehaviour
     public Button[] ModeButtons=new Button[4];
 
     private int SelectState; //選択状態を格納する指数
-    
-    // Use this for initialization
+
     void Start()
     {
         SelectState = -1;
@@ -46,7 +45,43 @@ public class ModeSelectScene : MonoBehaviour
             switch (SelectState)
             {
                 case 0:
-                    SceneManager.LoadScene("TutorialStage");
+                    if (!TurorialTrigger.getTutorialTrigger())
+                    {
+                        Debug.Log("チュートリアル開始");
+                        SceneManager.LoadScene("TutorialStage");
+                        
+                    }
+
+                    else
+                    {
+                        //ランダムで1～5に飛ぶ
+                        Debug.Log("ステージスタート");
+                        int rnd = Random.Range(1, 6);
+                        switch (rnd)
+                        {
+                            case 1:
+                                SceneManager.LoadScene("Stage1");
+                                break;
+
+                            case 2:
+                                SceneManager.LoadScene("Stage2");
+                                break;
+
+                            case 3:
+                                SceneManager.LoadScene("Stage3");
+                                break;
+
+                            case 4:
+                                SceneManager.LoadScene("Stage4");
+                                break;
+
+                            case 5:
+                                SceneManager.LoadScene("Stage5");
+                                break;
+                        }
+
+                    }
+
                     break;
                 case 3:
                     SceneManager.LoadScene("TitleScene");
@@ -72,4 +107,6 @@ public class ModeSelectScene : MonoBehaviour
         }
       
     }
+
+    
 }
