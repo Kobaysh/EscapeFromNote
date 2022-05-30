@@ -29,8 +29,10 @@ public class Kanji_Dash : Kanji_Abstract {
 	// Action
 	public override void KanjiAction()
 	{
-
-	}
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.DashEnhance();
+        player.KanjiItemUsed();
+    }
 
 	// unioncheck
     public override bool KanjiUnionCheck()

@@ -46,4 +46,9 @@ public class Player_Audio : MonoBehaviour {
         audioSource.volume = General_Audio.GetSEVolume();
         if (!audioSource.isPlaying) audioSource.Play();
     }
+
+    public void StopSE()
+    {
+        if (audioSource.isPlaying) audioSource.Stop();
+    }
 }

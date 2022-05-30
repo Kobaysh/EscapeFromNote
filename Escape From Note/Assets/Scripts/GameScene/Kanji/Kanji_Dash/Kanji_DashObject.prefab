@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3598968618198063202}
   - component: {fileID: 3598968618198063203}
   - component: {fileID: 3598968618198063200}
-  - component: {fileID: 3598968618198063204}
+  - component: {fileID: -1853161603060295717}
   m_Layer: 0
   m_Name: Kanji_DashObject
   m_TagString: Untagged
@@ -92,12 +92,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3598968618198063201}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3598968618198063204
+--- !u!114 &-1853161603060295717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3598968618198063201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac45f51c838d3141ac3079faca6705f, type: 3}
+  m_Script: {fileID: 11500000, guid: bb3740f0bb0c5f242a0e5319712d7f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PossessionKanji: {fileID: 11400000, guid: 80912525a9cb7854d893b4af682cb7c9, type: 2}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258871c3f8b39d345b0264fed557351d, type: 3}
   m_Name: Kanji_Dash
   m_EditorClassIdentifier: 
-  slotText: 
-  KanjiModel: {fileID: 0}
-  ActionAnimNum: 0
+  slotText: "\u75BE"
+  KanjiModel: {fileID: 3598968618198063201, guid: 32ed679a423f9cb4d837885e9a9016ea, type: 3}
+  ActionAnimNum: 1
