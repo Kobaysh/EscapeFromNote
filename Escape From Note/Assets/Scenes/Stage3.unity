@@ -135,6 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (2)
@@ -261,6 +265,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (3)
@@ -379,6 +387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!4 &579109780 stripped
@@ -453,6 +465,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!4 &656216858 stripped
@@ -524,6 +540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!1 &705507993
@@ -779,6 +799,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (1)
@@ -1120,6 +1144,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!1001 &1606438043
@@ -1129,6 +1157,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (5)
@@ -1195,6 +1227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (7)
@@ -1272,6 +1308,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform
@@ -1420,6 +1460,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (4)
@@ -1496,6 +1540,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1158807729}
     m_Modifications:
+    - target: {fileID: 8685354221070843056, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051505b853a81b74db3978430d0af809, type: 2}
     - target: {fileID: 8685354221070843058, guid: 1baf5edc8b63a6f4b90c29d52ab4d740, type: 3}
       propertyPath: m_Name
       value: PenetrationPlatform (6)
