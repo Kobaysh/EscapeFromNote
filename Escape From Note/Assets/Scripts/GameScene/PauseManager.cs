@@ -75,10 +75,15 @@ public class PauseManager : MonoBehaviour
             switch (PausmenuSelect)
             {
                 case 0:
-                    SceneManager.LoadScene("GameScene");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
 
                 case 1:
+                    //チュートリアル終了
+                    if(!TurorialTrigger.getTutorialTrigger())
+                    {
+                        TurorialTrigger.TutorialStage = true;
+                    }
                     SceneManager.LoadScene("ModeSelectScene");
                     break;
             }

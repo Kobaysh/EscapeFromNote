@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool isLanding = true;  //着地判定
 
-
     //所持している漢字
     public Kanji_Abstract kanji;
     public Kanji_Abstract kanjiItem;
@@ -412,5 +411,4 @@ public class Player : MonoBehaviour
     {
         if (!isDashEnhanced) isDashEnhanced = true;
     }
-
 }
