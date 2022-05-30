@@ -247,6 +247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 45e75ec78f678f3498473d3842c560fa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!1001 &245171623
@@ -308,6 +312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 45e75ec78f678f3498473d3842c560fa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!1001 &254989847
@@ -533,6 +541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 45e75ec78f678f3498473d3842c560fa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!114 &357995476 stripped
@@ -605,6 +617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 45e75ec78f678f3498473d3842c560fa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!1 &444191594
@@ -1018,6 +1034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2863170335707780367, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 45e75ec78f678f3498473d3842c560fa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
 --- !u!114 &1468390278 stripped
@@ -1043,6 +1063,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5734751202452662908, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662910, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Type1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662911, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: TurnPointMax
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5734751202452662911, guid: cc7831aab8333e94599689cb43e36978, type: 3}
+      propertyPath: TurnPointMin
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 92960410874373696, guid: 6527d41403e678a4b9e17134c94325b2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1099,22 +1135,6 @@ PrefabInstance:
       propertyPath: KanjiSlot
       value: 
       objectReference: {fileID: 847466504}
-    - target: {fileID: 5734751202452662908, guid: cc7831aab8333e94599689cb43e36978, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5734751202452662910, guid: cc7831aab8333e94599689cb43e36978, type: 3}
-      propertyPath: m_Name
-      value: Enemy_Type1 (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5734751202452662911, guid: cc7831aab8333e94599689cb43e36978, type: 3}
-      propertyPath: TurnPointMax
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5734751202452662911, guid: cc7831aab8333e94599689cb43e36978, type: 3}
-      propertyPath: TurnPointMin
-      value: 2.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6527d41403e678a4b9e17134c94325b2, type: 3}
 --- !u!1001 &1742422716
