@@ -81,6 +81,7 @@ MonoBehaviour:
   isInvincible: 0
   InvincibleTimeMax: 600
   JumpForceTimer: 0
+  DashForceTimer: 0
 --- !u!212 &6723964518885633463
 SpriteRenderer:
   m_ObjectHideFlags: 0

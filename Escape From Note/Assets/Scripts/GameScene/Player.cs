@@ -59,6 +59,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int JumpForceTimer = 0;
 
+    private bool isDashEnhanced;
+    [SerializeField]
+    private int DashForceTimer = 0;
+
+
     //初期化
     private void Start()
     {
@@ -106,8 +111,6 @@ public class Player : MonoBehaviour
             Text changeItemText = ItemSlot.GetComponent<Text>();
             changeItemText.text = "  ";
         }
-
-
         // 着地処理
         if (!isLanding)
         {
@@ -123,15 +126,20 @@ public class Player : MonoBehaviour
         {
             //移動処理
 
-            //歩行
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
-            moveDirection *= speed;  //スピード設定
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
-
-            // 歩行音
+            //��s
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���t���[���x�N�g����ݒ�
+            moveDirection *= speed;  //�X�s�[�h�ݒ�
+            if (isDashEnhanced) moveDirection *= 1.5f;
+            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���ݒ�
+                                                                                     // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
-                player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, true);
+                if (this.isDashEnhanced) player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVERAISED, true);
+                else player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVE, false);
+            }
+            else
+            {
+                player_Audio.StopSE();
             }
 
             //ジャンプ
@@ -167,11 +175,20 @@ public class Player : MonoBehaviour
             // ジャンプ強化中
             if (isJumpEnhanced)
             {
-                JumpForceTimer++;
-                if (JumpForceTimer >= 720)
+                if (JumpForceTimer++ >= 720)
                 {
                     isJumpEnhanced = false;
                     JumpForceTimer = 0;
+                }
+            }
+
+            // �_�b�V��������
+            if (isDashEnhanced)
+            {
+                if (DashForceTimer++ >= 720)
+                {
+                    isDashEnhanced = false;
+                    DashForceTimer = 0;
                 }
             }
 
@@ -216,11 +233,12 @@ public class Player : MonoBehaviour
             //無敵状態処理
             if (isInvincible)
             {
-                InbincibleProcess();
+                InvincibleProcess();
             }
         }
-        
     }
+
+
     //漢字をセット
     public void KanjiSet(Kanji_Abstract recvKanji, bool Exchange)
     {
@@ -349,7 +367,7 @@ public class Player : MonoBehaviour
     }
 
     //無敵状態処理
-    void InbincibleProcess()
+    void InvincibleProcess()
     {
         InvincibleTime++;
 
@@ -384,12 +402,13 @@ public class Player : MonoBehaviour
 
         KnockbackVelocity = Vector3.zero;  //ノックバック終了
     }
-
     public void JumpEnhance()
     {
-        if (!isJumpEnhanced)
-        {
-            isJumpEnhanced = true;
-        }
+        if (!isJumpEnhanced) isJumpEnhanced = true;
+    }
+
+    public void DashEnhance()
+    {
+        if (!isDashEnhanced) isDashEnhanced = true;
     }
 }
