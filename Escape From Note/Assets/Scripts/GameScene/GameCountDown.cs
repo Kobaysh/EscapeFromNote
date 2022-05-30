@@ -31,7 +31,7 @@ public class GameCountDown : MonoBehaviour
             timerStop = true;
             Debug.Log("タイムオーバー");
             GameObject gameManager = GameObject.Find("GameManager");
-            gameManager.GetComponent<GameManager>().GameSet(3);
+            gameManager.GetComponent<GameManager>().GameOver();
         }
 
         //時間表示
