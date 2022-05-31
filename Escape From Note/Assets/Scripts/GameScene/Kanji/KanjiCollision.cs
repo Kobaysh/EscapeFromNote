@@ -23,7 +23,7 @@ public class KanjiCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             //取得
-            if (Input.GetMouseButtonDown(0)) //左クリック時
+            if (Input.GetKeyDown(KeyCode.K)) //左クリック時
             {
                 transform.root.gameObject.GetComponent<KanjiObjectItem>().KanjiGet(); //親のオブジェクトのKanjiObjectスクリプトの関数を呼ぶ
             }
