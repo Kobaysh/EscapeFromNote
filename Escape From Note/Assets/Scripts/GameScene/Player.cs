@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
             }
 
             //アクション
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 if (kanji == null)
                 {
