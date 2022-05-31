@@ -18,6 +18,8 @@ public class Enemy_Base : MonoBehaviour
     protected Player player;            //ƒvƒŒƒCƒ„[î•ñ
     protected Rigidbody rb;           // Rigidbody
 
+    protected SpriteRenderer sprite;
+
     private int DamageInvincibleTime;
 
     [SerializeField,Header("”í’e–³“GŠÔ")]

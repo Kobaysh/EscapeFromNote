@@ -30,7 +30,11 @@ public class KanjiSpawnerMono : MonoBehaviour {
     void Start()
     {
         // ゲーム中はエリアの描画をオフ
-        GetComponent<MeshRenderer>().enabled = false;
+        MeshRenderer meshRenderer = null;
+        if (TryGetComponent<MeshRenderer>(out meshRenderer))
+        {
+            meshRenderer.enabled = false;
+        }
     }
 
 

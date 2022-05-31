@@ -13,6 +13,7 @@ public class Enemy_Type3 : Enemy_Base
         speed = player.speed * 0.75f;   // 移動速度    【プレイヤーの移動速度 * 0.75】
         damage = 2;                     // ダメージ    【未定】
         rb = GetComponent<Rigidbody>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -49,10 +50,12 @@ public class Enemy_Type3 : Enemy_Base
         if (enemy_pos.x < player_pos.x - 1.0f)
         {
             rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
+            sprite.flipX = false;
         }
         else if(enemy_pos.x > player_pos.x + 1.0f)
         {
             rb.velocity = new Vector3(-speed, rb.velocity.y, rb.velocity.z);
+            sprite.flipX = true;
         }
        
     }

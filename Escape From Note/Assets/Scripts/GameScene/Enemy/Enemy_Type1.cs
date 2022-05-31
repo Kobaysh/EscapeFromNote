@@ -12,6 +12,7 @@ public class Enemy_Type1 : Enemy_Base
 
     private bool moveDirectionRight;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class Enemy_Type1 : Enemy_Base
         damage = 2;                     // É_ÉÅÅ[ÉW    Åyñ¢íËÅz
         rb = GetComponent<Rigidbody>();
         moveDirectionRight = true;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -35,11 +37,13 @@ public class Enemy_Type1 : Enemy_Base
         {
             speed = speed * -1.0f;
             moveDirectionRight = true;
+            sprite.flipX = true;
         }
         if (TurnPointMax < transform.position.x && moveDirectionRight)
         {
             speed = speed * -1.0f;
             moveDirectionRight = false;
+            sprite.flipX = false;
         }
     }
 
