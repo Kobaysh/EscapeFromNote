@@ -11,7 +11,7 @@ public class Enemy_Type1 : Enemy_Base
     private float TurnPointMax;
 
     private bool moveDirectionRight;
-    private SpriteRenderer sprite;
+
 
     // Start is called before the first frame update
     void Start()
