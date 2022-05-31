@@ -49,14 +49,14 @@ public class ModeSelectScene : MonoBehaviour
                     {
                         Debug.Log("チュートリアル開始");
                         SceneManager.LoadScene("TutorialStage");
-                        
+
                     }
 
                     else
                     {
                         //ランダムで1～5に飛ぶ
                         Debug.Log("ステージスタート");
-                        int rnd = Random.Range(1, 6);
+                        int rnd = Random.Range(1, 3);
                         switch (rnd)
                         {
                             case 1:
@@ -67,17 +67,17 @@ public class ModeSelectScene : MonoBehaviour
                                 SceneManager.LoadScene("Stage2");
                                 break;
 
-                            case 3:
-                                SceneManager.LoadScene("Stage3");
-                                break;
+                            //case 3:
+                            //    SceneManager.LoadScene("Stage3");
+                            //    break;
 
-                            case 4:
-                                SceneManager.LoadScene("Stage4");
-                                break;
+                            //case 4:
+                            //    SceneManager.LoadScene("Stage4");
+                            //    break;
 
-                            case 5:
-                                SceneManager.LoadScene("Stage5");
-                                break;
+                            //case 5:
+                            //    SceneManager.LoadScene("Stage5");
+                            //    break;
                         }
 
                     }

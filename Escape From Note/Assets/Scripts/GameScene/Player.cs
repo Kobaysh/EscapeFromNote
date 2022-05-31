@@ -181,8 +181,6 @@ public class Player : MonoBehaviour
                     JumpForceTimer = 0;
                 }
             }
-
-            // �_�b�V��������
             if (isDashEnhanced)
             {
                 if (DashForceTimer++ >= 720)
@@ -197,7 +195,6 @@ public class Player : MonoBehaviour
             {
                 if (kanji == null)
                 {
-                    //animator.SetTrigger("UnityChan_Shot_Trigger");
                     Debug.Log("何も持ってないぞ！！！！！！！！");
                 }
                 else
@@ -259,6 +256,7 @@ public class Player : MonoBehaviour
         //アイテムスロットのテキスト変更
         Text changeText = KanjiSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
+
     }
 
     //アイテム漢字をセット
