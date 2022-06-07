@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ModeSelectScene : MonoBehaviour
 {
-    public Button[] ModeButtons=new Button[4];
+    public Text[] ModeButtons=new Text[4];
 
     private int SelectState; //選択状態を格納する指数
 
@@ -94,21 +94,21 @@ public class ModeSelectScene : MonoBehaviour
         //タイムアタックにカーソルがあってるとき
         if (SelectState == 0)
         {
-            ModeButtons[SelectState].GetComponent<Image>().color = new Color(255, 255, 255, 0);
+            ModeButtons[SelectState].GetComponent<Text>().color = Color.cyan;
         }
         else //あってないとき
         {
-            ModeButtons[0].GetComponent<Image>().color = new Color(255, 255, 255, 0);
+            ModeButtons[0].GetComponent<Text>().color = Color.white;
         }
 
         //タイトルにカーソルがあってるとき
         if (SelectState == 3)
         {
-            ModeButtons[SelectState].GetComponent<Image>().color = Color.cyan;
+            ModeButtons[SelectState].GetComponent<Text>().color = Color.cyan;
         }
         else //あってないとき
         {
-            ModeButtons[3].GetComponent<Image>().color = Color.white;
+            ModeButtons[3].GetComponent<Text>().color = Color.white;
         }
 
 

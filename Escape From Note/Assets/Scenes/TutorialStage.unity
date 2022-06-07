@@ -1591,5 +1591,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8187342301278171034, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187342301754241465, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_Text
+      value: "\u30EA\u30B9\u30BF\u30FC\u30C8\uFF1AB"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187342301754241465, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
