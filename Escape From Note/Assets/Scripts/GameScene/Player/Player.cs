@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -96,6 +96,9 @@ public class Player : MonoBehaviour
         isBlinking = false;
         InvincibleTime = 0;
         KnockbackVelocity = Vector3.zero;
+
+        KanjiSlot = GameObject.Find("GetKanjiText");
+        ItemSlot = GameObject.Find("GetKanjiItemText");
     }
 
     //更新
@@ -108,19 +111,6 @@ public class Player : MonoBehaviour
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
-        }
-        //体力チェック
-        if (hp <= 0)
-        {
-            //ゲームマネージャーでリスポーン手続き
-            kanji = null;
-            kanjiItem = null;
-
-            Text changeKanjiText = KanjiSlot.GetComponent<Text>();
-            changeKanjiText.text = "  ";
-
-            Text changeItemText = ItemSlot.GetComponent<Text>();
-            changeItemText.text = "  ";
         }
         // 着地処理
         if (!isLanding)
@@ -292,6 +282,7 @@ public class Player : MonoBehaviour
         changeText.text = recvKanji.slotText;
     }
 
+    //漢字アイテムを使う
     public void KanjiItemUsed()
     {
         kanjiItem = null;
@@ -299,11 +290,12 @@ public class Player : MonoBehaviour
         changeText.text = "  ";
     }
 
-    public bool IsHPLessZero()
-    {
-        return (hp <= 0);
-    }
+    //public bool IsHPLessZero()
+    //{
+    //    return (hp <= 0);
+    //}
 
+    //漢字を捨てる
     private void ThrowAwayKanji()
     {
         if (Input.GetKeyDown(KeyCode.G))
@@ -322,6 +314,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //被ダメージ
     public void Damage(int amount)
     {
 
@@ -331,20 +324,23 @@ public class Player : MonoBehaviour
         }
 
         hp -= amount;
-        player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_DAMAGED);
-        animator.SetTrigger("UnityChan_Damage_Trigger");
-
         if (hp <= 0)
         {
             hp = 0;
-
+            Death();
         }
+        else
+        {
 
-        //無敵時間開始
-        isInvincible = true;
-        InvincibleTime = 0;
-        KnockbackVelocity = (-transform.right * 5f);
+            player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_DAMAGED);
+            animator.SetTrigger("UnityChan_Damage_Trigger");
 
+
+            //無敵時間開始
+            isInvincible = true;
+            InvincibleTime = 0;
+            KnockbackVelocity = (-transform.right * 5f);
+        }
     }
 
     //アタックアニメーション再生
@@ -368,6 +364,7 @@ public class Player : MonoBehaviour
         isOtherActionAnim = false;
     }
 
+    //漢字アイテムの効果発動
     public void KanjiEffect()
     {
         Debug.Log("効果発動");
@@ -402,6 +399,24 @@ public class Player : MonoBehaviour
 
             
         }
+    }
+
+    //死亡
+    void Death()
+    {
+        //ゲームマネージャーでリスポーン手続き
+        kanji = null;
+        kanjiItem = null;
+
+        Text changeKanjiText = KanjiSlot.GetComponent<Text>();
+        changeKanjiText.text = "  ";
+
+        Text changeItemText = ItemSlot.GetComponent<Text>();
+        changeItemText.text = "  ";
+
+        GameObject gamemanager = GameObject.Find("GameManager");
+        gamemanager.GetComponent<GameManager>().PlayerRespornOrder();
+        Destroy(this.gameObject);
     }
 
     //点滅処理トリガー

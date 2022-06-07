@@ -68,13 +68,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  jumpSpeed: 13
+  jumpSpeed: 15
   gravity: 20
   isLanding: 1
   kanji: {fileID: 0}
   kanjiItem: {fileID: 0}
-  KanjiSlot: {fileID: 0}
-  ItemSlot: {fileID: 0}
+  KanjiSlot: {fileID: 136135779703329695, guid: d34a6a203ae9eb9499993b32d7105447, type: 3}
+  ItemSlot: {fileID: 8477975746168674946, guid: 214673ef8bd734349b9c31f5a9992227, type: 3}
   startHp: 10
   AnimNum: 0
   isOtherActionAnim: 0
