@@ -4,52 +4,67 @@ using UnityEngine;
 
 public class Enemy_Base : MonoBehaviour
 {
-    // ƒGƒlƒ~[‚ª‚ÂƒXƒe[ƒ^ƒX
+    // ã‚¨ãƒãƒŸãƒ¼ãŒæŒã¤ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     [SerializeField]
-    protected int    hp;                // ‘Ì—Í  
+    protected int    hp;                // ä½“åŠ›  
 
     [SerializeField]
-    protected float  speed;             // ˆÚ“®‘¬“x
+    protected float  speed;             // ç§»å‹•é€Ÿåº¦
 
     [SerializeField]
-    protected int score;             // ƒXƒRƒA
+    protected int score;             // ã‚¹ã‚³ã‚¢
 
-    protected int    damage;            // UŒ‚—Í
-    protected Player player;            //ƒvƒŒƒCƒ„[î•ñ
+    protected int    damage;            // æ”»æ’ƒåŠ›
+    protected Player player;            //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±
     protected Rigidbody rb;           // Rigidbody
 
     protected SpriteRenderer sprite;
 
     private int DamageInvincibleTime;
 
-    [SerializeField,Header("”í’e–³“GŠÔ")]
+    [SerializeField,Header("è¢«å¼¾æ™‚ç„¡æ•µæ™‚é–“")]
     protected int DamageInvincibleTimeMax;
 
     private bool isDamageInvincible;
 
-    // “G‚Æ‚Ì”»’è—p
-    protected float interval = 3.0f;    // ƒvƒŒƒCƒ„[–³“GŠÔ
-    protected float timer = 0.0f;       // ƒ^ƒCƒ}[—p
-    protected bool isCollided = false;  // “–‚½‚è”»’è—p
+    // æ•µã¨ã®åˆ¤å®šç”¨
+    protected float interval = 3.0f;    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç„¡æ•µæ™‚é–“
+    protected float timer = 0.0f;       // ã‚¿ã‚¤ãƒãƒ¼ç”¨
+    protected bool isCollided = false;  // å½“ãŸã‚Šåˆ¤å®šç”¨
+
+    protected Enemy_Audio enemy_Audio;  // éŸ³
+    protected bool isDeleting = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        //–³“Gó‘Ô
+        //ç„¡æ•µçŠ¶æ…‹
         isDamageInvincible = false;
+        if (!enemy_Audio) enemy_Audio = GetComponent<Enemy_Audio>();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        if(hp <= 0)
+        if (isDeleting)
         {
-            //ƒXƒRƒAˆ—
-            GameObject gamemanager = GameObject.Find("GameManager");
-            gamemanager.GetComponent<GameManager>().GameScore = score;
-
-            Destroy(this.gameObject);
+            // å†ç”ŸãŒçµ‚ã‚ã£ãŸã‚‰æ¶ˆå»
+            if (!enemy_Audio.isPlaying())
+            {
+                //ã‚¹ã‚³ã‚¢å‡¦ç†
+                GameObject gamemanager = GameObject.Find("GameManager");
+                gamemanager.GetComponent<GameManager>().GameScore = score;
+                Destroy(this.gameObject);
+            }
+            return;
         }
+        if (hp <= 0)
+        {
+            enemy_Audio.PlaySE(Enemy_Audio.Enemy_SE.ENEMY_SE_DESPAWN);
+            isDeleting = true;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
 
         if (isCollided)
         {
@@ -61,7 +76,7 @@ public class Enemy_Base : MonoBehaviour
             }
         }
 
-        //–³“GŠÔŠÇ—
+        //ç„¡æ•µæ™‚é–“ç®¡ç†
         if(isDamageInvincible)
         {
             DamageInvincibleTime++;
@@ -80,9 +95,10 @@ public class Enemy_Base : MonoBehaviour
     {
     }
 
-    // Player‚ÆÕ“Ë
+    // Playerã¨è¡çªæ™‚
     private void OnTriggerEnter(Collider other)
     {
+        if (isDeleting) return;
         if (other.gameObject.CompareTag("Player"))
         {
             if (!isCollided)
@@ -100,10 +116,13 @@ public class Enemy_Base : MonoBehaviour
 
     public void Damage(int amount)
     {
+        if (isDeleting) return;
         if (!isDamageInvincible)
         {
-            Debug.Log("”í’e");
+            Debug.Log("è¢«å¼¾");
             hp -= amount;
+            // è¢«å¼¾SE
+            enemy_Audio.PlaySE(Enemy_Audio.Enemy_SE.ENEMY_SE_DAMAGE);
             if (hp <= 0)
             {
                 hp = 0;

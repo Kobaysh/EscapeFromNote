@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8311382765481886955}
   - component: {fileID: 8839136161143471413}
   - component: {fileID: 2651206803124000338}
+  - component: {fileID: 3507014568390715292}
   m_Layer: 0
   m_Name: Enemy_Type3
   m_TagString: enemy
@@ -150,3 +151,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3507014568390715292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971574420082095764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6861c0a67bd84f74ca47fd4492233e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: {fileID: 8300000, guid: bfbcb3d7964133f468d6c9c332a8203a, type: 3}
+  damage_cri: {fileID: 8300000, guid: 970f42d7ea91b334ca62f79b374db40a, type: 3}
+  shot1: {fileID: 8300000, guid: 594db0c312c9cb6408c03e3412fea065, type: 3}
+  shot2: {fileID: 8300000, guid: 83f10d1ddc6ecea43adcf431861f10fe, type: 3}
+  spawn: {fileID: 8300000, guid: c9453435ea1090d429c288dde4f33c4d, type: 3}
+  despawn: {fileID: 8300000, guid: 69f556195f413a144a2a50eec030faf9, type: 3}
+  score: {fileID: 8300000, guid: 103861e1ee029ec4e9d1df5d9511c328, type: 3}

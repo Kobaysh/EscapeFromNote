@@ -5,23 +5,24 @@ using UnityEngine;
 public class Enemy_Type4 : Enemy_Base
 {
     [SerializeField]
-    [Tooltip("’e")]
+    [Tooltip("å¼¾")]
     private GameObject bullet;
 
     float bullet_speed = 30.0f;
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        // ƒpƒ‰ƒ[ƒ^@//
-        player = GameObject.Find("Player").GetComponent<Player>();   // ƒvƒŒƒCƒ„[î•ñ‚ğæ“¾
-        hp = 2;                         // ‘Ì—Í       y2z
-        speed = player.speed * 0.5f;    // ˆÚ“®‘¬“x    yƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x * 0.5z
-        damage = 2;                     // ƒ_ƒ[ƒW    y–¢’èz
+        base.Start();
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€€//
+        player = GameObject.Find("Player").GetComponent<Player>();   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’å–å¾—
+        hp = 2;                         // ä½“åŠ›       ã€2ã€‘
+        speed = player.speed * 0.5f;    // ç§»å‹•é€Ÿåº¦    ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é€Ÿåº¦ * 0.5ã€‘
+        damage = 2;                     // ãƒ€ãƒ¡ãƒ¼ã‚¸    ã€æœªå®šã€‘
         rb = GetComponent<Rigidbody>();
 
-        // ŠJn‚P•bŒã‚©‚ç3•b‚²‚Æ‚ÉAttack()‚ğŒÄ‚Ño‚·
+        // é–‹å§‹ï¼‘ç§’å¾Œã‹ã‚‰3ç§’ã”ã¨ã«Attack()ã‚’å‘¼ã³å‡ºã™
         InvokeRepeating("Attack", 1.0f, 3.0f);
     }
 
@@ -29,6 +30,7 @@ public class Enemy_Type4 : Enemy_Base
     public override void Update()
     {
         base.Update();
+        if (isDeleting) return;
         Move();
     }
 
@@ -39,22 +41,22 @@ public class Enemy_Type4 : Enemy_Base
         if (!GameObject.Find("Player"))
             return;
 
-        //ƒvƒŒƒCƒ„[‚ÌÀ•W‚ğæ“¾‚·‚é
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹
         Vector3 player_pos = GameObject.Find("Player").transform.position;
 
-        // ƒGƒlƒ~[©g‚ÌêŠ‚ğæ“¾
+        // ã‚¨ãƒãƒŸãƒ¼è‡ªèº«ã®å ´æ‰€ã‚’å–å¾—
         Vector3 enemy_pos = this.transform.position;
 
-        // ƒGƒlƒ~[©g‚©‚çƒvƒŒƒCƒ„[‚Ö‚Ì’PˆÊƒxƒNƒgƒ‹‚ğŠ„‚èo‚·
+        // ã‚¨ãƒãƒŸãƒ¼è‡ªèº«ã‹ã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«ã‚’å‰²ã‚Šå‡ºã™
         Vector3 direction = player_pos - enemy_pos;
         direction.Normalize();
 
-        // ã‚Åæ“¾‚µ‚½êŠ‚ÉA"bullet"‚ÌPrefab‚ğoŒ»‚³‚¹‚é
+        // ä¸Šã§å–å¾—ã—ãŸå ´æ‰€ã«ã€"bullet"ã®Prefabã‚’å‡ºç¾ã•ã›ã‚‹
         GameObject newBall = Instantiate(bullet, enemy_pos + direction * 1.5f, bullet.transform.rotation);
 
-        // ’e‚Ì”­Ë•ûŒü‚ÉnewBall‚Ìz•ûŒü(ƒ[ƒJƒ‹À•W)‚ğ“ü‚êA’eƒIƒuƒWƒFƒNƒg‚Ìrigidbody‚ÉÕŒ‚—Í‚ğ‰Á‚¦‚é
+        // å¼¾ã®ç™ºå°„æ–¹å‘ã«newBallã®zæ–¹å‘(ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™)ã‚’å…¥ã‚Œã€å¼¾ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®rigidbodyã«è¡æ’ƒåŠ›ã‚’åŠ ãˆã‚‹
         newBall.GetComponent<Rigidbody>().AddForce(direction * bullet_speed, ForceMode.Impulse);
-        // oŒ»‚³‚¹‚½ƒ{[ƒ‹‚Ì–¼‘O‚ğ"bullet"‚É•ÏX
+        // å‡ºç¾ã•ã›ãŸãƒœãƒ¼ãƒ«ã®åå‰ã‚’"bullet"ã«å¤‰æ›´
         newBall.name = bullet.name;
 
     }
@@ -66,10 +68,10 @@ public class Enemy_Type4 : Enemy_Base
         if (!GameObject.Find("Player"))
             return;
 
-        // ƒvƒŒƒCƒ„[À•W‚ğæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™ã‚’å–å¾—
         Vector3 player_pos = GameObject.Find("Player").transform.position;
 
-        // ƒGƒlƒ~[©g‚ÌêŠ‚ğæ“¾
+        // ã‚¨ãƒãƒŸãƒ¼è‡ªèº«ã®å ´æ‰€ã‚’å–å¾—
         Vector3 enemy_pos = this.transform.position;
 
         if (enemy_pos.y > player_pos.y - 1.0f && player_pos.y + 1.0f > enemy_pos.y)
@@ -77,7 +79,7 @@ public class Enemy_Type4 : Enemy_Base
             return;
         }
 
-        // cˆÚ“®‚Ì‚İ
+        // ç¸¦ç§»å‹•ã®ã¿
         if (enemy_pos.y < player_pos.y - 1.0f)
         {
             rb.velocity = new Vector3(rb.velocity.x, speed, rb.velocity.z);
