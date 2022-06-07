@@ -8,18 +8,21 @@ public class ModeSelectScene : MonoBehaviour
 {
     public Text[] ModeButtons=new Text[4];
 
-    private int SelectState; //‘I‘ğó‘Ô‚ğŠi”[‚·‚éw”
+    private int SelectState; //é¸æŠçŠ¶æ…‹ã‚’æ ¼ç´ã™ã‚‹æŒ‡æ•°
 
     void Start()
     {
         SelectState = -1;
+        FadeManager.FadeIn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ƒJ[ƒ\ƒ‹‘€ì
-        //ã
+        if (FadeManager.isFadeIn) return;
+        if (FadeManager.isFadeOut) return;
+        //ã‚«ãƒ¼ã‚½ãƒ«æ“ä½œ
+        //ä¸Š
         if (Input.GetKeyDown(KeyCode.W))
         {
             SelectState--;
@@ -29,7 +32,7 @@ public class ModeSelectScene : MonoBehaviour
             }
         }
 
-        //‰º
+        //ä¸‹
         else if (Input.GetKeyDown(KeyCode.S))
         {
             SelectState++;
@@ -39,7 +42,7 @@ public class ModeSelectScene : MonoBehaviour
             }
         }
 
-        //Œˆ’è
+        //æ±ºå®š
         else if(Input.GetKeyDown(KeyCode.Return))
         {
             switch (SelectState)
@@ -47,24 +50,27 @@ public class ModeSelectScene : MonoBehaviour
                 case 0:
                     if (!TurorialTrigger.getTutorialTrigger())
                     {
-                        Debug.Log("ƒ`ƒ…[ƒgƒŠƒAƒ‹ŠJn");
-                        SceneManager.LoadScene("TutorialStage");
+                        Debug.Log("ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«é–‹å§‹");
+                        FadeManager.FadeOut("TutorialStage");
+                    //    SceneManager.LoadScene("TutorialStage");
 
                     }
 
                     else
                     {
-                        //ƒ‰ƒ“ƒ_ƒ€‚Å1`5‚É”ò‚Ô
-                        Debug.Log("ƒXƒe[ƒWƒXƒ^[ƒg");
+                        //ãƒ©ãƒ³ãƒ€ãƒ ã§1ï½5ã«é£›ã¶
+                        Debug.Log("ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¹ã‚¿ãƒ¼ãƒˆ");
                         int rnd = Random.Range(1, 3);
                         switch (rnd)
                         {
                             case 1:
-                                SceneManager.LoadScene("Stage1");
+                                FadeManager.FadeOut("Stage1");
+                               // SceneManager.LoadScene("Stage1");
                                 break;
 
                             case 2:
-                                SceneManager.LoadScene("Stage2");
+                                FadeManager.FadeOut("Stage2");
+                               // SceneManager.LoadScene("Stage2");
                                 break;
 
                             //case 3:
@@ -84,29 +90,30 @@ public class ModeSelectScene : MonoBehaviour
 
                     break;
                 case 3:
-                    SceneManager.LoadScene("TitleScene");
+                    FadeManager.FadeOut("TitleScene");
+                 //   SceneManager.LoadScene("TitleScene");
                     break;
                 default:
                     break;
             }
         }
 
-        //ƒ^ƒCƒ€ƒAƒ^ƒbƒN‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚Á‚Ä‚é‚Æ‚«
+        //ã‚¿ã‚¤ãƒ ã‚¢ã‚¿ãƒƒã‚¯ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã£ã¦ã‚‹ã¨ã
         if (SelectState == 0)
         {
             ModeButtons[SelectState].GetComponent<Text>().color = Color.cyan;
         }
-        else //‚ ‚Á‚Ä‚È‚¢‚Æ‚«
+        else //ã‚ã£ã¦ãªã„ã¨ã
         {
             ModeButtons[0].GetComponent<Text>().color = Color.white;
         }
 
-        //ƒ^ƒCƒgƒ‹‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚Á‚Ä‚é‚Æ‚«
+        //ã‚¿ã‚¤ãƒˆãƒ«ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã£ã¦ã‚‹ã¨ã
         if (SelectState == 3)
         {
             ModeButtons[SelectState].GetComponent<Text>().color = Color.cyan;
         }
-        else //‚ ‚Á‚Ä‚È‚¢‚Æ‚«
+        else //ã‚ã£ã¦ãªã„ã¨ã
         {
             ModeButtons[3].GetComponent<Text>().color = Color.white;
         }
@@ -119,24 +126,27 @@ public class ModeSelectScene : MonoBehaviour
     {
         if (!TurorialTrigger.getTutorialTrigger())
         {
-            Debug.Log("ƒ`ƒ…[ƒgƒŠƒAƒ‹ŠJn");
-            SceneManager.LoadScene("TutorialStage");
+            Debug.Log("ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«é–‹å§‹");
+            FadeManager.FadeOut("TutorialStage");
+           // SceneManager.LoadScene("TutorialStage");
 
         }
 
         else
         {
-            //ƒ‰ƒ“ƒ_ƒ€‚Å1`5‚É”ò‚Ô
-            Debug.Log("ƒXƒe[ƒWƒXƒ^[ƒg");
+            //ãƒ©ãƒ³ãƒ€ãƒ ã§1ï½5ã«é£›ã¶
+            Debug.Log("ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¹ã‚¿ãƒ¼ãƒˆ");
             int rnd = Random.Range(1, 3);
             switch (rnd)
             {
                 case 1:
-                    SceneManager.LoadScene("Stage1");
+                    FadeManager.FadeOut("Stage1");
+                  //  SceneManager.LoadScene("Stage1");
                     break;
 
                 case 2:
-                    SceneManager.LoadScene("Stage2");
+                    FadeManager.FadeOut("Stage2");
+                   // SceneManager.LoadScene("Stage2");
                     break;
 
                     //case 3:
@@ -157,7 +167,8 @@ public class ModeSelectScene : MonoBehaviour
 
     public void JumpToTitle()
     {
-        SceneManager.LoadScene("TitleScene");
+        FadeManager.FadeOut("TitleScene");
+      //  SceneManager.LoadScene("TitleScene");
     }
     
 }

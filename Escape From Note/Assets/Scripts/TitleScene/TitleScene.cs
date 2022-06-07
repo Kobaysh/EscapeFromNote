@@ -68,12 +68,13 @@ public class TitleScene : MonoBehaviour
         }
     }
 
-    // ƒrƒfƒII—¹Žž‚Ìˆ—
+    // ãƒ“ãƒ‡ã‚ªçµ‚äº†æ™‚ã®å‡¦ç†
     private void LoopPointReached(VideoPlayer vp)
     {
         isActive = true;
         videoCanvas.SetActive(false);
-        SceneManager.LoadScene("ModeSelectScene");
+        FadeManager.FadeOut("ModeSelectScene");
+     //   SceneManager.LoadScene("ModeSelectScene");
     }
 
 }

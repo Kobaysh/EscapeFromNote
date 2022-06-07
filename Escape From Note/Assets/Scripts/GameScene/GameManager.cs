@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
     private Text HPText;
 
     [SerializeField]
-    private GameObject ResultUI;  //ƒŠƒUƒ‹ƒg‰æ–ÊUI
+    private GameObject ResultUI;  //ãƒªã‚¶ãƒ«ãƒˆç”»é¢UI
 
     [SerializeField]
-    private Text ResultScoreText;  //ƒŠƒUƒ‹ƒg‰æ–ÊƒXƒRƒAƒeƒLƒXƒg
+    private Text ResultScoreText;  //ãƒªã‚¶ãƒ«ãƒˆç”»é¢ã‚¹ã‚³ã‚¢ãƒ†ã‚­ã‚¹ãƒˆ
 
     [SerializeField]
-    private GameObject GameUI;  //ƒQ[ƒ€‰æ–ÊUI
+    private GameObject GameUI;  //ã‚²ãƒ¼ãƒ ç”»é¢UI
 
     [SerializeField]
     private int maxEnemies = 0;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FadeManager.FadeIn();
         Time.timeScale = 1f;
         LimitTimeMax = gameOverLimit;
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -56,23 +57,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ƒvƒŒƒCƒ„[‚ÌHP‚ÌƒeƒLƒXƒg‚ğ•ÏX
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®HPã®ãƒ†ã‚­ã‚¹ãƒˆã‚’å¤‰æ›´
         HPText.text = "HP:" + player.hp.ToString();
 
-        //ƒXƒRƒA‚ÌƒeƒLƒXƒgXV
-        ScoreUI.text = "SCOREF" + GameScore;
+        //ã‚¹ã‚³ã‚¢ã®ãƒ†ã‚­ã‚¹ãƒˆæ›´æ–°
+        ScoreUI.text = "SCOREï¼š" + GameScore;
 
 
-        //ƒQ[ƒ€\ƒI[ƒo[ƒV[ƒ“‚Ì‚İƒ‚[ƒhƒZƒŒƒNƒgƒV[ƒ“‚É–ß‚é
+        //ã‚²ãƒ¼ãƒ â€•ã‚ªãƒ¼ãƒãƒ¼ã‚·ãƒ¼ãƒ³ã®ã¿ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆã‚·ãƒ¼ãƒ³ã«æˆ»ã‚‹
         if(isGameOver&&Input.GetKeyDown(KeyCode.Return))
         {
-            //ƒ`ƒ…[ƒgƒŠƒAƒ‹I—¹
+            //ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«çµ‚äº†
             if (!TurorialTrigger.getTutorialTrigger())
             {
                 TurorialTrigger.TutorialStage = true;
             }
 
-            SceneManager.LoadScene("ModeSelectScene");
+            FadeManager.FadeOut("ModeSelectScene");
+          //  SceneManager.LoadScene("ModeSelectScene");
         }
 
     }
@@ -82,18 +84,18 @@ public class GameManager : MonoBehaviour
         return LimitTimeMax;
     }
 
-    //ƒQ[ƒ€I—¹
+    //ã‚²ãƒ¼ãƒ çµ‚äº†
     public void GameOver()
     {
-        Debug.Log("ƒQ[ƒ€ƒI[ƒo[");
-        //ƒ^ƒCƒ}[ƒXƒgƒbƒv
+        Debug.Log("ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼");
+        //ã‚¿ã‚¤ãƒãƒ¼ã‚¹ãƒˆãƒƒãƒ—
         Time.timeScale = 0f;
         TimerText.GetComponent<GameCountDown>().TimerTrigger();
 
         ResultUI.SetActive(true);
         GameUI.SetActive(false);
 
-        ResultScoreText.text = "SCOREF" + GameScore;
+        ResultScoreText.text = "SCOREï¼š" + GameScore;
 
         isGameOver = true;
     }
@@ -103,19 +105,19 @@ public class GameManager : MonoBehaviour
         return maxEnemies;
     }
 
-    //ƒvƒŒƒCƒ„[ƒŠƒXƒ|[ƒ“
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒªã‚¹ãƒãƒ¼ãƒ³
     public void PlayerRespornOrder()
     {
-        Debug.Log("ƒŠƒXƒ|[ƒ“‚µ‚Ü‚·");
+        Debug.Log("ãƒªã‚¹ãƒãƒ¼ãƒ³ã—ã¾ã™");
         StartCoroutine(PlayerResporn());
     }
 
     private IEnumerator PlayerResporn()
     {
         yield return new WaitForSeconds(2);
-        Debug.Log("ƒŠƒXƒ|[ƒ“‚µ‚Ü‚µ‚½");
+        Debug.Log("ãƒªã‚¹ãƒãƒ¼ãƒ³ã—ã¾ã—ãŸ");
 
         Instantiate(playerPrefab,new Vector3(-6.0f,0.5f,0.0f),Quaternion.identity);
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //ƒ^ƒO‚ÅŒŸõ‚·‚é
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //ã‚¿ã‚°ã§æ¤œç´¢ã™ã‚‹
     }
 }
