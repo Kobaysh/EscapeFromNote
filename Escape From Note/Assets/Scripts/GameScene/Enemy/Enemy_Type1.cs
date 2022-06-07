@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Enemy_Type1 : Enemy_Base
 {
-    [SerializeField,Header("Å¬ˆÊ’u")]
+    [SerializeField,Header("æœ€å°ä½ç½®")]
     private float TurnPointMin;
 
-    [SerializeField, Header("Å‘åˆÊ’u")]
+    [SerializeField, Header("æœ€å¤§ä½ç½®")]
     private float TurnPointMax;
 
     private bool moveDirectionRight;
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         DamageInvincibleTimeMax = 120;
-        // ƒpƒ‰ƒ[ƒ^@//
-        player = GameObject.Find("Player").GetComponent<Player>();   // ƒvƒŒƒCƒ„[î•ñ‚ğæ“¾
-        hp = 2;                         // ‘Ì—Í       y2z
-        speed = player.speed * 0.5f;    // ˆÚ“®‘¬“x    yƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x * 0.5z
-        damage = 2;                     // ƒ_ƒ[ƒW    y–¢’èz
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€€//
+        player = GameObject.Find("Player").GetComponent<Player>();   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’å–å¾—
+        hp = 2;                         // ä½“åŠ›       ã€2ã€‘
+        speed = player.speed * 0.5f;    // ç§»å‹•é€Ÿåº¦    ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é€Ÿåº¦ * 0.5ã€‘
+        damage = 2;                     // ãƒ€ãƒ¡ãƒ¼ã‚¸    ã€æœªå®šã€‘
         rb = GetComponent<Rigidbody>();
         moveDirectionRight = true;
         sprite = GetComponent<SpriteRenderer>();
@@ -31,6 +32,7 @@ public class Enemy_Type1 : Enemy_Base
     public override void Update()
     {
         base.Update();
+        if (isDeleting) return;
         Move();
 
         if (transform.position.x < TurnPointMin && !moveDirectionRight)
@@ -56,7 +58,7 @@ public class Enemy_Type1 : Enemy_Base
     {
        // Debug.Log("Enemy_Type1 Move");
 
-        // ‰¡ˆÚ“®‚Ì‚İ
+        // æ¨ªç§»å‹•ã®ã¿
         rb.velocity = new Vector3(speed, rb.velocity.y , rb.velocity.z);
     }
 

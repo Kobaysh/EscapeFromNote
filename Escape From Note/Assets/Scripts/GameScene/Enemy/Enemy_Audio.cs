@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Enemy_Audio : MonoBehaviour {
 
     // static field
-
+    private AudioClip[] audioClips = new AudioClip[(int)Enemy_SE.ENEMY_SE_MAX];
     // public member
     public enum Enemy_SE
     {
@@ -36,7 +36,7 @@ public class Enemy_Audio : MonoBehaviour {
     AudioClip score;
     // private member
     private AudioSource audioSource;
-    private AudioClip[] audioClips = new AudioClip[(int)Enemy_SE.ENEMY_SE_MAX];
+
 
     void Start () {
         if (TryGetComponent<AudioSource>(out audioSource))
@@ -58,11 +58,24 @@ public class Enemy_Audio : MonoBehaviour {
 	}
 	
 
-    public void PlaySE(Enemy_SE audioName, bool isLoop = false)
+   public void PlaySE(Enemy_SE audioName, bool isLoop = false)
     {
         audioSource.clip = audioClips[(int)audioName];
         audioSource.loop = isLoop;
         audioSource.volume = General_Audio.GetSEVolume();
         if (!audioSource.isPlaying) audioSource.Play();
     }
+
+    public bool isPlaying()
+    {
+        return audioSource.isPlaying;
+    }
+
+    //static public void PlaySE(AudioSource audioSource , Enemy_SE audioName, bool isLoop = false)
+    //{
+    //    audioSource.clip = audioClips[(int)audioName];
+    //    audioSource.loop = isLoop;
+    //    audioSource.volume = General_Audio.GetSEVolume();
+    //    if (!audioSource.isPlaying) audioSource.Play();
+    //}
 }

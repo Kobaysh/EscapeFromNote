@@ -5,13 +5,14 @@ using UnityEngine;
 public class Enemy_Type3 : Enemy_Base
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        // ƒpƒ‰ƒ[ƒ^@//
-        player = GameObject.Find("Player").GetComponent<Player>();   // ƒvƒŒƒCƒ„[î•ñ‚ğæ“¾
-        hp = 3;                         // ‘Ì—Í       y3z
-        speed = player.speed * 0.75f;   // ˆÚ“®‘¬“x    yƒvƒŒƒCƒ„[‚ÌˆÚ“®‘¬“x * 0.75z
-        damage = 2;                     // ƒ_ƒ[ƒW    y–¢’èz
+        base.Start();
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€€//
+        player = GameObject.Find("Player").GetComponent<Player>();   // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã‚’å–å¾—
+        hp = 3;                         // ä½“åŠ›       ã€3ã€‘
+        speed = player.speed * 0.75f;   // ç§»å‹•é€Ÿåº¦    ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•é€Ÿåº¦ * 0.75ã€‘
+        damage = 2;                     // ãƒ€ãƒ¡ãƒ¼ã‚¸    ã€æœªå®šã€‘
         rb = GetComponent<Rigidbody>();
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -20,6 +21,7 @@ public class Enemy_Type3 : Enemy_Base
     public override void Update()
     {
         base.Update();
+        if (isDeleting) return;
         Move();
     }
 
@@ -35,10 +37,10 @@ public class Enemy_Type3 : Enemy_Base
         if (!GameObject.Find("Player"))
             return;
 
-        // ƒvƒŒƒCƒ„[À•W‚ğæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™ã‚’å–å¾—
         Vector3 player_pos = GameObject.Find("Player").transform.position;
 
-        // ƒGƒlƒ~[©g‚ÌêŠ‚ğæ“¾
+        // ã‚¨ãƒãƒŸãƒ¼è‡ªèº«ã®å ´æ‰€ã‚’å–å¾—
         Vector3 enemy_pos = this.transform.position;
 
         if (enemy_pos.x > player_pos.x - 1.0f && player_pos.x + 1.0f > enemy_pos.x)
@@ -46,7 +48,7 @@ public class Enemy_Type3 : Enemy_Base
             return;
         }
 
-        // ‰¡ˆÚ“®‚Ì‚İ
+        // æ¨ªç§»å‹•ã®ã¿
         if (enemy_pos.x < player_pos.x - 1.0f)
         {
             rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
