@@ -137,11 +137,11 @@ public class Player : MonoBehaviour
         {
             //移動処理
 
-            //��s
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���t���[���x�N�g����ݒ�
-            moveDirection *= speed;  //�X�s�[�h�ݒ�
+            //歩行
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
+            moveDirection *= speed;  //スピード設定
             if (isDashEnhanced) moveDirection *= 1.5f;
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���ݒ�
+            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
                                                                                      // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
