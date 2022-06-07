@@ -13,7 +13,18 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 8.0f; //ジャンプ力
     public float gravity = 20.0f;  //重力
 
+    public enum Player_Color {
+        PLAYER_WHITE,
+        PLAYER_YELLOW,
+        PLAYER_RED,
+        PLAYER_BLUE,
+        PLAYER_MAX,
+    }
+
+
     // serialized field
+    [SerializeField] Player_Color color = Player_Color.PLAYER_WHITE;
+
     [SerializeField]
     private bool isLanding = true;  //着地判定
 
@@ -389,7 +400,7 @@ public class Player : MonoBehaviour
             isBlinking = false;
             isInvincible = false;
 
-
+            
         }
     }
 
@@ -408,5 +419,12 @@ public class Player : MonoBehaviour
     public void DashEnhance()
     {
         if (!isDashEnhanced) isDashEnhanced = true;
+    }
+
+    public void ChangeColor(int color)
+    {
+        if (color < 0 || color >= (int)Player_Color.PLAYER_MAX) return;
+        this.color = (Player_Color)color;
+    //    animator.SetLayerWeight((int)this.color + 1, 1.0f);
     }
 }
