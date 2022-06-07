@@ -56,7 +56,7 @@ public class Chalk : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.hp += healAmount;
-            //player.ChangeColorみたいな関数で引数をChalk_Colorしてプレイヤーの色を変える
+            player.ChangeColor((int)chalkColor);
             Destroy(this.gameObject);
         }
     }
