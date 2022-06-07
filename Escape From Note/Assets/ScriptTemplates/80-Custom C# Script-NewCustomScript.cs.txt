@@ -12,20 +12,20 @@ public class #SCRIPTNAME# : MonoBehaviour {
 
     // private member
 
-    void Awake() {
+    public void Awake() {
         
     }
 
-    void Start () {
+    public void Start () {
 	
 	}
 	
 
-    void Update () {
+    public void Update () {
 	
 	}
 
-    void FixedUpdate() {
+    public void FixedUpdate() {
         
     }
 }

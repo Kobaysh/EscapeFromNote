@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    //@ƒ|[ƒY‚µ‚½‚É•\¦‚·‚éUI
+    //ã€€ãƒãƒ¼ã‚ºã—ãŸæ™‚ã«è¡¨ç¤ºã™ã‚‹UI
     [SerializeField]
     private GameObject pauseUI;
 
@@ -26,15 +26,15 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown("q"))
         {
-            //@ƒ|[ƒYUI‚ÌƒAƒNƒeƒBƒuA”ñƒAƒNƒeƒBƒu‚ğØ‚è‘Ö‚¦
+            //ã€€ãƒãƒ¼ã‚ºUIã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã€éã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆ
             pauseUI.SetActive(!pauseUI.activeSelf);
 
-            //@ƒ|[ƒYUI‚ª•\¦‚³‚ê‚Ä‚é‚Í’â~
+            //ã€€ãƒãƒ¼ã‚ºUIãŒè¡¨ç¤ºã•ã‚Œã¦ã‚‹æ™‚ã¯åœæ­¢
             if (pauseUI.activeSelf)
             {
                 Time.timeScale = 0f;
                 PausmenuSelect = -1;
-                //@ƒ|[ƒYUI‚ª•\¦‚³‚ê‚Ä‚È‚¯‚ê‚Î’Êí’Ê‚èis
+                //ã€€ãƒãƒ¼ã‚ºUIãŒè¡¨ç¤ºã•ã‚Œã¦ãªã‘ã‚Œã°é€šå¸¸é€šã‚Šé€²è¡Œ
             }
             else
             {
@@ -42,7 +42,7 @@ public class PauseManager : MonoBehaviour
             }
         }
 
-        //ƒ|[ƒYˆ—
+        //ãƒãƒ¼ã‚ºæ™‚å‡¦ç†
        if(pauseUI.activeSelf)
        {
             PauseMenuControll();
@@ -79,7 +79,7 @@ public class PauseManager : MonoBehaviour
                     break;
 
                 case 1:
-                    //ƒ`ƒ…[ƒgƒŠƒAƒ‹I—¹
+                    //ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«çµ‚äº†
                     if(!TurorialTrigger.getTutorialTrigger())
                     {
                         TurorialTrigger.TutorialStage = true;
@@ -89,7 +89,7 @@ public class PauseManager : MonoBehaviour
             }
         }
 
-        //‘I‘ğó‘Ô‚²‚Æ‚ÌƒJ[ƒ\ƒ‹•\¦
+        //é¸æŠçŠ¶æ…‹ã”ã¨ã®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º
         for (int i = 0; i < 2; i++)
         {
             if (i == PausmenuSelect)
