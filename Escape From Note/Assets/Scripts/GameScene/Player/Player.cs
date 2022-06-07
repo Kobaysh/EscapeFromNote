@@ -13,7 +13,18 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 8.0f; //ジャンプ力
     public float gravity = 20.0f;  //重力
 
+    public enum Player_Color {
+        PLAYER_WHITE,
+        PLAYER_YELLOW,
+        PLAYER_RED,
+        PLAYER_BLUE,
+        PLAYER_MAX,
+    }
+
+
     // serialized field
+    [SerializeField] Player_Color color = Player_Color.PLAYER_WHITE;
+
     [SerializeField]
     private bool isLanding = true;  //着地判定
 
@@ -116,11 +127,11 @@ public class Player : MonoBehaviour
         {
             //移動処理
 
-            //��s
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���t���[���x�N�g����ݒ�
-            moveDirection *= speed;  //�X�s�[�h�ݒ�
+            //歩行
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
+            moveDirection *= speed;  //スピード設定
             if (isDashEnhanced) moveDirection *= 1.5f;
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //���ݒ�
+            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
                                                                                      // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
@@ -386,7 +397,7 @@ public class Player : MonoBehaviour
             isBlinking = false;
             isInvincible = false;
 
-
+            
         }
     }
 
@@ -423,5 +434,12 @@ public class Player : MonoBehaviour
     public void DashEnhance()
     {
         if (!isDashEnhanced) isDashEnhanced = true;
+    }
+
+    public void ChangeColor(int color)
+    {
+        if (color < 0 || color >= (int)Player_Color.PLAYER_MAX) return;
+        this.color = (Player_Color)color;
+    //    animator.SetLayerWeight((int)this.color + 1, 1.0f);
     }
 }
