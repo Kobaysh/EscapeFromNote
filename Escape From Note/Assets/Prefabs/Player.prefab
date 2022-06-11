@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 92960410874373696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,8 +48,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 5
-  m_Radius: 0.61
+  m_Height: 1.25
+  m_Radius: 0.37
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -70,6 +70,7 @@ MonoBehaviour:
   speed: 8
   jumpSpeed: 15
   gravity: 20
+  color: 0
   isLanding: 1
   kanji: {fileID: 0}
   kanjiItem: {fileID: 0}
@@ -130,7 +131,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4377311592864455543
@@ -143,7 +144,7 @@ Animator:
   m_GameObject: {fileID: 92960410874373696}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4e21991feb6d6ae4b9440d3e443c72f7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 84fefdcd8cce63e40a571c6d02eb5a45, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -163,7 +164,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 5, z: 1}
+  m_Size: {x: 0.75, y: 1.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &92960411571904857
 AudioSource:

@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: 3cd2c12f13d7433498fece1e38e88854
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7406825627531653297
+    second: Player_ScytheAttack_Y_0000_0000_0
+  - first:
+      213: -6186647155603969932
+    second: Player_ScytheAttack_Y_0000_0000_1
+  - first:
+      213: 344076878569626884
+    second: Player_ScytheAttack_Y_0000_0000_2
+  - first:
+      213: -3872785585758185693
+    second: Player_ScytheAttack_Y_0000_0000_3
+  - first:
+      213: 858804961018280628
+    second: Player_ScytheAttack_Y_0000_0000_4
+  - first:
+      213: 5341290190089107294
+    second: Player_ScytheAttack_Y_0000_0000_5
+  - first:
+      213: -4441604580887956873
+    second: Player_ScytheAttack_Y_0000_0000_6
+  - first:
+      213: 3795629257829046547
+    second: Player_ScytheAttack_Y_0000_0000_7
+  - first:
+      213: 2893941494569706489
+    second: Player_ScytheAttack_Y_0000_0000_8
+  - first:
+      213: -1613432088802568461
+    second: Player_ScytheAttack_Y_0000_0000_9
+  - first:
+      213: 5353642131408161
+    second: Player_ScytheAttack_Y_0000_0000_10
+  - first:
+      213: 5960420243352153821
+    second: Player_ScytheAttack_Y_0000_0000_11
+  - first:
+      213: -6655791846867907008
+    second: Player_ScytheAttack_Y_0000_0000_12
+  - first:
+      213: -9046906560628902271
+    second: Player_ScytheAttack_Y_0000_0000_13
+  - first:
+      213: -4358703783996854748
+    second: Player_ScytheAttack_Y_0000_0000_14
+  - first:
+      213: 3131083265774544187
+    second: Player_ScytheAttack_Y_0000_0000_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -89,11 +137,347 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0b84a4aa45ac660800000000000000
+      internalID: 7406825627531653297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4786b83b03d942aa0800000000000000
+      internalID: -6186647155603969932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d519a191866c400800000000000000
+      internalID: 344076878569626884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32751a5570a114ac0800000000000000
+      internalID: -3872785585758185693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba76d8df861beb00800000000000000
+      internalID: 858804961018280628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e573a86e023102a40800000000000000
+      internalID: 5341290190089107294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 772fc639a204c52c0800000000000000
+      internalID: -4441604580887956873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319dafb23b8cca430800000000000000
+      internalID: 3795629257829046547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f32790e478592820800000000000000
+      internalID: 2893941494569706489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f6d4b54010fb99e0800000000000000
+      internalID: -1613432088802568461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1254f71fb15031000800000000000000
+      internalID: 5353642131408161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dde6d05b1aaa7b250800000000000000
+      internalID: 5960420243352153821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e4f744490e1a3a0800000000000000
+      internalID: -6655791846867907008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18630996a6ee27280800000000000000
+      internalID: -9046906560628902271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e67b97006c283c0800000000000000
+      internalID: -4358703783996854748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_ScytheAttack_Y_0000_0000_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3569aa14a7d37b20800000000000000
+      internalID: 3131083265774544187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a759db005c77a5f4aa0133e5b478f71f
     internalID: 0
     vertices: []
     indices: 

@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Š¿š‚Ì’ŠÛƒNƒ‰ƒX
+//æ¼¢å­—ã®æŠ½è±¡ã‚¯ãƒ©ã‚¹
 public abstract class Kanji_Abstract : ScriptableObject
 {
     public string slotText;
     public GameObject KanjiModel;
     public int ActionAnimNum;
+    
 
-    //İ’u
+    //è¨­ç½®
     public void KanjiSummon()
     {
         Instantiate(KanjiModel);
@@ -28,14 +29,14 @@ public abstract class Kanji_Abstract : ScriptableObject
     {
         return Instantiate(KanjiModel, transform);
     }
-    //ƒˆ‰¼‘zŠÖ”-----------------------------------------------
+    //ç´”ç²‹ä»®æƒ³é–¢æ•°-----------------------------------------------
 
-    //ƒAƒNƒVƒ‡ƒ“
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public abstract void KanjiAction();
 
-    //‡‘Ì‰Â”Û”»’è
+    //åˆä½“å¯å¦åˆ¤å®š
     public abstract bool KanjiUnionCheck();
 
-    //•ª—£
+    //åˆ†é›¢
     public abstract void KanjiSeparation();
 }

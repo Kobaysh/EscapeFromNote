@@ -74,7 +74,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int DashForceTimer = 0;
 
-
     //初期化
     private void Start()
     {
@@ -104,8 +103,8 @@ public class Player : MonoBehaviour
     //更新
     void Update()
     {
+
         animator = GetComponent<Animator>();
-        animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
 
         //ポーズ中だったら無効
         if (Mathf.Approximately(Time.timeScale, 0f))
@@ -172,7 +171,7 @@ public class Player : MonoBehaviour
         {
             characterController.Move(moveDirection * Time.deltaTime);
 
-            animator.SetFloat("UnityChan_Walk_Float", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Player_Walk_Float", Input.GetAxis("Horizontal"));
             // ジャンプ強化中
             if (isJumpEnhanced)
             {
@@ -202,7 +201,7 @@ public class Player : MonoBehaviour
                 {
                     //持っている漢字のActionAnimNumを取得
                     ActionAnim(kanji.ActionAnimNum);
-
+                    animator.SetTrigger("Player_Attack_Trigger");
                 }
             }
             // バフ用アイテム
@@ -215,6 +214,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     kanjiItem.KanjiAction();
+                    
                 }
             }
 
@@ -234,6 +234,9 @@ public class Player : MonoBehaviour
                 InvincibleProcess();
             }
         }
+
+        ChangeColor((int)color);
+
     }
 
 
@@ -257,6 +260,9 @@ public class Player : MonoBehaviour
         //アイテムスロットのテキスト変更
         Text changeText = KanjiSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
+        //アニメーターの漢字ナンバーセット
+        animator = GetComponent<Animator>();
+        animator.SetInteger("Player_SetWeapon_Num_Int", recvKanji.ActionAnimNum);
 
     }
 
@@ -333,7 +339,7 @@ public class Player : MonoBehaviour
         {
 
             player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_DAMAGED);
-            animator.SetTrigger("UnityChan_Damage_Trigger");
+            animator.SetTrigger("Player_Damage_Trigger");
 
 
             //無敵時間開始
@@ -350,7 +356,7 @@ public class Player : MonoBehaviour
         {
 
             AnimNum = num;
-            animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
+            //animator.SetInteger("UnityChan_AnimNum_Int", AnimNum);
             AnimNum = 0;
 
             isOtherActionAnim = true;  //攻撃中に重ねて攻撃入力ができないようにする
@@ -440,6 +446,15 @@ public class Player : MonoBehaviour
     {
         if (color < 0 || color >= (int)Player_Color.PLAYER_MAX) return;
         this.color = (Player_Color)color;
-    //    animator.SetLayerWeight((int)this.color + 1, 1.0f);
+        animator.SetLayerWeight((int)this.color + 1, 1.0f);
+
+        for(int i=0;i<(int)Player_Color.PLAYER_MAX;i++)
+        {
+            if (i != color)
+            {
+                animator.SetLayerWeight(i + 1, 0.0f);
+            }
+        }
+
     }
 }
