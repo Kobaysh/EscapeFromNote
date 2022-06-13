@@ -48,21 +48,24 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool isInvincible; //無敵状態
 
-    [SerializeField, Header("無敵時間")]
-    private int InvincibleTimeMax; //無敵時間
+    [SerializeField, Header("最大無敵時間")]
+    private float InvincibleTimeMax; //無敵時間
 
 
     // private member
     private Vector3 moveDirection = Vector3.zero;  //移動方向
 
-    private int InvincibleTime;
+    //[SerializeField, Header("無敵時間")]
+    private float InvincibleTime;
 
-    private bool isBlinking;
+    private bool isBlinking; //点滅表示状態
 
     private Vector3 KnockbackVelocity;
 
     private bool isJumped = false;
     private bool isDoubleJump = false;
+    private bool BlinkingSwitch;  //点滅状態（明・暗）
+    private float BlinkingTimer;  //点滅切り替え間隔
 
     //component
     CharacterController characterController;  //キャラクターコントローラー
@@ -399,25 +402,33 @@ public class Player : MonoBehaviour
     //無敵状態処理
     void InvincibleProcess()
     {
-        InvincibleTime++;
+        InvincibleTime+=Time.deltaTime;
+        BlinkingTimer+= Time.deltaTime;
 
         //点滅処理
         if (isBlinking)
         {
-            if (InvincibleTime % 20 == 0 && InvincibleTime % 40 == 0)
+            if(BlinkingTimer>=0.2f)
             {
-                this.GetComponent<Renderer>().enabled = false;
-            }
-            else if (InvincibleTime % 20 == 0)
-            {
-                this.GetComponent<Renderer>().enabled = true;
+                if(BlinkingSwitch)
+                {
+                    this.GetComponent<SpriteRenderer>().color = new Color32(155, 155, 155, 255);
+                }
+                else
+                {
+                    this.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
+                }
+
+                BlinkingSwitch = !BlinkingSwitch;
+
+                BlinkingTimer = 0.0f;
             }
         }
 
         //無敵時間終了
         if (InvincibleTime >= InvincibleTimeMax)
         {
-            this.GetComponent<Renderer>().enabled = true;
+            this.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
             isBlinking = false;
             isInvincible = false;
 
@@ -447,9 +458,11 @@ public class Player : MonoBehaviour
     public void Blinking()
     {
         isBlinking = true;
-
+        BlinkingSwitch = false;
+        BlinkingTimer = 0.0f;
         KnockbackVelocity = Vector3.zero;  //ノックバック終了
     }
+
     public void JumpEnhance()
     {
         if (!isJumpEnhanced) isJumpEnhanced = true;

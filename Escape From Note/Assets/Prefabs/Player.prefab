@@ -80,7 +80,8 @@ MonoBehaviour:
   AnimNum: 0
   isOtherActionAnim: 0
   isInvincible: 0
-  InvincibleTimeMax: 600
+  InvincibleTimeMax: 2
+  InvincibleTime: 0
   JumpForceTimer: 0
   DashForceTimer: 0
 --- !u!212 &6723964518885633463
