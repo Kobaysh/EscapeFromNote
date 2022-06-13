@@ -61,6 +61,9 @@ public class Player : MonoBehaviour
 
     private Vector3 KnockbackVelocity;
 
+    private bool isJumped = false;
+    private bool isDoubleJump = false;
+
     //component
     CharacterController characterController;  //キャラクターコントローラー
     Animator animator;                        //アニメーター
@@ -118,6 +121,20 @@ public class Player : MonoBehaviour
             {
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_LANDING);
                 isLanding = true;
+                isJumped = false;
+                isDoubleJump = false;
+            }
+        }
+        // ダブルジャンプ
+        if (isJumpEnhanced && isJumped)
+        {
+            if (!isDoubleJump)
+            {
+                if (Input.GetButtonDown("Jump"))
+                {
+                    moveDirection.y = jumpSpeed;
+                    isDoubleJump = true;
+                }
             }
         }
 
@@ -131,7 +148,7 @@ public class Player : MonoBehaviour
             moveDirection *= speed;  //スピード設定
             if (isDashEnhanced) moveDirection *= 1.5f;
             transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
-                                                                                     // 歩行音
+            // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
                 if (this.isDashEnhanced) player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_MOVERAISED, true);
@@ -143,11 +160,12 @@ public class Player : MonoBehaviour
             }
 
             //ジャンプ
-            if (Input.GetButton("Jump"))
+            if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpSpeed;
-                if (isJumpEnhanced) moveDirection.y *= 1.5f;
+            //    if (isJumpEnhanced) moveDirection.y *= 1.5f;
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
+                isJumped = true;
                 isLanding = false;
             }
 
