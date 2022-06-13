@@ -6,15 +6,31 @@ public class TurorialTrigger : MonoBehaviour
 {
     public static bool TutorialStage = false;
 
-    void Awake()
+    static TurorialTrigger _instance = null;
+
+    static TurorialTrigger instance
     {
-        //TutorialStage = false;
-        //Debug.Log("ÉgÉäÉKÅ[ê^");
+        get { return _instance ?? (_instance = FindObjectOfType<TurorialTrigger>()); }
     }
 
-    void Start()
+
+    void Awake()
     {
-       DontDestroyOnLoad(this);   
+        if(this!=instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(this);
+
+        //TutorialStage = false;
+        //Debug.Log("„Éà„É™„Ç¨„ÉºÁúü");
+    }
+
+    void OnDestroy()
+    {
+        if (this == instance) _instance = null;
     }
 
     public static bool getTutorialTrigger()
