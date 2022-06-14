@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 // 設定した漢字をランダムで複数スポーン
-public class KanjiSpwaner : MonoBehaviour {
+public class KanjiSpawner : MonoBehaviour {
 
     // static field
 
@@ -17,12 +17,13 @@ public class KanjiSpwaner : MonoBehaviour {
     float interval = 3.0f;
     [SerializeField, Header("消滅間隔")]
     float disappearance = 3.0f;
-    [SerializeField, Header("湧く場所")]
-    Vector3[] spawnPos;
+    [SerializeField, Header("湧く数")]
+    int spawnNum;
     // private member
     private float timer = 0.0f; // タイマー
     private bool isAppear = false;  // 現れているか
     private List<GameObject> AppearKanji = null;    // 現れてる漢字
+    private Rect spawnRect; // 湧く場所
     
     void Awake() {
         
@@ -35,6 +36,7 @@ public class KanjiSpwaner : MonoBehaviour {
         {
             meshRenderer.enabled = false;
         }
+        spawnRect = GetComponent<VisuallyEditor.VisuallyEditableRect>().Rect;
     }
 	
 
@@ -48,10 +50,14 @@ public class KanjiSpwaner : MonoBehaviour {
                 isAppear = true;
                 timer = 0.0f;
                 AppearKanji = new List<GameObject>();
-                for (int i = 0; i < spawnPos.Length; i++)
+                for (int i = 0; i < spawnNum; i++)
                 {
                     int index = Random.Range(0, kanjiList.Count);
-                    AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos[i])));
+                    Vector3 spawnPos;
+                    spawnPos.z = 0.0f;
+                    spawnPos.x = Random.Range(spawnRect.xMin, spawnRect.xMax);
+                    spawnPos.y = Random.Range(spawnRect.yMin, spawnRect.yMax);
+                    AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
                 }
             }
         }
@@ -65,7 +71,7 @@ public class KanjiSpwaner : MonoBehaviour {
 
                 foreach (var appearList  in AppearKanji)
                 {
-                   if(appearList != null)
+                    if(appearList != null)
                     {
                         Destroy(appearList);
                     }
