@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
         PLAYER_BLUE,
         PLAYER_MAX,
     }
-
-
     // serialized field
     [SerializeField] Player_Color color = Player_Color.PLAYER_WHITE;
 
@@ -255,8 +253,6 @@ public class Player : MonoBehaviour
                 InvincibleProcess();
             }
         }
-
-        ChangeColor((int)color);
 
     }
 
