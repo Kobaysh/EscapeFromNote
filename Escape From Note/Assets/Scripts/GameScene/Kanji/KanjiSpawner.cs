@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// İ’è‚µ‚½Š¿š‚ğƒ‰ƒ“ƒ_ƒ€‚Å•¡”ƒXƒ|[ƒ“
+// è¨­å®šã—ãŸæ¼¢å­—ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§è¤‡æ•°ã‚¹ãƒãƒ¼ãƒ³
 public class KanjiSpawner : MonoBehaviour {
 
     // static field
@@ -10,27 +10,27 @@ public class KanjiSpawner : MonoBehaviour {
     // public member
 
     // serialized field
-    [SerializeField, Header("Š¿šƒŠƒXƒg")]
+    [SerializeField, Header("æ¼¢å­—ãƒªã‚¹ãƒˆ")]
     private List<Kanji_Abstract> kanjiList = null;
 
-    [SerializeField, Header("ƒXƒ|[ƒ“ŠÔŠu")]
+    [SerializeField, Header("ã‚¹ãƒãƒ¼ãƒ³é–“éš”")]
     float interval = 3.0f;
-    [SerializeField, Header("Á–ÅŠÔŠu")]
+    [SerializeField, Header("æ¶ˆæ»…é–“éš”")]
     float disappearance = 3.0f;
-    [SerializeField, Header("—N‚­”")]
+    [SerializeField, Header("æ¹§ãæ•°")]
     int spawnNum;
     // private member
-    private float timer = 0.0f; // ƒ^ƒCƒ}[
-    private bool isAppear = false;  // Œ»‚ê‚Ä‚¢‚é‚©
-    private List<GameObject> AppearKanji = null;    // Œ»‚ê‚Ä‚éŠ¿š
-    private Rect spawnRect; // —N‚­êŠ
+    private float timer = 0.0f; // ã‚¿ã‚¤ãƒãƒ¼
+    private bool isAppear = false;  // ç¾ã‚Œã¦ã„ã‚‹ã‹
+    private List<GameObject> AppearKanji = null;    // ç¾ã‚Œã¦ã‚‹æ¼¢å­—
+    private Rect spawnRect; // æ¹§ãå ´æ‰€
     
     void Awake() {
         
     }
 
     void Start () {
-        // ƒQ[ƒ€’†‚ÍƒGƒŠƒA‚Ì•`‰æ‚ğƒIƒt
+        // ã‚²ãƒ¼ãƒ ä¸­ã¯ã‚¨ãƒªã‚¢ã®æç”»ã‚’ã‚ªãƒ•
         MeshRenderer meshRenderer = null; 
         if(TryGetComponent<MeshRenderer>(out meshRenderer))
         {
@@ -42,26 +42,15 @@ public class KanjiSpawner : MonoBehaviour {
 
     void Update () {
         timer += Time.deltaTime;
-        // Š¿š‚ªƒGƒŠƒA‚É‚È‚¢ê‡
+        // æ¼¢å­—ãŒã‚¨ãƒªã‚¢ã«ãªã„å ´åˆ
         if (!isAppear)
         {
             if (timer >= interval)
             {
-                isAppear = true;
-                timer = 0.0f;
-                AppearKanji = new List<GameObject>();
-                for (int i = 0; i < spawnNum; i++)
-                {
-                    int index = Random.Range(0, kanjiList.Count);
-                    Vector3 spawnPos;
-                    spawnPos.z = 0.0f;
-                    spawnPos.x = Random.Range(spawnRect.xMin, spawnRect.xMax);
-                    spawnPos.y = Random.Range(spawnRect.yMin, spawnRect.yMax);
-                    AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
-                }
+                Spawn();
             }
         }
-        // Š¿š‚ª‚ ‚éê‡
+        // æ¼¢å­—ãŒã‚ã‚‹å ´åˆ
         else
         {
             if (timer >= disappearance)
@@ -81,4 +70,67 @@ public class KanjiSpawner : MonoBehaviour {
             }
         }
 	}
+
+    private void Spawn()
+    {
+        Vector3 scale = this.transform.localScale * 1.1f;
+        scale.z = 0.0f;
+        isAppear = true;
+        timer = 0.0f;
+        AppearKanji = new List<GameObject>();
+        Vector3[] ApVec = new Vector3[spawnNum];
+        // for (int i = 0; i < spawnNum; i++)
+        // {
+        //     int index = Random.Range(0, kanjiList.Count);
+        //     Vector3 spawnPos;
+        //     spawnPos.z = 0.0f;
+        //     spawnPos.x = Random.Range(spawnRect.xMin, spawnRect.xMax);
+        //     spawnPos.y = Random.Range(spawnRect.yMin, spawnRect.yMax);
+        //     AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
+        // }
+        int i = 0;
+        while (true)
+        {
+            int rec = 0;
+            int index = Random.Range(0, kanjiList.Count);
+            Vector3 spawnPos;
+            spawnPos.z = 0.0f;
+            spawnPos.x = Random.Range(spawnRect.xMin, spawnRect.xMax);
+            spawnPos.y = Random.Range(spawnRect.yMin, spawnRect.yMax);
+            if (i == 0)
+            {
+                AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
+                ApVec[i] = spawnPos;
+                i++;
+                continue;
+            }
+            for (int j = 0;j < i ;j++)
+            {
+
+                Vector3 vec = ApVec[j] - spawnPos;
+                if(vec.sqrMagnitude > scale.sqrMagnitude * 2)
+                {
+                    rec++;
+
+                }
+                if(rec >= i)
+                {
+                    AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
+                    ApVec[i] = spawnPos;
+                    i++;
+                    break;
+                }
+                //if((spawnPos.x - scale.x > ApVec[j].x + scale.x || spawnPos.x + scale.x < ApVec[j].x - scale.x) &&
+                //(spawnPos.y - scale.y > ApVec[j].y + scale.y || spawnPos.y + scale.y < ApVec[j].y - scale.y))
+                //{
+                //    AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
+                //    ApVec[i] = spawnPos;
+                //    i++;
+                //    break;
+                //}
+                Debug.Log("è¢«ã‚Š");
+            }
+            if (i >= spawnNum) break;
+        }
+    }
 }
