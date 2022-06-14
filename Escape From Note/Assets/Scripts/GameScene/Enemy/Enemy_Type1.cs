@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Enemy_Type1 : Enemy_Base
 {
-    [SerializeField,Header("最小位置")]
+
+
+    [SerializeField, Header("最小位置")]
     private float TurnPointMin;
 
     [SerializeField, Header("最大位置")]
@@ -12,6 +14,7 @@ public class Enemy_Type1 : Enemy_Base
 
     private bool moveDirectionRight;
 
+    Animator animator;
 
     // Start is called before the first frame update
     public override void Start()
@@ -26,6 +29,12 @@ public class Enemy_Type1 : Enemy_Base
         rb = GetComponent<Rigidbody>();
         moveDirectionRight = true;
         sprite = GetComponent<SpriteRenderer>();
+
+
+        //        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        animator.SetLayerWeight((int)this.color + 1, 1.0f);
+
     }
 
     // Update is called once per frame
@@ -56,10 +65,27 @@ public class Enemy_Type1 : Enemy_Base
 
     public override void Move()
     {
-       // Debug.Log("Enemy_Type1 Move");
+        // Debug.Log("Enemy_Type1 Move");
 
         // 横移動のみ
-        rb.velocity = new Vector3(speed, rb.velocity.y , rb.velocity.z);
+        rb.velocity = new Vector3(speed, rb.velocity.y, rb.velocity.z);
     }
 
+    //インスタンス生成時に必要情報をセット（移動最小位置、移動最大位置、色）
+    public void StateSet(Vector3 initpos,float min, float max,int color)
+    {
+        TurnPointMax = max;
+        TurnPointMin = min;
+
+        StartPos = new Vector3(initpos.x, initpos.y, initpos.z);
+
+        animator = GetComponent<Animator>();
+        animator.SetLayerWeight(color + 1, 1.0f);
+    }
+
+    public override void DeathProcess()
+    {
+        GameObject gamemanager = GameObject.Find("GameManager");
+        gamemanager.GetComponent<GameManager>().Enemy_1_RespornOrder(StartPos, TurnPointMin, TurnPointMax);
+    }
 }

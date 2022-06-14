@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Enemy_Base : MonoBehaviour
 {
+    public enum EnemyColor
+    {
+        ENEMY_WHITE,
+        ENEMY_YELLOW,
+        ENEMY_RED,
+        ENEMY_BLUE,
+        ENEMY_MAX,
+    }
+
     // エネミーが持つステータス
     [SerializeField]
     protected int    hp;                // 体力  
@@ -13,6 +22,9 @@ public class Enemy_Base : MonoBehaviour
 
     [SerializeField]
     protected int score;             // スコア
+
+    [SerializeField, Header("初期位置")]
+    protected Vector3 StartPos;
 
     protected int    damage;            // 攻撃力
     protected Player player;            //プレイヤー情報
@@ -24,6 +36,9 @@ public class Enemy_Base : MonoBehaviour
 
     [SerializeField,Header("被弾時無敵時間")]
     protected int DamageInvincibleTimeMax;
+
+    [SerializeField, Header("色")]
+    protected EnemyColor color;
 
     private bool isDamageInvincible;
 
@@ -41,6 +56,7 @@ public class Enemy_Base : MonoBehaviour
         //無敵状態
         isDamageInvincible = false;
         if (!enemy_Audio) enemy_Audio = GetComponent<Enemy_Audio>();
+
     }
 
     // Update is called once per frame
@@ -54,6 +70,10 @@ public class Enemy_Base : MonoBehaviour
                 //スコア処理
                 GameObject gamemanager = GameObject.Find("GameManager");
                 gamemanager.GetComponent<GameManager>().GameScore = score;
+                DeathProcess();
+                
+
+
                 Destroy(this.gameObject);
             }
             return;
@@ -87,6 +107,11 @@ public class Enemy_Base : MonoBehaviour
         }
     }
 
+    //各エネミー固有の死亡処理
+    public virtual void DeathProcess()
+    {
+    }
+
     public virtual void Attack()
     {
     }
@@ -111,7 +136,6 @@ public class Enemy_Base : MonoBehaviour
 
             }
         }
-        //speed = speed * -1;
     }
 
     public void Damage(int amount)

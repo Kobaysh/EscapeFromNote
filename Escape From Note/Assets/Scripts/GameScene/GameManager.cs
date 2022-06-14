@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject playerPrefab;
 
+    [SerializeField]
+    private GameObject enemyPrefab;
+
     private float LimitTimeMax = 30.0f;
 
     private bool isGameOver;
@@ -62,7 +65,6 @@ public class GameManager : MonoBehaviour
 
         //スコアのテキスト更新
         ScoreUI.text = "SCORE：" + GameScore;
-
 
         //ゲーム―オーバーシーンのみモードセレクトシーンに戻る
         if(isGameOver&&Input.GetKeyDown(KeyCode.Return))
@@ -119,5 +121,27 @@ public class GameManager : MonoBehaviour
 
         Instantiate(playerPrefab,new Vector3(-6.0f,0.5f,0.0f),Quaternion.identity);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //タグで検索する
+    }
+
+    //エネミー１のリスポーンオーダー
+    public void Enemy_1_RespornOrder(Vector3 pos,float min, float max)
+    {
+        Debug.Log("エネミー１のリスポーン");
+        StartCoroutine(Enemy_1_Resporn(pos, min,max));
+    }
+
+    //エネミー１リスポーン
+    private IEnumerator Enemy_1_Resporn(Vector3 pos, float min, float max)
+    {
+        yield return new WaitForSeconds(2);
+        Debug.Log("エネミー１がリスポーンしました");
+
+        GameObject enemy=Instantiate(enemyPrefab, new Vector3(pos.x,pos.y, pos.z), Quaternion.identity);
+
+        Enemy_Type1 enemyCS = enemy.GetComponent<Enemy_Type1>();
+
+        float color = Random.Range(1.0f, 4.0f);
+
+        enemyCS.StateSet(pos,min, max,(int)color);
     }
 }
