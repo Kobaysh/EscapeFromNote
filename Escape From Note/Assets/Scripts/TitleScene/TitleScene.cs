@@ -8,26 +8,38 @@ using UnityEngine.UI;
 public class TitleScene : MonoBehaviour
 {
     [SerializeField]
-    private GameObject videoCanvas;
+    private Animator title_animator;
     [SerializeField]
-    private VideoPlayer video;
+    private Animator text_animator;
+    [SerializeField]
+    private Animator title_down_animator;
+    [SerializeField]
+    private Animator text_down_animator;
+    [SerializeField]
+    private Animator textroop_animator;
+    [SerializeField]
+    private GameObject textroop_obj;
     [SerializeField]
     private GameObject logoBG;
     [SerializeField]
     private Image logoSprite;
     [SerializeField]
     private float logoTime;
+    [SerializeField]
+    private GameObject PressEnter_obj;
 
     private bool isPlayingVideo;
     private float timer = 0.0f;
     private bool isActive = false;
     private float logoAlpha;
+    private short flag = 0;
     // Use this for initialization
     void Start()
     {
         isPlayingVideo = false;
         timer = 0.0f;
         logoAlpha = 0.0f;
+        flag = 0;
     }
 
     // Update is called once per frame
@@ -50,31 +62,28 @@ public class TitleScene : MonoBehaviour
             {
                 isPlayingVideo = true;
                 logoBG.SetActive(false);
-                video.loopPointReached += LoopPointReached;
-                video.Play();
+                if(flag == 0)
+                flag = 1;
+                if(flag == 1)
+                {
+                    title_animator.enabled = true;
+                    text_animator.enabled = true;
+                    flag = 2;
+                }
+                
             }
         }
-        if (isPlayingVideo)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            isActive = false;
-        }
+            textroop_obj.SetActive(false);
+            PressEnter_obj.SetActive(false);
+            title_down_animator.enabled = true;
+            text_down_animator.enabled = true;
 
-        if (isActive)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-             //   SceneManager.LoadScene("ModeSelectScene");
-            }
+           //SceneManager.LoadScene("ModeSelectScene");
         }
     }
-
-    // ビデオ終了時の処理
-    private void LoopPointReached(VideoPlayer vp)
-    {
-        isActive = true;
-        videoCanvas.SetActive(false);
-        FadeManager.FadeOut("ModeSelectScene");
-     //   SceneManager.LoadScene("ModeSelectScene");
-    }
-
+   
+    
 }
+
