@@ -8,8 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2187170522084267171}
-  - component: {fileID: 2187170522084267170}
+  - component: {fileID: 4359810696667736683}
+  - component: {fileID: 141825523995666576}
+  - component: {fileID: 2744749158252248143}
   m_Layer: 0
   m_Name: KanjiSpawner
   m_TagString: Untagged
@@ -17,7 +18,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2187170522084267171
+--- !u!4 &4359810696667736683
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2187170522084267170
+--- !u!114 &141825523995666576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,13 +44,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea04c1826c2c0441bc12dbdbc18beeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kanjiList:
-  - {fileID: 11400000, guid: 80912525a9cb7854d893b4af682cb7c9, type: 2}
-  - {fileID: 11400000, guid: 11cd88a4d82d9fb4a8c4a707d839c655, type: 2}
+  kanjiList: []
   interval: 3
   disappearance: 3
-  spawnPos:
-  - {x: -4, y: 0.5, z: 0}
-  - {x: -2, y: 0.5, z: 0}
-  - {x: 2, y: 0.5, z: 0}
-  - {x: 4, y: 0.5, z: 0}
+  spawnRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  spawnNum: 0
+--- !u!114 &2744749158252248143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187170522084267169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d740fde547c88438a390f35739b1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rect:
+    serializedVersion: 2
+    x: -0.5
+    y: -0.5
+    width: 1
+    height: 1
