@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// İ’è‚µ‚½Š¿š‚ğƒ‰ƒ“ƒ_ƒ€‚Å•¡”ƒXƒ|[ƒ“
+// è¨­å®šã—ãŸæ¼¢å­—ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§è¤‡æ•°ã‚¹ãƒãƒ¼ãƒ³
 public class KanjiSpwaner : MonoBehaviour {
 
     // static field
@@ -10,26 +10,26 @@ public class KanjiSpwaner : MonoBehaviour {
     // public member
 
     // serialized field
-    [SerializeField, Header("Š¿šƒŠƒXƒg")]
+    [SerializeField, Header("æ¼¢å­—ãƒªã‚¹ãƒˆ")]
     private List<Kanji_Abstract> kanjiList = null;
 
-    [SerializeField, Header("ƒXƒ|[ƒ“ŠÔŠu")]
+    [SerializeField, Header("ã‚¹ãƒãƒ¼ãƒ³é–“éš”")]
     float interval = 3.0f;
-    [SerializeField, Header("Á–ÅŠÔŠu")]
+    [SerializeField, Header("æ¶ˆæ»…é–“éš”")]
     float disappearance = 3.0f;
-    [SerializeField, Header("—N‚­êŠ")]
+    [SerializeField, Header("æ¹§ãå ´æ‰€")]
     Vector3[] spawnPos;
     // private member
-    private float timer = 0.0f; // ƒ^ƒCƒ}[
-    private bool isAppear = false;  // Œ»‚ê‚Ä‚¢‚é‚©
-    private List<GameObject> AppearKanji = null;    // Œ»‚ê‚Ä‚éŠ¿š
+    private float timer = 0.0f; // ã‚¿ã‚¤ãƒãƒ¼
+    private bool isAppear = false;  // ç¾ã‚Œã¦ã„ã‚‹ã‹
+    private List<GameObject> AppearKanji = null;    // ç¾ã‚Œã¦ã‚‹æ¼¢å­—
     
     void Awake() {
         
     }
 
     void Start () {
-        // ƒQ[ƒ€’†‚ÍƒGƒŠƒA‚Ì•`‰æ‚ğƒIƒt
+        // ã‚²ãƒ¼ãƒ ä¸­ã¯ã‚¨ãƒªã‚¢ã®æç”»ã‚’ã‚ªãƒ•
         MeshRenderer meshRenderer = null; 
         if(TryGetComponent<MeshRenderer>(out meshRenderer))
         {
@@ -40,7 +40,7 @@ public class KanjiSpwaner : MonoBehaviour {
 
     void Update () {
         timer += Time.deltaTime;
-        // Š¿š‚ªƒGƒŠƒA‚É‚È‚¢ê‡
+        // æ¼¢å­—ãŒã‚¨ãƒªã‚¢ã«ãªã„å ´åˆ
         if (!isAppear)
         {
             if (timer >= interval)
@@ -55,7 +55,7 @@ public class KanjiSpwaner : MonoBehaviour {
                 }
             }
         }
-        // Š¿š‚ª‚ ‚éê‡
+        // æ¼¢å­—ãŒã‚ã‚‹å ´åˆ
         else
         {
             if (timer >= disappearance)
