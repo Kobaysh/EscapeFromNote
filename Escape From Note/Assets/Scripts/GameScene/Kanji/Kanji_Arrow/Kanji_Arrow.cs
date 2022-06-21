@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
- [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Bow")]
-public class Kanji_Bow : Kanji_Abstract 
+ [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Arrow")]
+public class Kanji_Arrow : Kanji_Abstract 
 {
  
     // static field
@@ -11,10 +11,7 @@ public class Kanji_Bow : Kanji_Abstract
     // public member
 
     // serialized field
-    [SerializeField]
-    private GameObject arrowProjectile;
-    [SerializeField]
-    private float interval = 1.0f;
+
     // private member
 
     public void Awake() 

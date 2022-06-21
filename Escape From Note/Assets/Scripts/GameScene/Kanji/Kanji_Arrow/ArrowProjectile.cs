@@ -1,0 +1,36 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+ 
+public class ArrowProjectile : MonoBehaviour 
+{
+ 
+    // static field
+
+    // public member
+
+    // serialized field
+
+    // private member
+
+    public void Awake() 
+    {
+        
+    }
+
+    public void Start () 
+    {
+	
+	}
+	
+
+    public void Update () 
+    {
+	
+	}
+
+    public void FixedUpdate() 
+    {
+        
+    }
+}

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u5F13"
   KanjiModel: {fileID: 7323159823725693011, guid: 933196145bfc8c8478af7fa4febbcd40, type: 3}
-  ActionAnimNum: 0
+  ActionAnimNum: 3
+  arrowProjectile: {fileID: 1780688262648508270, guid: f5a9e5ce2fd4c2444951d1ec1ff65106, type: 3}
+  interval: 1
