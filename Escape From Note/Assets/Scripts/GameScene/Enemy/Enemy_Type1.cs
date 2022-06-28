@@ -83,6 +83,7 @@ public class Enemy_Type1 : Enemy_Base
         animator.SetLayerWeight(color + 1, 1.0f);
     }
 
+    //Enemy1の死亡時処理
     public override void DeathProcess()
     {
         GameObject gamemanager = GameObject.Find("GameManager");

@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     public GameObject KanjiSlot;
     public GameObject ItemSlot;
 
-
     [SerializeField]
     int startHp;                    //初期HP
 
@@ -52,6 +51,9 @@ public class Player : MonoBehaviour
 
     // private member
     private Vector3 moveDirection = Vector3.zero;  //移動方向
+
+    [SerializeField]
+    private float DirectionF_or_B; //プレイヤー直立時の前後確認用
 
     //[SerializeField, Header("無敵時間")]
     private float InvincibleTime;
@@ -139,6 +141,11 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (Input.GetAxis("Horizontal") < -0.1f || 0.1f < Input.GetAxis("Horizontal"))
+        {
+            DirectionF_or_B = Input.GetAxis("Horizontal");
+        }
+
         //地面にいるとき
         if (characterController.isGrounded)
         {
@@ -148,7 +155,11 @@ public class Player : MonoBehaviour
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
             moveDirection *= speed;  //スピード設定
             if (isDashEnhanced) moveDirection *= 1.5f;
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
+
+            
+
+            transform.right = new Vector3(DirectionF_or_B, 0.0f, 0.0f);  //向きを設定
+
             // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
@@ -176,16 +187,21 @@ public class Player : MonoBehaviour
         else
         {
             moveDirection.x = Input.GetAxis("Horizontal") * speed;
-            transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //向きを設定
+            transform.right = new Vector3(DirectionF_or_B, 0.0f, 0.0f); ;  //向きを設定
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
 
-        //ノックバック中以外は歩く
+        //ノックバック中処理
         if (KnockbackVelocity != Vector3.zero)
         {
-            characterController.Move(KnockbackVelocity * Time.deltaTime);
+
+            characterController.Move(new Vector3(KnockbackVelocity.x,moveDirection.y,0.0f) * Time.deltaTime);
+
+            //characterController.Move(KnockbackVelocity * Time.deltaTime);
         }
+
+        //通常移動処理
         else
         {
             characterController.Move(moveDirection * Time.deltaTime);
@@ -253,7 +269,6 @@ public class Player : MonoBehaviour
                 InvincibleProcess();
             }
         }
-
     }
 
 
