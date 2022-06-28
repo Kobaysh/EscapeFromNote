@@ -428,6 +428,17 @@ PrefabInstance:
     - {fileID: 0}
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: aee7c5dd5679e164f8bcf6cc53a3fde6, type: 3}
+--- !u!114 &258588818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 678637322522989052, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+  m_PrefabInstance: {fileID: 8187342300112945049}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &272380840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,6 +455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 785007411}
     - target: {fileID: 8966586227801050865, guid: 44b866cd097ec114eb9abafa9152861d, type: 3}
+      propertyPath: reconfirmationUI
+      value: 
+      objectReference: {fileID: 684324852}
+    - target: {fileID: 8966586227801050865, guid: 44b866cd097ec114eb9abafa9152861d, type: 3}
       propertyPath: PauseMenuButtons.Array.data[0]
       value: 
       objectReference: {fileID: 1071616460}
@@ -451,6 +466,14 @@ PrefabInstance:
       propertyPath: PauseMenuButtons.Array.data[1]
       value: 
       objectReference: {fileID: 718277097}
+    - target: {fileID: 8966586227801050865, guid: 44b866cd097ec114eb9abafa9152861d, type: 3}
+      propertyPath: ReconfirmationButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 258588818}
+    - target: {fileID: 8966586227801050865, guid: 44b866cd097ec114eb9abafa9152861d, type: 3}
+      propertyPath: ReconfirmationButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1403970836}
     - target: {fileID: 8966586227801050866, guid: 44b866cd097ec114eb9abafa9152861d, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -710,6 +733,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &684324852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7497763450696364604, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+  m_PrefabInstance: {fileID: 8187342300112945049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &711127092 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1703308031986478650, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
@@ -1080,6 +1108,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10853686c667924ab62c09899ec2589, type: 3}
+--- !u!114 &1403970836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3853396398545519776, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+  m_PrefabInstance: {fileID: 8187342300112945049}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1407474998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,6 +1184,88 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f7760e61c4c5e04e9d5d531b2962fdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d90d5f22f288c9469dfd040b355ed09, type: 3}
+--- !u!1 &1456570093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1456570095}
+  - component: {fileID: 1456570094}
+  m_Layer: 5
+  m_Name: circle-5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1456570094
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456570093}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: f3513e0e999f09147bc802f7bcf08858, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5, y: 5}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1456570095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456570093}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.2700195, y: 0.89001465, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1680133620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1609,9 +1730,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1553825001742165219, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_Text
+      value: "\u672C\u5F53\u306B\u3088\u308D\u3057\u3044\u3067\u3059\u304B\uFF1F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703308030845015251, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1703308031348642914, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497763450696364604, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_Name
+      value: ReconfirmationUIPanel
       objectReference: {fileID: 0}
     - target: {fileID: 8187342300909383467, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
       propertyPath: m_Pivot.x
@@ -1712,6 +1845,10 @@ PrefabInstance:
     - target: {fileID: 8187342301754241465, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 9142591588844072280, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee1b86dec28cc294ba017c6b73f61344, type: 3}
