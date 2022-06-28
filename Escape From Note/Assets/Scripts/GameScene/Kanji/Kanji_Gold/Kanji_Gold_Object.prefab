@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 6749067618788071923}
   m_Layer: 0
   m_Name: Kanji_Gold_Object
-  m_TagString: Untagged
+  m_TagString: kanji
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

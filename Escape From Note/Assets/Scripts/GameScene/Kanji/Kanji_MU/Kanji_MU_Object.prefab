@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4779836873253364025}
   m_Layer: 0
   m_Name: Kanji_MU_Object
-  m_TagString: Untagged
+  m_TagString: kanji
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

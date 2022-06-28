@@ -32,7 +32,7 @@ public class Kanji_Hammer : Kanji_Abstract
         }
 
 
-        //ŠÔŒo‰ß‚ÅI—¹
+        //????o???I??
         if (ActiveTime >= Interval)
         {
 
@@ -42,24 +42,24 @@ public class Kanji_Hammer : Kanji_Abstract
         ActiveTime++;
     }
 
-    //ƒAƒNƒVƒ‡ƒ“
+    // action
     public override void KanjiAction()
     {
         CoroutineHandler.StartStaticCoroutine(DelayCoroutine());
     }
 
-    //‡‘Ì‰Â”Û”»’è
+    //unioncheck
     public override bool KanjiUnionCheck()
     {
         return false;
     }
 
-    //•ª—£
+    // separation
     public override void KanjiSeparation()
     {
-        //–Ø
+        // æœ¨
 
-        //’Ç
+        // è¿½
     }
 
     private void HammerInstatiate()
@@ -69,7 +69,7 @@ public class Kanji_Hammer : Kanji_Abstract
         trans.x += 1.0f * player.transform.right.x;
         trans.y += 0.5f;
         Quaternion rotate = player.transform.rotation;
-        //ƒGƒŠƒA‚ğ¶¬
+        // åˆ¤å®šã‚¨ãƒªã‚¢ç”Ÿæˆ
         Area = (GameObject)Instantiate(Collision, new Vector3(trans.x, trans.y, trans.z), rotate);
         Area.transform.parent = player.transform;
 
@@ -84,7 +84,7 @@ public class Kanji_Hammer : Kanji_Abstract
             yield return null;
         }
 
-        // ƒfƒBƒŒƒCI—¹Œã
+        // åˆ¤å®šç”Ÿæˆ
         HammerInstatiate();
         
     }

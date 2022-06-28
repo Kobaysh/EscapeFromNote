@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
  [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Jump")]
-public class Kanji_Jump : Kanji_Abstract {
+public class Kanji_Jump : Kanji_Abstract 
+{
  
     // static field
 
@@ -13,16 +14,19 @@ public class Kanji_Jump : Kanji_Abstract {
 
     // private member
 
-    void Awake() {
+    void Awake() 
+    {
         
     }
 
-    void Start () {
+    void Start () 
+    {
 	
 	}
 	
 
-    void Update () {
+    void Update () 
+    {
 	
 	}
 
@@ -43,8 +47,8 @@ public class Kanji_Jump : Kanji_Abstract {
     // separation
     public override void KanjiSeparation()
     {
-        // —r
+        // ?
 
-        // ‰H
+        // ?
     }
 }

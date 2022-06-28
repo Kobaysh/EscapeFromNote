@@ -52,8 +52,16 @@ public class Player : MonoBehaviour
     // private member
     private Vector3 moveDirection = Vector3.zero;  //移動方向
 
+
     [SerializeField]
     private float DirectionF_or_B; //プレイヤー直立時の前後確認用
+
+    private float interval;
+    
+    private float intervalTimer = 0.0f;
+
+    private bool isInterval = false;
+
 
     //[SerializeField, Header("無敵時間")]
     private float InvincibleTime;
@@ -101,6 +109,8 @@ public class Player : MonoBehaviour
         isBlinking = false;
         InvincibleTime = 0;
         KnockbackVelocity = Vector3.zero;
+        intervalTimer = 0.0f;
+        isInterval = false;
 
         KanjiSlot = GameObject.Find("GetKanjiText");
         ItemSlot = GameObject.Find("GetKanjiItemText");
@@ -223,6 +233,14 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if(isInterval)
+            {
+                if(intervalTimer ++ >= interval)
+                {
+                    isInterval = false;
+                    intervalTimer = 0.0f;
+                }
+            }
             //アクション
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -232,9 +250,17 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    //持っている漢字のActionAnimNumを取得
-                    ActionAnim(kanji.ActionAnimNum);
-                    animator.SetTrigger("Player_Attack_Trigger");
+                    if(isInterval)
+                    {
+                        Debug.LogFormat("{0}interval", kanji.ToString());
+                    }
+                    else
+                    {
+                        //持っている漢字のActionAnimNumを取得
+                        ActionAnim(kanji.ActionAnimNum);
+                        animator.SetTrigger("Player_Attack_Trigger");
+                        isInterval = true;
+                    }
                 }
             }
             // バフ用アイテム
@@ -286,6 +312,7 @@ public class Player : MonoBehaviour
 
         //所持漢字をセット
         kanji = recvKanji;
+        interval = kanji.interval;
 
         //アイテムスロットのテキスト変更
         Text changeText = KanjiSlot.GetComponent<Text>();

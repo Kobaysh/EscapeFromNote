@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
  
-public class #SCRIPTNAME# : MonoBehaviour {
+public class #SCRIPTNAME# : MonoBehaviour 
+{
  
     // static field
 
@@ -12,20 +13,24 @@ public class #SCRIPTNAME# : MonoBehaviour {
 
     // private member
 
-    public void Awake() {
+    public void Awake() 
+    {
         
     }
 
-    public void Start () {
+    public void Start () 
+    {
 	
 	}
 	
 
-    public void Update () {
+    public void Update () 
+    {
 	
 	}
 
-    public void FixedUpdate() {
+    public void FixedUpdate() 
+    {
         
     }
 }
