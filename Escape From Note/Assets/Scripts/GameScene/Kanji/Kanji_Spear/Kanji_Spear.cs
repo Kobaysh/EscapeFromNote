@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ public class Kanji_Spear : Kanji_Abstract
             return;
         }
 
-        //ŠÔŒo‰ß‚ÅI—¹
+        //æ™‚é–“çµŒéã§çµ‚äº†
         if(ActiveTime>=Interval)
         {
 
@@ -38,29 +38,29 @@ public class Kanji_Spear : Kanji_Abstract
         ActiveTime++;
     }
 
-    //ƒAƒNƒVƒ‡ƒ“
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public override void KanjiAction()
     {
         GameObject player = GameObject.Find("Player");
         Vector3 trans = player.transform.position;
         trans.x += 1.0f * Collision.transform.localScale.x / 2 + 0.5f;
         Quaternion rotate = player.transform.rotation;
-        //ƒGƒŠƒA1‚ğ¶¬
+        //ã‚¨ãƒªã‚¢1ã‚’ç”Ÿæˆ
         Area1 = (GameObject)Instantiate(Collision,new Vector3(trans.x,trans.y,trans.z),rotate);
         Area1.transform.parent = player.transform;
     }
 
-    //‡‘Ì‰Â”Û”»’è
+    //åˆä½“å¯å¦åˆ¤å®š
     public override bool KanjiUnionCheck()
     {
         return false;
     }
 
-    //•ª—£
+    //åˆ†é›¢
     public override void KanjiSeparation()
     {
-        //–Ø
+        //æœ¨
 
-        //‘q
+        //å€‰
     }
 }
