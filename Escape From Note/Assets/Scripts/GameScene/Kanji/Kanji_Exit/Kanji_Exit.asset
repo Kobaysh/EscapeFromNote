@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u51FA\u53E3"
   KanjiModel: {fileID: 6709398626510672536, guid: 94f68e9b7e9e27c46b18e83079d7b88c, type: 3}
+  ActionAnimNum: 0
+  interval: 0
+  damage: 0
+  KanjiSub1: {fileID: 11400000, guid: 0f8cd8c3c9547754e8e828b4047e19a8, type: 2}
+  KanjiSub2: {fileID: 11400000, guid: 9cbcc11cce2a4f24ca33da6dfedc588f, type: 2}
+  gameManager: {fileID: 0}

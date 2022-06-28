@@ -17,8 +17,8 @@ public class Kanji_Gun : Kanji_Abstract
     private float speed = 20f;
 
     //‡‘ÌŒ³‚ÌŠ¿š
-    public Kanji_Abstract KanjiSub1; //‹à
-    public Kanji_Abstract KanjiSub2; //[
+    // public Kanji_Abstract KanjiSub1; //‹à
+    // public Kanji_Abstract KanjiSub2; //[
 
     // ’e‚Ì”­Ë
     private void LauncherShot()
