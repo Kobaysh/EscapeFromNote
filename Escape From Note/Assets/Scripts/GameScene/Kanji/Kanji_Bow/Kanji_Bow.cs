@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
- [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Bow")]
-public class Kanji_Bow : Kanji_Abstract 
+[CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Bow")]
+public class Kanji_Bow : Kanji_Abstract
 {
- 
+
     // static field
 
     // public member
@@ -14,32 +14,37 @@ public class Kanji_Bow : Kanji_Abstract
     [SerializeField]
     private GameObject arrowProjectile;
     [SerializeField]
-    private float interval = 1.0f;
+    private float speed;
     // private member
-
-    public void Awake() 
+    public void Awake()
     {
-        
+
     }
 
-    public void Start () 
+    private void Start()
     {
-	
-	}
-	
 
-    public void Update () 
+    }
+
+
+    public void Update()
     {
-	
-	}
 
-	// Action
-	public override void KanjiAction()
-	{
+    }
 
-	}
+    // Action
+    public override void KanjiAction()
+    {
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        Vector3 pos = player.transform.position;
+        pos.x += player.transform.right.x + 0.5f;
+        GameObject arrow =
+        Instantiate(arrowProjectile, pos, new Quaternion());
+        arrow.transform.right = player.transform.right;
+        arrow.GetComponent<Rigidbody>().AddForce(arrow.transform.right * speed, ForceMode.Impulse);
+    }
 
-	// unioncheck
+    // unioncheck
     public override bool KanjiUnionCheck()
     {
         return false;

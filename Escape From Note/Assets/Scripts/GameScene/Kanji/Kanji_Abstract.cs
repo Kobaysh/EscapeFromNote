@@ -8,6 +8,8 @@ public abstract class Kanji_Abstract : ScriptableObject
     public string slotText;
     public GameObject KanjiModel;
     public int ActionAnimNum;
+
+    public float interval;  // 生成間隔
     
 
     //設置
