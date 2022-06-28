@@ -156,8 +156,6 @@ public class Player : MonoBehaviour
             moveDirection *= speed;  //スピード設定
             if (isDashEnhanced) moveDirection *= 1.5f;
 
-            
-
             transform.right = new Vector3(DirectionF_or_B, 0.0f, 0.0f);  //向きを設定
 
             // 歩行音
@@ -498,5 +496,11 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    public void JumpPowerReset()
+    {
+        Debug.Log("頭上にヒット");
+        moveDirection.y = 0.0f;
     }
 }
