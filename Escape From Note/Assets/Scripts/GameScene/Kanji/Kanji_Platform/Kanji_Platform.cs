@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Platform")]
 public class Kanji_Platform : Kanji_Abstract
 {
-    //‡‘ÌŒ³‚ÌŠ¿š
-    public Kanji_Abstract KanjiSub1; //ƒ€
-    public Kanji_Abstract KanjiSub2; //Œû
+    //åˆä½“å…ƒã®æ¼¢å­—
+    //public Kanji_Abstract KanjiSub1; //ãƒ 
+    //public Kanji_Abstract KanjiSub2; //å£
 
     // Start is called before the first frame update
     void Start()
@@ -21,29 +21,29 @@ public class Kanji_Platform : Kanji_Abstract
 
     }
 
-    //ƒAƒNƒVƒ‡ƒ“
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public override void KanjiAction()
     {
-        Debug.Log("‘ä");
+        Debug.Log("å°");
     }
 
-    //‡‘Ì‰Â”Û”»’è
+    //åˆä½“å¯å¦åˆ¤å®š
     public override bool KanjiUnionCheck()
     {
         return false;
     }
 
-    //•ª—£
+    //åˆ†é›¢
     public override void KanjiSeparation()
     {
-        //ƒvƒŒƒCƒ„[‚ğæ“¾
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
         GameObject player;
         player = GameObject.Find("Player");
 
-        //ƒ€‚ğƒZƒbƒg
+        //ãƒ ã‚’ã‚»ãƒƒãƒˆ
         player.GetComponent<Player>().KanjiSet(KanjiSub1, false);
 
-        //Œû‚ğİ’u
+        //å£ã‚’è¨­ç½®
         KanjiSub2.KanjiSummon();
     }
 }
