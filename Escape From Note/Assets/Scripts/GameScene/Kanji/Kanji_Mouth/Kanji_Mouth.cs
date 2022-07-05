@@ -1,69 +1,68 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Œp³ƒNƒ‰ƒX
+//ç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Mouth")]
 public class Kanji_Mouth : Kanji_Abstract
 {
     public Kanji_Abstract Union_Platform;
     public Kanji_Abstract Union_Exit;
 
-    // Start is called before the first frame update
-    void Start()
+    //æ¼¢å­—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
+    public override void Kanji_Start()
+    {
+    }
+
+    //æ¼¢å­—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ›´æ–°
+    public override void Kanji_Update()
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    //ƒAƒNƒVƒ‡ƒ“
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public override void KanjiAction()
     {
 
     }
 
-    //‡‘Ì‰Â”Û”»’è
+    //åˆä½“å¯å¦åˆ¤å®š
     public override bool KanjiUnionCheck()
     {
-        //ƒvƒŒƒCƒ„[‚ğæ“¾
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
         GameObject player;
         player = GameObject.Find("Player");
 
-        //ƒvƒŒƒCƒ„[‚ÌƒXƒNƒŠƒvƒg‚ğæ“¾
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
         Player player_script = player.GetComponent<Player>();
 
-        //ƒXƒNƒŠƒvƒg“à‚Ì•Ï”ukanjiv‚ğæ“¾
+        //ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å¤‰æ•°ã€Œkanjiã€ã‚’å–å¾—
         Kanji_Abstract getKanji = player_script.kanji;
 
-        //æ“¾‚µ‚Ä‚¢‚½Š¿š‚Ì”äŠr
-        if (getKanji.GetType() == typeof(Kanji_MU))
-        {
-            Debug.Log("ƒ€ + Œû = ‘ä");
-            //‘ä‚ğŠ‚·‚é
-            player.GetComponent<Player>().KanjiSet(Union_Platform, false);
+        //å–å¾—ã—ã¦ã„ãŸæ¼¢å­—ã®æ¯”è¼ƒ
+        //if (getKanji.GetType() == typeof(Kanji_MU))
+        //{
+        //    Debug.Log("ãƒ  + å£ = å°");
+        //    //å°ã‚’æ‰€æŒã™ã‚‹
+        //    player.GetComponent<Player>().KanjiSet(Union_Platform, false);
 
-            return true;
-        }
+        //    return true;
+        //}
 
-        else if (getKanji.GetType() == typeof(Kanji_Leave))
-        {
-            Debug.Log("o + Œû = oŒû");
-            //oŒû‚ğŠ‚·‚é
-            player.GetComponent<Player>().KanjiSet(Union_Exit, false);
+        //else if (getKanji.GetType() == typeof(Kanji_Leave))
+        //{
+        //    Debug.Log("å‡º + å£ = å‡ºå£");
+        //    //å‡ºå£ã‚’æ‰€æŒã™ã‚‹
+        //    player.GetComponent<Player>().KanjiSet(Union_Exit, false);
 
-            return true;
-        }
+        //    return true;
+        //}
 
 
         return false;
     }
 
-    //•ª—£i”h¶ŠÖ”j
+    //åˆ†é›¢ï¼ˆæ´¾ç”Ÿé–¢æ•°ï¼‰
     public override void KanjiSeparation()
     {
     }

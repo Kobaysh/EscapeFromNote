@@ -50,7 +50,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         LimitTimeMax = gameOverLimit;
         player = GameObject.Find("Player").GetComponent<Player>();
-
+        GameUI = GameObject.Find("GameUIPanel");
+        HPText = GameObject.Find("HPText").GetComponent<Text>();
+        ScoreUI = GameObject.Find("ScoreText").GetComponent<Text>();
+        
         GameScore = 0;
         GameUI.SetActive(true);
 

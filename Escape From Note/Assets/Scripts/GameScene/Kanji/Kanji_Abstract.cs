@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,6 +37,9 @@ public abstract class Kanji_Abstract : ScriptableObject
         return Instantiate(KanjiModel, transform);
     }
     //純粋仮想関数-----------------------------------------------
+
+    public abstract void Kanji_Start();
+    public abstract void Kanji_Update();
 
     //アクション
     public abstract void KanjiAction();
