@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,24 +14,19 @@ public class Kanji_Jump : Kanji_Abstract
 
     // private member
 
-    void Awake() 
+
+    public override void Kanji_Start()
     {
-        
     }
 
-    void Start () 
+    // Update is called once per frame
+    public override void Kanji_Update()
     {
-	
-	}
-	
 
-    void Update () 
-    {
-	
-	}
+    }
 
-	// Action
-	public override void KanjiAction()
+    // Action
+    public override void KanjiAction()
 	{
         Player player = GameObject.Find("Player").GetComponent<Player>();
         player.JumpEnhance();

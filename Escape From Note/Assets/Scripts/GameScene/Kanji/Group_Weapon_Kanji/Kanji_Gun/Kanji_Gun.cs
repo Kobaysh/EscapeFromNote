@@ -1,26 +1,38 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Œp³ƒNƒ‰ƒX
+//ç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 [CreateAssetMenu(menuName="Assets/Kanji Scriptable/Kanji_Gun")]
 public class Kanji_Gun : Kanji_Abstract
 {
     private GameObject firingPoint;
 
-    [SerializeField, Header("e")]
-    [Tooltip("’e")]
+    [SerializeField, Header("éŠƒ")]
+    [Tooltip("å¼¾")]
     private GameObject bullet;
 
     [SerializeField]
-    [Tooltip("’e‚Ì‘¬‚³")]
+    [Tooltip("å¼¾ã®é€Ÿã•")]
     private float speed = 20f;
 
-    //‡‘ÌŒ³‚ÌŠ¿š
-    // public Kanji_Abstract KanjiSub1; //‹à
-    // public Kanji_Abstract KanjiSub2; //[
 
-    // ’e‚Ì”­Ë
+    public override void Kanji_Start()
+    {
+    }
+
+    // Update is called once per frame
+    public override void Kanji_Update()
+    {
+       
+    }
+
+
+    //åˆä½“å…ƒã®æ¼¢å­—
+    // public Kanji_Abstract KanjiSub1; //é‡‘
+    // public Kanji_Abstract KanjiSub2; //å……
+
+    // å¼¾ã®ç™ºå°„
     private void LauncherShot()
     {
         
@@ -29,49 +41,49 @@ public class Kanji_Gun : Kanji_Abstract
         Vector3 direction = player.transform.right;
         direction.Normalize();
 
-        // ’e‚ğ”­Ë‚·‚éêŠ‚ğæ“¾
+        // å¼¾ã‚’ç™ºå°„ã™ã‚‹å ´æ‰€ã‚’å–å¾—
         Vector3 bulletPosition = firingPoint.transform.position;
         bulletPosition.x += direction.x;
-        // ã‚Åæ“¾‚µ‚½êŠ‚ÉA"bullet"‚ÌPrefab‚ğoŒ»‚³‚¹‚é
+        // ä¸Šã§å–å¾—ã—ãŸå ´æ‰€ã«ã€"bullet"ã®Prefabã‚’å‡ºç¾ã•ã›ã‚‹
         GameObject newBall = Instantiate(bullet, bulletPosition, bullet.transform.rotation);
-        // oŒ»‚³‚¹‚½ƒ{[ƒ‹‚Ìforward(z²•ûŒü)
+        // å‡ºç¾ã•ã›ãŸãƒœãƒ¼ãƒ«ã®forward(zè»¸æ–¹å‘)
      //   Vector3 direction = newBall.transform.right;
 
-        // ’e‚Ì”­Ë•ûŒü‚ÉnewBall‚Ìz•ûŒü(ƒ[ƒJƒ‹À•W)‚ğ“ü‚êA’eƒIƒuƒWƒFƒNƒg‚Ìrigidbody‚ÉÕŒ‚—Í‚ğ‰Á‚¦‚é
+        // å¼¾ã®ç™ºå°„æ–¹å‘ã«newBallã®zæ–¹å‘(ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™)ã‚’å…¥ã‚Œã€å¼¾ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®rigidbodyã«è¡æ’ƒåŠ›ã‚’åŠ ãˆã‚‹
         newBall.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Impulse);
-        // oŒ»‚³‚¹‚½ƒ{[ƒ‹‚Ì–¼‘O‚ğ"bullet"‚É•ÏX
+        // å‡ºç¾ã•ã›ãŸãƒœãƒ¼ãƒ«ã®åå‰ã‚’"bullet"ã«å¤‰æ›´
         newBall.name = bullet.name;
-        // oŒ»‚³‚¹‚½ƒ{[ƒ‹‚ğ1.5•bŒã‚ÉÁ‚·
+        // å‡ºç¾ã•ã›ãŸãƒœãƒ¼ãƒ«ã‚’1.5ç§’å¾Œã«æ¶ˆã™
         Destroy(newBall, 1.5f);
     }
 
-    //ƒAƒNƒVƒ‡ƒ“
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public override void KanjiAction()
     {
-        Debug.Log("e");
+        Debug.Log("éŠƒ");
 
-        // ’e‚ğ”­Ë‚·‚é
+        // å¼¾ã‚’ç™ºå°„ã™ã‚‹
         LauncherShot();
        
     }
 
-    //‡‘Ì‰Â”Û”»’è
+    //åˆä½“å¯å¦åˆ¤å®š
     public override bool KanjiUnionCheck()
     {
         return false;
     }
 
-    //•ª—£
+    //åˆ†é›¢
     public override void KanjiSeparation()
     {
-        //ƒvƒŒƒCƒ„[‚ğæ“¾
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
         GameObject player;
         player = GameObject.Find("Player");
 
-        //‹à‚ğƒZƒbƒg
+        //é‡‘ã‚’ã‚»ãƒƒãƒˆ
         player.GetComponent<Player>().KanjiSet(KanjiSub1,false);
 
-        //[‚ğİ’u
+        //å……ã‚’è¨­ç½®
         KanjiSub2.KanjiSummon(player.transform.position);
     }
 }

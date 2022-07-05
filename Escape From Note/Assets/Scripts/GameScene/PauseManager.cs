@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,10 +15,19 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     private Button[] PauseMenuButtons=new Button[2];
 
+    private void Start()
+    {
+        Debug.Log("Start");
+        pauseUI = GameObject.Find("PauseUIPanel");
+        PauseMenuButtons[0] = GameObject.Find("RestartButtonUI").GetComponent<Button>();
+        PauseMenuButtons[1] = GameObject.Find("ToMenuButtonUI").GetComponent<Button>();
+        pauseUI.SetActive(false);
+    }
 
     void Init()
     {
         PausmenuSelect = -1;
+        
     }
 
     // Update is called once per frame

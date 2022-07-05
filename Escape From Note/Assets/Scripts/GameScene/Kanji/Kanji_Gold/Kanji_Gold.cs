@@ -1,58 +1,57 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Œp³ƒNƒ‰ƒX
+//ç¶™æ‰¿ã‚¯ãƒ©ã‚¹
 [CreateAssetMenu(menuName = "Assets/Kanji Scriptable/Kanji_Gold")]
 public class Kanji_Gold : Kanji_Abstract
 {
     public Kanji_Abstract Union_Gun;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Kanji_Start()
     {
-
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Kanji_Update()
     {
 
     }
 
-    //ƒAƒNƒVƒ‡ƒ“
+    //ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
     public override void KanjiAction()
     {
 
     }
 
-    //‡‘Ì‰Â”Û”»’è
+    //åˆä½“å¯å¦åˆ¤å®š
     public override bool KanjiUnionCheck()
     {
-        //ƒvƒŒƒCƒ„[‚ğæ“¾
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
         GameObject player;
         player = GameObject.Find("Player");
 
-        //ƒvƒŒƒCƒ„[‚ÌƒXƒNƒŠƒvƒg‚ğæ“¾
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
         Player player_script = player.GetComponent<Player>();
 
-        //ƒXƒNƒŠƒvƒg“à‚Ì•Ï”ukanjiv‚ğæ“¾
+        //ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å¤‰æ•°ã€Œkanjiã€ã‚’å–å¾—
         Kanji_Abstract getKanji = player_script.kanji;
 
-        //æ“¾‚µ‚Ä‚¢‚½Š¿š‚Ì[‚¾‚Á‚½‚çiŒ^‚ğ”äŠrj
-        if(getKanji.GetType()==typeof(Kanji_Fill))
-        {
-            Debug.Log("‹à + [ = e");
-            //e‚ğŠ‚·‚é
-            player.GetComponent<Player>().KanjiSet(Union_Gun,false);
+        //å–å¾—ã—ã¦ã„ãŸæ¼¢å­—ã®å……ã ã£ãŸã‚‰ï¼ˆå‹ã‚’æ¯”è¼ƒï¼‰
+        //if (getKanji.GetType() == typeof(Kanji_Fill))
+        //{
+        //    Debug.Log("é‡‘ + å…… = éŠƒ");
+        //    éŠƒã‚’æ‰€æŒã™ã‚‹
+        //    player.GetComponent<Player>().KanjiSet(Union_Gun, false);
 
-            return true;
-        }
+        //    return true;
+        //}
 
         return false;
     }
 
-    //•ª—£i”h¶ŠÖ”j
+    //åˆ†é›¢ï¼ˆæ´¾ç”Ÿé–¢æ•°ï¼‰
     public override void KanjiSeparation()
     {
     }

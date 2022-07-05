@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpSpeed;
-            //    if (isJumpEnhanced) moveDirection.y *= 1.5f;
+                //    if (isJumpEnhanced) moveDirection.y *= 1.5f;
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
                 isJumped = true;
                 isLanding = false;
@@ -204,7 +204,7 @@ public class Player : MonoBehaviour
         if (KnockbackVelocity != Vector3.zero)
         {
 
-            characterController.Move(new Vector3(KnockbackVelocity.x,moveDirection.y,0.0f) * Time.deltaTime);
+            characterController.Move(new Vector3(KnockbackVelocity.x, moveDirection.y, 0.0f) * Time.deltaTime);
 
             //characterController.Move(KnockbackVelocity * Time.deltaTime);
         }
@@ -233,9 +233,9 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if(isInterval)
+            if (isInterval)
             {
-                if(intervalTimer ++ >= interval)
+                if (intervalTimer++ >= interval)
                 {
                     isInterval = false;
                     intervalTimer = 0.0f;
@@ -250,7 +250,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    if(isInterval)
+                    if (isInterval)
                     {
                         Debug.LogFormat("{0}interval", kanji.ToString());
                     }
@@ -273,7 +273,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     kanjiItem.KanjiAction();
-                    
+
                 }
             }
 
@@ -292,6 +292,11 @@ public class Player : MonoBehaviour
             {
                 InvincibleProcess();
             }
+        }
+
+        if (kanji)
+        {
+            kanji.Kanji_Update();
         }
     }
 
@@ -321,6 +326,8 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetInteger("Player_SetWeapon_Num_Int", recvKanji.ActionAnimNum);
 
+        kanji.Kanji_Start();
+
     }
 
     //アイテム漢字をセット
@@ -343,6 +350,8 @@ public class Player : MonoBehaviour
         //アイテムスロットのテキスト変更
         Text changeText = ItemSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
+
+        
     }
 
     //漢字アイテムを使う
@@ -527,7 +536,6 @@ public class Player : MonoBehaviour
 
     public void JumpPowerReset()
     {
-        Debug.Log("頭上にヒット");
         moveDirection.y = 0.0f;
     }
 }

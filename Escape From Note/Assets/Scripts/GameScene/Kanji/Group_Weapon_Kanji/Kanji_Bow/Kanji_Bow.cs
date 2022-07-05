@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,18 +16,13 @@ public class Kanji_Bow : Kanji_Abstract
     [SerializeField]
     private float speed;
     // private member
-    public void Awake()
-    {
 
+    public override void Kanji_Start()
+    {
     }
 
-    private void Start()
-    {
-
-    }
-
-
-    public void Update()
+    // Update is called once per frame
+    public override void Kanji_Update()
     {
 
     }
