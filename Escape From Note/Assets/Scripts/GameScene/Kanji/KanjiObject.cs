@@ -1,34 +1,34 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class KanjiObject : KanjiObjectItem
 {
  
-    //“–‚½‚è”»’è
+    //å½“ãŸã‚Šåˆ¤å®š
     public override void KanjiGet()
     {
         DestroyKanji();
 
-        //ƒAƒCƒeƒ€ƒXƒƒbƒg‚ÉŠi”[
-        //Possessionkanji‚ğˆø”‚ÉƒvƒŒƒCƒ„[‚ÌŠÖ”‚ğŒÄ‚Ô
+        //ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆã«æ ¼ç´
+        //Possessionkanjiã‚’å¼•æ•°ã«ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é–¢æ•°ã‚’å‘¼ã¶
         player = GameObject.Find("Player");
         player.GetComponent<Player>().KanjiSet(PossessionKanji,true);
 
-        //ƒXƒRƒA‰ÁZ(Œ±“I)
+        //ã‚¹ã‚³ã‚¢åŠ ç®—(è©¦é¨“çš„)
         GameObject gamemanager = GameObject.Find("GameManager");
         gamemanager.GetComponent<GameManager>().GameScore += 10;
     }
 
-    //‡‘Ì–½—ß
+    //åˆä½“å‘½ä»¤
     public void KanjiUnionOrder()
     {
-        Debug.Log("‡‘Ì‚µ‚Ü‚·B");
+        Debug.Log("åˆä½“ã—ã¾ã™ã€‚");
 
         //PossessionKanji.KanjiUnion();
 
-        //PossesionKanji‚©‚ç‚Å‚Í‚È‚­A‚±‚±‚©‚çÁ‹–½—ß‚ğo‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
-        //ŠŠ¿š‚ÌboolŠÖ”‚ğŒÄ‚ÑA^‚ªo‚ê‚ÎÁ‹‚·‚é
+        //PossesionKanjiã‹ã‚‰ã§ã¯ãªãã€ã“ã“ã‹ã‚‰æ¶ˆå»å‘½ä»¤ã‚’å‡ºã•ãªã‘ã‚Œã°ãªã‚‰ãªã„
+        //æ‰€æŒæ¼¢å­—ã®boolé–¢æ•°ã‚’å‘¼ã³ã€çœŸãŒå‡ºã‚Œã°æ¶ˆå»ã™ã‚‹
         if(PossessionKanji.KanjiUnionCheck())
         {
             DestroyKanji();

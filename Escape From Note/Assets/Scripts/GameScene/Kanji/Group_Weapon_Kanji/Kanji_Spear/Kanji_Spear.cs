@@ -15,15 +15,16 @@ public class Kanji_Spear : Kanji_Abstract
     private GameObject Area1;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Kanji_Start()
     {
         isActive = false;
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Kanji_Update()
     {
-        if(!isActive)
+        Debug.Log("実行中");
+        if (!isActive)
         {
             return;
         }

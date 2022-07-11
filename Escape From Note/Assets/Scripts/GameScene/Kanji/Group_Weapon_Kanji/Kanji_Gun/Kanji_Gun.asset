@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u9283"
   KanjiModel: {fileID: 2307660138819118564, guid: b1e8b1067345a2b4da408b8bab3b4de9, type: 3}
-  bullet: {fileID: 7626601717075316187, guid: 85783aecda0b2bf4c96a56a14efeec4e, type: 3}
-  speed: 40
+  ActionAnimNum: 2
+  interval: 0
+  damage: 0
   KanjiSub1: {fileID: 11400000, guid: 0ed6cb8a97fca254fb33c99a436c0c5d, type: 2}
   KanjiSub2: {fileID: 11400000, guid: 41871deeb85d9e64bb13d8a3a43dcfbb, type: 2}
+  bullet: {fileID: 7626601717075316187, guid: 85783aecda0b2bf4c96a56a14efeec4e, type: 3}
+  speed: 40

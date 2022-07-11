@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,17 +17,18 @@ public class Kanji_Dash : Kanji_Abstract {
         
     }
 
-    void Start () {
-	
-	}
-	
+    public override void Kanji_Start()
+    {
+    }
 
-    void Update () {
-	
-	}
+    // Update is called once per frame
+    public override void Kanji_Update()
+    {
 
-	// Action
-	public override void KanjiAction()
+    }
+
+    // Action
+    public override void KanjiAction()
 	{
         Player player = GameObject.Find("Player").GetComponent<Player>();
         player.DashEnhance();

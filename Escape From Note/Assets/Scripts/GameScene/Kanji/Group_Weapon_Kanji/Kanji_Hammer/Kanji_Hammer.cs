@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,31 +11,36 @@ public class Kanji_Hammer : Kanji_Abstract
     private float delay = 0.5f;
 
     private float timer = 0.0f;
+
+    [SerializeField]
     private bool isActive;
+
     private int ActiveTime;
     public int Interval;
 
     private GameObject Area;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Kanji_Start()
     {
         isActive = false;
+        Interval = 100;
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Kanji_Update()
     {
         if (!isActive)
         {
             return;
         }
 
+        
 
-        //????o???I??
         if (ActiveTime >= Interval)
         {
-
+            Destroy(Area.gameObject);
+            Debug.Log("Stop");
             isActive = false;
         }
 
@@ -45,7 +50,12 @@ public class Kanji_Hammer : Kanji_Abstract
     // action
     public override void KanjiAction()
     {
-        CoroutineHandler.StartStaticCoroutine(DelayCoroutine());
+        isActive = true;
+        ActiveTime = 0;
+        Debug.Log("Action");
+        HammerInstatiate();
+        //CoroutineHandler.StartStaticCoroutine(DelayCoroutine());
+        
     }
 
     //unioncheck
@@ -73,7 +83,7 @@ public class Kanji_Hammer : Kanji_Abstract
         Area = (GameObject)Instantiate(Collision, new Vector3(trans.x, trans.y, trans.z), rotate);
         Area.transform.parent = player.transform;
 
-        CoroutineHandler.StopStaticCoroutine(DelayCoroutine());
+        //CoroutineHandler.StopStaticCoroutine(DelayCoroutine());
     }
 
     private IEnumerator DelayCoroutine()
