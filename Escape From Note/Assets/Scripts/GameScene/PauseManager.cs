@@ -19,10 +19,17 @@ public class PauseManager : MonoBehaviour
     private int select; // select   -1(初期値) 0(YES) 1(NO)
 
     [SerializeField]
+    private GameObject circle;
+
+    [SerializeField]
     private Button[] PauseMenuButtons = new Button[2];
     [SerializeField]
     private Button[] ReconfirmationButtons = new Button[2];
 
+    private Vector3 LeftSelect = new Vector3(-440.0f,-337.0f,0.0f);
+    private Vector3 RightSelect = new Vector3(440.0f, -337.0f, 0.0f);
+
+    private RectTransform CircleRect;
 
     void Init()
     {
@@ -33,6 +40,15 @@ public class PauseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(pauseUI.activeSelf || reconfirmationUI.activeSelf)
+        {
+            circle.SetActive(true);
+        }
+        else
+        {
+            circle.SetActive(false);
+        }
+
         if (Input.GetKeyDown("q") && !reconfirmationUI.activeSelf)
         {
             //　ポーズUIのアクティブ、非アクティブを切り替え
@@ -95,18 +111,17 @@ public class PauseManager : MonoBehaviour
             pauseUI.SetActive(false);
         }
 
-            //選択状態ごとのカーソル表示
-            for (int i = 0; i < 2; i++)
-            {
-                if (i == PausemenuSelect)
-                {
-                    PauseMenuButtons[i].GetComponent<Image>().color = Color.cyan;
-                }
-                else
-                {
-                    PauseMenuButtons[i].GetComponent<Image>().color = Color.white;
-                }
-            }
+        if (0 == PausemenuSelect)
+        {
+            CircleRect = circle.GetComponent<RectTransform>();
+            CircleRect.localPosition = LeftSelect;
+        }
+        else
+        {
+            CircleRect = circle.GetComponent<RectTransform>();
+            CircleRect.localPosition = RightSelect;
+        }
+
     }//!PauseMenuControll
 
     //---------------------------------------------------------------
@@ -163,17 +178,16 @@ public class PauseManager : MonoBehaviour
             }
         }
 
-        //選択状態ごとのカーソル表示
-        for (int i = 0; i < 2; i++)
+
+        if (0 == select)
         {
-            if (i == select)
-            {
-                ReconfirmationButtons[i].GetComponent<Image>().color = Color.cyan;
-            }
-            else
-            {
-                ReconfirmationButtons[i].GetComponent<Image>().color = Color.white;
-            }
+            CircleRect = circle.GetComponent<RectTransform>();
+            CircleRect.localPosition = LeftSelect;
+        }
+        else
+        {
+            CircleRect = circle.GetComponent<RectTransform>();
+            CircleRect.localPosition = RightSelect;
         }
     }
 }
