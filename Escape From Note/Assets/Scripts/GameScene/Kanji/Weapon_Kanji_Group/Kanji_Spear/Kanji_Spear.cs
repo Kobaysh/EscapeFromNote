@@ -23,7 +23,6 @@ public class Kanji_Spear : Kanji_Abstract
     // Update is called once per frame
     public override void Kanji_Update()
     {
-        Debug.Log("実行中");
         if (!isActive)
         {
             return;
@@ -42,12 +41,11 @@ public class Kanji_Spear : Kanji_Abstract
     //アクション
     public override void KanjiAction()
     {
-        GameObject player = GameObject.Find("Player");
-        Vector3 trans = player.transform.position;
-        trans.x += 1.0f * Collision.transform.localScale.x / 2 + 0.5f;
+        GameObject player = GameObject.FindWithTag("Player");
+        Vector3 pos = player.transform.position + player.transform.right * 1.5f;
         Quaternion rotate = player.transform.rotation;
         //エリア1を生成
-        Area1 = (GameObject)Instantiate(Collision,new Vector3(trans.x,trans.y,trans.z),rotate);
+        Area1 = (GameObject)Instantiate(Collision,new Vector3(pos.x,pos.y,pos.z),rotate);
         Area1.transform.parent = player.transform;
     }
 
@@ -60,8 +58,14 @@ public class Kanji_Spear : Kanji_Abstract
     //分離
     public override void KanjiSeparation()
     {
-        //木
+        //プレイヤーを取得
+        GameObject player;
+        player = GameObject.FindWithTag("Player");
 
-        //倉
+        //金をセット
+        player.GetComponent<Player>().KanjiSet(KanjiSub1, false);
+
+        //充を設置
+        KanjiSub2.KanjiSummon(player.transform.position);
     }
 }

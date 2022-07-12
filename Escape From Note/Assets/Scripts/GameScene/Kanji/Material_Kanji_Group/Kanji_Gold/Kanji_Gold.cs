@@ -7,13 +7,12 @@ using UnityEngine;
 public class Kanji_Gold : Kanji_Abstract
 {
     public Kanji_Abstract Union_Gun;
+    public Kanji_Abstract Union_Sickle;
 
-    // Start is called before the first frame update
     public override void Kanji_Start()
     {
     }
 
-    // Update is called once per frame
     public override void Kanji_Update()
     {
 
@@ -38,15 +37,12 @@ public class Kanji_Gold : Kanji_Abstract
         //スクリプト内の変数「kanji」を取得
         Kanji_Abstract getKanji = player_script.kanji;
 
-        //取得していた漢字の充だったら（型を比較）
-        //if (getKanji.GetType() == typeof(Kanji_Fill))
-        //{
-        //    Debug.Log("金 + 充 = 銃");
-        //    銃を所持する
-        //    player.GetComponent<Player>().KanjiSet(Union_Gun, false);
+        if (getKanji.GetType() == typeof(Kanji_Kaneru))
+        {
+            player.GetComponent<Player>().KanjiSet(Union_Sickle, false);
 
-        //    return true;
-        //}
+            return true;
+        }
 
         return false;
     }

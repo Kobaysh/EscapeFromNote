@@ -67,9 +67,15 @@ public class Kanji_Hammer : Kanji_Abstract
     // separation
     public override void KanjiSeparation()
     {
-        // 木
+        //プレイヤーを取得
+        GameObject player;
+        player = GameObject.Find("Player");
 
-        // 追
+        //金をセット
+        player.GetComponent<Player>().KanjiSet(KanjiSub1, false);
+
+        //充を設置
+        KanjiSub2.KanjiSummon(player.transform.position);
     }
 
     private void HammerInstatiate()

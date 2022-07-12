@@ -15,5 +15,9 @@ MonoBehaviour:
   slotText: "\u69CD"
   KanjiModel: {fileID: 722951029851563614, guid: bb8b92333bdc4514185da5969f70d0b6, type: 3}
   ActionAnimNum: 4
+  interval: 0
+  damage: 0
+  KanjiSub1: {fileID: 11400000, guid: 076790d6432375d4e8c0a725d36e7116, type: 2}
+  KanjiSub2: {fileID: 11400000, guid: 48c4b1bdea5e31443becaf9e77f0990b, type: 2}
   Collision: {fileID: 4654694418303021942, guid: 77f24da403d77fc4ebfabbd8bf6af4c4, type: 3}
   Interval: 35

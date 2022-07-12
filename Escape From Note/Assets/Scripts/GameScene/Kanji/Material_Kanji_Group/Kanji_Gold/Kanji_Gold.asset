@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotText: "\u91D1"
   KanjiModel: {fileID: 6749067618788071926, guid: dd4ddbaf55722464e8bc0d2c26c64a81, type: 3}
+  ActionAnimNum: 0
+  interval: 0
+  damage: 0
+  KanjiSub1: {fileID: 0}
+  KanjiSub2: {fileID: 0}
   Union_Gun: {fileID: 11400000, guid: f1a9f02b0234ef847927f5ee7d03fd0b, type: 2}
+  Union_Sickle: {fileID: 0}
