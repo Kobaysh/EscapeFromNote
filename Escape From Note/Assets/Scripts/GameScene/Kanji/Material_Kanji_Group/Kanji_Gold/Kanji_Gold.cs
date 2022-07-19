@@ -9,10 +9,12 @@ public class Kanji_Gold : Kanji_Abstract
     public Kanji_Abstract Union_Gun;
     public Kanji_Abstract Union_Sickle;
 
+    // Start is called before the first frame update
     public override void Kanji_Start()
     {
     }
 
+    // Update is called once per frame
     public override void Kanji_Update()
     {
 
@@ -41,10 +43,11 @@ public class Kanji_Gold : Kanji_Abstract
         {
             player.GetComponent<Player>().KanjiSet(Union_Sickle, false);
 
-            return true;
-        }
+        //    return true;
+        //}
 
         return false;
+        }
     }
 
     //分離（派生関数）
