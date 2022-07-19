@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,13 @@ public abstract class Kanji_Abstract : ScriptableObject
     public string slotText;
     public GameObject KanjiModel;
     public int ActionAnimNum;
+
+    public float interval;  // 生成間隔
+
+    public int damage;  // 与えるダメージ
+
+    public Kanji_Abstract KanjiSub1; // 漢字1
+    public Kanji_Abstract KanjiSub2; // 漢字2
     
 
     //設置
@@ -30,6 +37,9 @@ public abstract class Kanji_Abstract : ScriptableObject
         return Instantiate(KanjiModel, transform);
     }
     //純粋仮想関数-----------------------------------------------
+
+    public abstract void Kanji_Start();
+    public abstract void Kanji_Update();
 
     //アクション
     public abstract void KanjiAction();

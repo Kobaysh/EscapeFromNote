@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     public GameObject KanjiSlot;
     public GameObject ItemSlot;
 
-
     [SerializeField]
     int startHp;                    //初期HP
 
@@ -52,6 +51,17 @@ public class Player : MonoBehaviour
 
     // private member
     private Vector3 moveDirection = Vector3.zero;  //移動方向
+
+
+    [SerializeField]
+    private float DirectionF_or_B; //プレイヤー直立時の前後確認用
+
+    private float interval;
+    
+    private float intervalTimer = 0.0f;
+
+    private bool isInterval = false;
+
 
     //[SerializeField, Header("無敵時間")]
     private float InvincibleTime;
@@ -99,6 +109,8 @@ public class Player : MonoBehaviour
         isBlinking = false;
         InvincibleTime = 0;
         KnockbackVelocity = Vector3.zero;
+        intervalTimer = 0.0f;
+        isInterval = false;
 
         KanjiSlot = GameObject.Find("GetKanjiText");
         ItemSlot = GameObject.Find("GetKanjiItemText");
@@ -139,6 +151,11 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (Input.GetAxis("Horizontal") < -0.1f || 0.1f < Input.GetAxis("Horizontal"))
+        {
+            DirectionF_or_B = Input.GetAxis("Horizontal");
+        }
+
         //地面にいるとき
         if (characterController.isGrounded)
         {
@@ -148,7 +165,9 @@ public class Player : MonoBehaviour
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //毎フレームベクトルを設定
             moveDirection *= speed;  //スピード設定
             if (isDashEnhanced) moveDirection *= 1.5f;
-            transform.right = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);  //向きを設定
+
+            transform.right = new Vector3(DirectionF_or_B, 0.0f, 0.0f);  //向きを設定
+
             // 歩行音
             if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 1.0f)
             {
@@ -164,7 +183,7 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpSpeed;
-            //    if (isJumpEnhanced) moveDirection.y *= 1.5f;
+                //    if (isJumpEnhanced) moveDirection.y *= 1.5f;
                 player_Audio.PlaySE(Player_Audio.Player_SE.PLAYER_SE_JUMP);
                 isJumped = true;
                 isLanding = false;
@@ -176,16 +195,21 @@ public class Player : MonoBehaviour
         else
         {
             moveDirection.x = Input.GetAxis("Horizontal") * speed;
-            transform.right = new Vector3(moveDirection.x, 0.0f, 0.0f); ;  //向きを設定
+            transform.right = new Vector3(DirectionF_or_B, 0.0f, 0.0f); ;  //向きを設定
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
 
-        //ノックバック中以外は歩く
+        //ノックバック中処理
         if (KnockbackVelocity != Vector3.zero)
         {
-            characterController.Move(KnockbackVelocity * Time.deltaTime);
+
+            characterController.Move(new Vector3(KnockbackVelocity.x, moveDirection.y, 0.0f) * Time.deltaTime);
+
+            //characterController.Move(KnockbackVelocity * Time.deltaTime);
         }
+
+        //通常移動処理
         else
         {
             characterController.Move(moveDirection * Time.deltaTime);
@@ -209,6 +233,14 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if (isInterval)
+            {
+                if (intervalTimer++ >= interval)
+                {
+                    isInterval = false;
+                    intervalTimer = 0.0f;
+                }
+            }
             //アクション
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -218,9 +250,17 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    //持っている漢字のActionAnimNumを取得
-                    ActionAnim(kanji.ActionAnimNum);
-                    animator.SetTrigger("Player_Attack_Trigger");
+                    if (isInterval)
+                    {
+                        Debug.LogFormat("{0}interval", kanji.ToString());
+                    }
+                    else
+                    {
+                        //持っている漢字のActionAnimNumを取得
+                        ActionAnim(kanji.ActionAnimNum);
+                        animator.SetTrigger("Player_Attack_Trigger");
+                        isInterval = true;
+                    }
                 }
             }
             // バフ用アイテム
@@ -233,7 +273,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     kanjiItem.KanjiAction();
-                    
+
                 }
             }
 
@@ -254,6 +294,10 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (kanji)
+        {
+            kanji.Kanji_Update();
+        }
     }
 
 
@@ -273,6 +317,7 @@ public class Player : MonoBehaviour
 
         //所持漢字をセット
         kanji = recvKanji;
+        interval = kanji.interval;
 
         //アイテムスロットのテキスト変更
         Text changeText = KanjiSlot.GetComponent<Text>();
@@ -280,6 +325,8 @@ public class Player : MonoBehaviour
         //アニメーターの漢字ナンバーセット
         animator = GetComponent<Animator>();
         animator.SetInteger("Player_SetWeapon_Num_Int", recvKanji.ActionAnimNum);
+
+        kanji.Kanji_Start();
 
     }
 
@@ -303,6 +350,8 @@ public class Player : MonoBehaviour
         //アイテムスロットのテキスト変更
         Text changeText = ItemSlot.GetComponent<Text>();
         changeText.text = recvKanji.slotText;
+
+        
     }
 
     //漢字アイテムを使う
@@ -483,5 +532,10 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+
+    public void JumpPowerReset()
+    {
+        moveDirection.y = 0.0f;
     }
 }

@@ -56,7 +56,8 @@ public class Enemy_Type2 : Enemy_Base
         newBall.GetComponent<Rigidbody>().AddForce(direction * bullet_speed, ForceMode.Impulse);
         // 出現させたボールの名前を"bullet"に変更
         newBall.name = bullet.name;
- 
+        // SE
+        enemy_Audio.PlaySE(Enemy_Audio.Enemy_SE.ENEMY_SE_SHOT1);
     }
 
     public override void Move()

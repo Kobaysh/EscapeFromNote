@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +35,14 @@ public class PauseManager : MonoBehaviour
     {
         PausemenuSelect = 0;
         select = 0;
+    }
+    private void Start()
+    {
+        Debug.Log("Start");
+        pauseUI = GameObject.Find("PauseUIPanel");
+        PauseMenuButtons[0] = GameObject.Find("RestartButtonUI").GetComponent<Button>();
+        PauseMenuButtons[1] = GameObject.Find("ToMenuButtonUI").GetComponent<Button>();
+        pauseUI.SetActive(false);
     }
 
     // Update is called once per frame

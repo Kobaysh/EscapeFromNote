@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,19 +20,18 @@ public class Kanji_Wall : Kanji_Abstract
     
     }
 
-    public void Start () 
+    public override void Kanji_Start()
     {
-	
-	}
-	
+    }
 
-    public void Update () 
+    // Update is called once per frame
+    public override void Kanji_Update()
     {
-	
-	}
 
-	// Action
-	public override void KanjiAction()
+    }
+
+    // Action
+    public override void KanjiAction()
 	{
         Player player = GameObject.Find("Player").GetComponent<Player>();
         if(wall_instance == null)
