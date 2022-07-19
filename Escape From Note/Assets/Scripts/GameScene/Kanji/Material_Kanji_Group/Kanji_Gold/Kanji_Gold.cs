@@ -43,11 +43,11 @@ public class Kanji_Gold : Kanji_Abstract
         {
             player.GetComponent<Player>().KanjiSet(Union_Sickle, false);
 
-        //    return true;
-        //}
+            return true;
+        }
 
         return false;
-        }
+        
     }
 
     //分離（派生関数）
