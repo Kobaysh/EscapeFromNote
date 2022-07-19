@@ -20,13 +20,13 @@ public class Kanji_Scythe : Kanji_Abstract
         
     }
 
-    public void Start()
+    public  override void Kanji_Start()
     {
 
     }
-	
+    
 
-    public void Update () 
+    public override void Kanji_Update() 
     {
 	
 	}
