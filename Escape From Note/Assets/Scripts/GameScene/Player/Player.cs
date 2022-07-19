@@ -618,19 +618,25 @@ public class Player : MonoBehaviour
 
     public void TakeKanji(InputAction.CallbackContext context)
     {
-        if(isOnCollision) IA_TakeKanji = true;
-        if (context.phase == InputActionPhase.Performed)
+        if (isOnCollision)
         {
-            Debug.Log("TakeKanji");
+            IA_TakeKanji = true;
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("TakeKanji");
+            }
         }
     }
 
     public void UnionKanji(InputAction.CallbackContext context)
     {
-        IA_UnionKanji = true;
-        if (context.phase == InputActionPhase.Performed)
+        if (isOnCollision)
         {
-            Debug.Log("UnionKanji");
+            IA_UnionKanji = true;
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("UnionKanji");
+            }
         }
     }
 
