@@ -1,9 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KanjiCollision : MonoBehaviour
 {
+    private bool IA_TakeKanji = false;
+    private bool IA_UnionKanji = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,26 +16,33 @@ public class KanjiCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (IA_TakeKanji) IA_TakeKanji = false;
+        if (IA_UnionKanji) IA_UnionKanji = false;
     }
 
-    //ƒRƒŠƒWƒ‡ƒ“‚ÉÚG
+    //ã‚³ãƒªã‚¸ãƒ§ãƒ³ã«æ¥è§¦
     private void OnTriggerStay(Collider other)
     {
-        //ƒvƒŒƒCƒ„[‚ªÚG
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ¥è§¦
         if (other.gameObject.CompareTag("Player"))
         {
-            //æ“¾
-            if (Input.GetKeyDown(KeyCode.K)) //¶ƒNƒŠƒbƒN
+            //å–å¾—
+  //          if (Input.GetKeyDown(KeyCode.K)) //å·¦ã‚¯ãƒªãƒƒã‚¯æ™‚
+            if (IA_TakeKanji) //å·¦ã‚¯ãƒªãƒƒã‚¯æ™‚
             {
-                transform.root.gameObject.GetComponent<KanjiObjectItem>().KanjiGet(); //e‚ÌƒIƒuƒWƒFƒNƒg‚ÌKanjiObjectƒXƒNƒŠƒvƒg‚ÌŠÖ”‚ğŒÄ‚Ô
+                IA_UnionKanji = false;
+                transform.root.gameObject.GetComponent<KanjiObjectItem>().KanjiGet(); //è¦ªã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®KanjiObjectã‚¹ã‚¯ãƒªãƒ—ãƒˆã®é–¢æ•°ã‚’å‘¼ã¶
             }
 
-            //‡‘Ì–½—ß
-            if (Input.GetKeyDown(KeyCode.F))//FƒL[
+            //åˆä½“å‘½ä»¤
+ //           if (Input.GetKeyDown(KeyCode.F))//Fã‚­ãƒ¼
+            if (IA_UnionKanji)//Fã‚­ãƒ¼
             {
+                IA_UnionKanji = false;
                 transform.root.gameObject.GetComponent<KanjiObject>().KanjiUnionOrder();
             }
         }
     }
+
+
 }

@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2636e85d3f7c8c44c9a6dee50f9c932c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f3eb4a08f853824b9db629baf9f38b1, type: 3}
   m_Name: Kanji_Spear
   m_EditorClassIdentifier: 
   slotText: "\u69CD"
-  KanjiModel: {fileID: 722951029851563614, guid: bb8b92333bdc4514185da5969f70d0b6, type: 3}
-  ActionAnimNum: 4
-  interval: 0
-  damage: 0
-  KanjiSub1: {fileID: 11400000, guid: 076790d6432375d4e8c0a725d36e7116, type: 2}
-  KanjiSub2: {fileID: 11400000, guid: 48c4b1bdea5e31443becaf9e77f0990b, type: 2}
-  Collision: {fileID: 4654694418303021942, guid: 77f24da403d77fc4ebfabbd8bf6af4c4, type: 3}
-  Interval: 35
+  KanjiModel: {fileID: 722951029851563614, guid: a7292575e12b30e48b631f250a24821c, type: 3}
+  ActionAnimNum: 1
+  interval: 1
+  damage: 2
+  KanjiSub1: {fileID: 0}
+  KanjiSub2: {fileID: 0}
+  Collision: {fileID: 4654694418303021942, guid: 2ef76033b2ac40e48bf43cdc7863ff57, type: 3}
+  Interval: 0

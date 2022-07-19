@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -75,6 +76,16 @@ public class Player : MonoBehaviour
     private bool BlinkingSwitch;  //点滅状態（明・暗）
     private float BlinkingTimer;  //点滅切り替え間隔
 
+    private bool isConnectingController = false;
+
+    private bool isOnCollision = false;
+
+    // inputAction
+    private bool IA_Jump = false;
+    private bool IA_UseWeapon = false;
+    private bool IA_TakeKanji = false;
+    private bool IA_UnionKanji = false;
+
     //component
     CharacterController characterController;  //キャラクターコントローラー
     Animator animator;                        //アニメーター
@@ -114,6 +125,8 @@ public class Player : MonoBehaviour
 
         KanjiSlot = GameObject.Find("GetKanjiText");
         ItemSlot = GameObject.Find("GetKanjiItemText");
+
+        isConnectingController = (Gamepad.current != null);
     }
 
     //更新
@@ -136,6 +149,7 @@ public class Player : MonoBehaviour
                 isLanding = true;
                 isJumped = false;
                 isDoubleJump = false;
+                IA_Jump = false;
             }
         }
         // ダブルジャンプ
@@ -143,10 +157,12 @@ public class Player : MonoBehaviour
         {
             if (!isDoubleJump)
             {
-                if (Input.GetButtonDown("Jump"))
+                //if (Input.GetButtonDown("Jump"))
+                if (IA_Jump)
                 {
                     moveDirection.y = jumpSpeed;
                     isDoubleJump = true;
+                    IA_Jump = false;
                 }
             }
         }
@@ -180,7 +196,8 @@ public class Player : MonoBehaviour
             }
 
             //ジャンプ
-            if (Input.GetButtonDown("Jump"))
+        //    if (Input.GetButtonDown("Jump"))
+            if (IA_Jump)
             {
                 moveDirection.y = jumpSpeed;
                 //    if (isJumpEnhanced) moveDirection.y *= 1.5f;
@@ -242,7 +259,8 @@ public class Player : MonoBehaviour
                 }
             }
             //アクション
-            if (Input.GetKeyDown(KeyCode.Return))
+       //     if (Input.GetKeyDown(KeyCode.Return))
+            if (IA_UseWeapon)
             {
                 if (kanji == null)
                 {
@@ -262,6 +280,7 @@ public class Player : MonoBehaviour
                         isInterval = true;
                     }
                 }
+                IA_UseWeapon = false;
             }
             // バフ用アイテム
             if (Input.GetKeyDown(KeyCode.R))
@@ -300,6 +319,44 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("kanji"))
+        {
+            isOnCollision = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("kanji"))
+        {
+            isOnCollision = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //プレイヤーが接触
+        if (other.gameObject.CompareTag("kanji"))
+        {
+            //取得
+            //          if (Input.GetKeyDown(KeyCode.K)) //左クリック時
+            if (IA_TakeKanji) //左クリック時
+            {
+                IA_TakeKanji = false;
+                other.transform.root.gameObject.GetComponent<KanjiObjectItem>().KanjiGet(); //親のオブジェクトのKanjiObjectスクリプトの関数を呼ぶ
+            }
+            
+            //合体命令
+            //           if (Input.GetKeyDown(KeyCode.F))//Fキー
+            if (IA_UnionKanji)//Fキー
+            {
+                IA_UnionKanji = false;
+                other.transform.root.gameObject.GetComponent<KanjiObject>().KanjiUnionOrder();
+            }
+        }
+    }
 
     //漢字をセット
     public void KanjiSet(Kanji_Abstract recvKanji, bool Exchange)
@@ -538,4 +595,43 @@ public class Player : MonoBehaviour
     {
         moveDirection.y = 0.0f;
     }
+
+
+    // InputAction
+    public void Jump(InputAction.CallbackContext context)
+    {
+        IA_Jump = true;
+        if(context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("Jump");
+        }
+    }
+
+    public void UseWeapon(InputAction.CallbackContext context)
+    {
+        IA_UseWeapon = true;
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("UseWeapon");
+        }
+    }
+
+    public void TakeKanji(InputAction.CallbackContext context)
+    {
+        if(isOnCollision) IA_TakeKanji = true;
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("TakeKanji");
+        }
+    }
+
+    public void UnionKanji(InputAction.CallbackContext context)
+    {
+        IA_UnionKanji = true;
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Debug.Log("UnionKanji");
+        }
+    }
+
 }
