@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Escape From Note/Assets/Scripts/GameScene/Kanji/Material_Kanji_Group/Kanji_Kaneru/Kanji_Kaneru.asset.meta
+guid: a04c305ed47b82648983b27a095655cd
+=======
 guid: a0725a97077e2814c9fc55167f9c23ae
+>>>>>>> develop:Escape From Note/Assets/Scripts/GameScene/Kanji/Kanji_Scythe/Sythe.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 66dc1492a2414c643b4c3ea40cee89ba
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - KanjiModel: {fileID: 6054892451287314421, guid: 35889b6aa59ca5545b8730401085c8a0, type: 3}
+  - Collision: {fileID: 8501781314691241540, guid: 7ff6064a5e0f60f40b17ec5821de2f73, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

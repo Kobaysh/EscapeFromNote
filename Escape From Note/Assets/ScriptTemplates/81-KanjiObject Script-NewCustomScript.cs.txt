@@ -19,6 +19,17 @@ public class #SCRIPTNAME# : Kanji_Abstract
         
     }
 
+    public override void Kanji_Start() 
+    {
+	
+	}
+	
+
+    public override void Kanji_Update() 
+    {
+	
+	}
+
 	// Action
 	public override void KanjiAction()
 	{

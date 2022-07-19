@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65c3f551b902fe47bd06016e4b066f9, type: 3}
+  m_Name: Kanji_Kaneru
+  m_EditorClassIdentifier: 
+  slotText: "\u517C"
+  KanjiModel: {fileID: 2648945355981348925, guid: 6b9a575f4bf05e44d8add057f0cc534f, type: 3}
+  ActionAnimNum: 0
+  interval: 0
+  damage: 0
+  KanjiSub1: {fileID: 0}
+  KanjiSub2: {fileID: 0}
+  Union_Sickle: {fileID: 0}
