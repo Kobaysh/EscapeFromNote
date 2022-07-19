@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kanji_Arrow
   m_EditorClassIdentifier: 
   slotText: "\u77E2"
-  KanjiModel: {fileID: 0}
+  KanjiModel: {fileID: 7077347820097262926, guid: 4ff5e8f08c28b4c42be68f76b4de8a68, type: 3}
   ActionAnimNum: 2
   interval: 0
   damage: 0

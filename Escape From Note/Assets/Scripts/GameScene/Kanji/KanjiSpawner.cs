@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -113,7 +113,7 @@ public class KanjiSpawner : MonoBehaviour {
                     rec++;
 
                 }
-                if(rec >= i)
+                if(rec > i)
                 {
                     AppearKanji.Add((kanjiList[index].KanjiInstanriate(spawnPos)));
                     ApVec[i] = spawnPos;
