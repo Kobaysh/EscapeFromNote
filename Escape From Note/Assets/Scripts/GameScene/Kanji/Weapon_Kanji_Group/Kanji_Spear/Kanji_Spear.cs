@@ -23,10 +23,6 @@ public class Kanji_Spear : Kanji_Abstract
     // Update is called once per frame
     public override void Kanji_Update()
     {
-<<<<<<< HEAD:Escape From Note/Assets/Scripts/GameScene/Kanji/Weapon_Kanji_Group/Kanji_Spear/Kanji_Spear.cs
-=======
-        Debug.Log("実行中");
->>>>>>> develop:Escape From Note/Assets/Scripts/GameScene/Kanji/Group_Weapon_Kanji/Kanji_Spear/Kanji_Spear.cs
         if (!isActive)
         {
             return;
@@ -49,11 +45,7 @@ public class Kanji_Spear : Kanji_Abstract
         Vector3 pos = player.transform.position + player.transform.right * 1.5f;
         Quaternion rotate = player.transform.rotation;
         //エリア1を生成
-<<<<<<< HEAD:Escape From Note/Assets/Scripts/GameScene/Kanji/Weapon_Kanji_Group/Kanji_Spear/Kanji_Spear.cs
         Area1 = (GameObject)Instantiate(Collision,new Vector3(pos.x,pos.y,pos.z),rotate);
-=======
-        Area1 = (GameObject)Instantiate(Collision,new Vector3(trans.x,trans.y,trans.z),rotate);
->>>>>>> develop:Escape From Note/Assets/Scripts/GameScene/Kanji/Group_Weapon_Kanji/Kanji_Spear/Kanji_Spear.cs
         Area1.transform.parent = player.transform;
     }
 
@@ -66,7 +58,6 @@ public class Kanji_Spear : Kanji_Abstract
     //分離
     public override void KanjiSeparation()
     {
-<<<<<<< HEAD:Escape From Note/Assets/Scripts/GameScene/Kanji/Weapon_Kanji_Group/Kanji_Spear/Kanji_Spear.cs
         //プレイヤーを取得
         GameObject player;
         player = GameObject.FindWithTag("Player");
@@ -76,10 +67,5 @@ public class Kanji_Spear : Kanji_Abstract
 
         //充を設置
         KanjiSub2.KanjiSummon(player.transform.position);
-=======
-        //木
-
-        //倉
->>>>>>> develop:Escape From Note/Assets/Scripts/GameScene/Kanji/Group_Weapon_Kanji/Kanji_Spear/Kanji_Spear.cs
     }
 }
