@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Escape From Note/Assets/Scripts/GameScene/Kanji/Material_Kanji_Group/Kanji_Kura/Kanji_Kura.asset.meta
+guid: e4cf3c90656ba0c4ea95069d602f82c4
+=======
 guid: 42818863abd127046a7662b07fa2ffe7
+>>>>>>> develop:Escape From Note/Assets/Scripts/GameScene/Kanji/Kanji_Scythe/Sythe.controller.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 9100000

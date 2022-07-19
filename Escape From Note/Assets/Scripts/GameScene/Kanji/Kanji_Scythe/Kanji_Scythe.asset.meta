@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Escape From Note/Assets/Scripts/GameScene/Kanji/Material_Kanji_Group/Kanji_Chase/Kanji_Chase.asset.meta
+guid: 579ed722d7e1ad3498202172b4a8de78
+=======
 guid: e13c6b9436fcd3440945f7e85705d704
+>>>>>>> develop:Escape From Note/Assets/Scripts/GameScene/Kanji/Kanji_Scythe/Kanji_Scythe.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

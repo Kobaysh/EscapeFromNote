@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83411b212e73e224d8a5bdf50f029c91, type: 3}
+  m_Name: Kanji_Kura
+  m_EditorClassIdentifier: 
+  slotText: "\u5009"
+  KanjiModel: {fileID: 6836929342233651180, guid: b218e3cddfbb8b84fa8a82c4f83e3064, type: 3}
+  ActionAnimNum: 0
+  interval: 0
+  damage: 0
+  KanjiSub1: {fileID: 0}
+  KanjiSub2: {fileID: 0}
+  Union_Spear: {fileID: 11400000, guid: 11cd88a4d82d9fb4a8c4a707d839c655, type: 2}
