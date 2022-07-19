@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: eea9b7a254befe640821f083f05c7599
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - KanjiModel: {fileID: 776067422759246951, guid: c07d4c69f89edfb4596cfaee84d64e4e, type: 3}
+  - KanjiSub1: {fileID: 11400000, guid: 0ed6cb8a97fca254fb33c99a436c0c5d, type: 2}
+  - KanjiSub2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

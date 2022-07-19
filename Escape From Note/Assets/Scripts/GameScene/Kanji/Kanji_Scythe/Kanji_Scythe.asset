@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea9b7a254befe640821f083f05c7599, type: 3}
+  m_Name: Kanji_Scythe
+  m_EditorClassIdentifier: 
+  slotText: "\u938C"
+  KanjiModel: {fileID: 776067422759246951, guid: c07d4c69f89edfb4596cfaee84d64e4e, type: 3}
+  ActionAnimNum: 1
+  interval: 0
+  damage: 0
+  KanjiSub1: {fileID: 11400000, guid: 0ed6cb8a97fca254fb33c99a436c0c5d, type: 2}
+  KanjiSub2: {fileID: 0}
+  Collision: {fileID: 2186170351027456860, guid: 9ec0a3a1a5e54af4ea5cbf67202cc7c2, type: 3}
