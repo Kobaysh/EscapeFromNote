@@ -1522,11 +1522,11 @@ PrefabInstance:
     - target: {fileID: 1064005215492190613, guid: 1e259edb9968aa44bb5388a51d19f7e9, type: 3}
       propertyPath: kanjiList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 11cd88a4d82d9fb4a8c4a707d839c655, type: 2}
+      objectReference: {fileID: 11400000, guid: 076790d6432375d4e8c0a725d36e7116, type: 2}
     - target: {fileID: 1064005215492190613, guid: 1e259edb9968aa44bb5388a51d19f7e9, type: 3}
       propertyPath: kanjiList.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: f1a9f02b0234ef847927f5ee7d03fd0b, type: 2}
+      objectReference: {fileID: 11400000, guid: 48c4b1bdea5e31443becaf9e77f0990b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e259edb9968aa44bb5388a51d19f7e9, type: 3}
 --- !u!1001 &2246455374349758248
